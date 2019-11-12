@@ -28,6 +28,9 @@ class AdminScreen {
 
 	public function better_sharing_menu() {
 		echo '<h2>Better Sharing WP</h2>';
+
+		include_once( BETTER_SHARING_PATH . '/admin-templates/proxy-url.php' );
+
 	}
 
 }

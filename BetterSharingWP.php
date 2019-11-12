@@ -13,6 +13,9 @@
 
 namespace BetterSharingWP;
 
+define( 'BETTER_SHARING_PATH', plugin_dir_path( __FILE__ ) );
+define( 'BETTER_SHARING_URI', plugin_dir_url( __FILE__ ) );
+
 include_once 'vendor/autoload.php';
 
 use BetterSharingWP\AdminScreen;
