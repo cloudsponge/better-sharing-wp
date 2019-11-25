@@ -6,6 +6,8 @@
     "minimum-stability": "stable",
     "require": {},
     "autoload": {
-        "psr-4": {"BetterSharingWP\\": "includes/"}
+        "psr-4": {
+            "BetterSharingWP\\": "includes/"
+        }
     }
 }

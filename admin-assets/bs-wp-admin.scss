@@ -1,0 +1,42 @@
+#bswp-wrapper {
+  background: white;
+  border: 2px solid;
+  font-size: 1.2em;
+  margin: 20px auto;
+  padding: 10px;
+  width: auto;
+
+  @media screen and (max-width: 768px) {
+    amrgin: 0 auto;
+  }
+
+  h1,h2,h3,h4,h5 {
+    margin: 0;
+  }
+
+  p {
+    font-size: 1.2em;
+
+    &.help {
+      font-size: 0.8em;
+    }
+  }
+
+  .bswp-container {
+    border: 1px solid rgba(0,0,0,0.1);
+    margin: 10px 0;
+    padding: 10px;
+
+
+    // Api Key
+    &.api-key {
+      input#__bswp_api_key {
+        width: 200px;
+      }
+
+      & > form {
+        margin: 1em 0;
+      }
+    }
+  }
+}

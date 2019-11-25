@@ -16,16 +16,21 @@ namespace BetterSharingWP;
 define( 'BETTER_SHARING_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BETTER_SHARING_URI', plugin_dir_url( __FILE__ ) );
 
+define( 'BETTER_SHARING_ADMIN_TEMPLATE_PATH', BETTER_SHARING_PATH . 'includes/AdminScreens/admin-templates/' );
+
 include_once 'vendor/autoload.php';
 
-use BetterSharingWP\AdminScreen;
+use BetterSharingWP\Admin;
+use BetterSharingWP\Blocks;
 
 class BetterSharingWP {
 
 	private $adminScreen;
+	private $bswpBlocks;
 
 	public function __construct() {
-		$adminScreen = new AdminScreen();
+		$this->adminScreen = new Admin();
+		$this->bswpBlocks = new Blocks();
 	}
 
 

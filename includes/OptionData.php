@@ -13,8 +13,15 @@ class OptionData {
 	private $objectType;
 	private $prefix;
 
-	public function __construct() {
+	/**
+	 * OptionData constructor.
+	 *
+	 * @param string $objectType
+	 * @param string $prefix
+	 */
+	public function __construct( $objectType = '', $prefix = '' ) {
 		$this->globalPrefix = '_bswp_option_';
+		return $this->init( $objectType, $prefix );
 	}
 
 	/**
@@ -40,12 +47,6 @@ class OptionData {
 	 * @return $this|\WP_Error|bool
 	 */
 	public function init( $objectType = '', $prefix = '' ) {
-
-		// permissions check - admins only
-		$permission = $this->__permissionCheck( 'Permission Error Init DataObject', $objectType );
-		if ( is_wp_error( $permission ) ) {
-			return $permission;
-		}
 
 		if ( ! empty( $objectType ) && 'core' === $objectType ) {
 			$this->prefix = '';
