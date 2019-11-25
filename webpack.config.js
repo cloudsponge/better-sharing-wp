@@ -66,4 +66,4 @@ const configAdmin = {
 	}
 };
 
-module.exports = [configBlocks, configAdmin];
+module.exports = [configAdmin];

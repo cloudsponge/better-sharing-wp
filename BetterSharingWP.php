@@ -21,16 +21,13 @@ define( 'BETTER_SHARING_ADMIN_TEMPLATE_PATH', BETTER_SHARING_PATH . 'includes/Ad
 include_once 'vendor/autoload.php';
 
 use BetterSharingWP\Admin;
-use BetterSharingWP\Blocks;
 
 class BetterSharingWP {
 
 	private $adminScreen;
-	private $bswpBlocks;
 
 	public function __construct() {
 		$this->adminScreen = new Admin();
-		$this->bswpBlocks = new Blocks();
 	}
 
 
