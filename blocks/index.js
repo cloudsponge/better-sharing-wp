@@ -1,0 +1,1 @@
+import './better-sharing-block/block.jsx';

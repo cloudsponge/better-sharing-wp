@@ -1,0 +1,41 @@
+<?php
+/*
+ * @wordpress-plugin
+ * Plugin Name:       Better Sharing WP
+ * Description:       Better Sharing WordPress plugin for use for CloudSponge
+ * Version:           1.0.0
+ * Author:            CloudSponge
+ * Author URI:        https://www.cloudsponge.com
+ * License:           GPL-3.0
+ * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
+ * Textdomain:        better-sharing-wp
+ */
+
+namespace BetterSharingWP;
+
+define( 'BETTER_SHARING_PATH', plugin_dir_path( __FILE__ ) );
+define( 'BETTER_SHARING_URI', plugin_dir_url( __FILE__ ) );
+
+define( 'BETTER_SHARING_ADMIN_TEMPLATE_PATH', BETTER_SHARING_PATH . 'includes/AdminScreens/admin-templates/' );
+
+include_once 'vendor/autoload.php';
+
+use BetterSharingWP\Admin;
+use BetterSharingWP\Blocks;
+
+class BetterSharingWP {
+
+	private $adminScreen;
+	private $bswpBlocks;
+
+	public function __construct() {
+		$this->adminScreen = new Admin();
+		$this->bswpBlocks = new Blocks();
+	}
+
+
+}
+
+global $BetterSharingWP;
+
+$BetterSharingWP = new BetterSharingWP();
