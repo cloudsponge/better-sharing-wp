@@ -3,15 +3,18 @@
 namespace BetterSharingWP;
 
 use BetterSharingWP\AdminScreens\GeneralSettings;
+use BetterSharingWP\AdminScreens\AddOns;
 
 
 class Admin {
 
 	private $generalSettings;
+	private $addOnsPage;
 
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'better_sharing_menu_init' ], 10 );
 		$this->generalSettings = new GeneralSettings();
+		$this->addOnsPage = new AddOns();
 
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
 	}
@@ -28,6 +31,9 @@ class Admin {
 
 		// Init General Settings Page
 		$this->generalSettings->init();
+
+		// Init AddOns Page
+		$this->addOnsPage->init();
 
 		remove_submenu_page( 'better-sharing-wp', 'better-sharing-wp' );
 

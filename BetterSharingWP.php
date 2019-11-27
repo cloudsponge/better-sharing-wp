@@ -15,19 +15,34 @@ namespace BetterSharingWP;
 
 define( 'BETTER_SHARING_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BETTER_SHARING_URI', plugin_dir_url( __FILE__ ) );
+define( 'BETTER_SHARING_VERSION', '1.0.0' );
 
 define( 'BETTER_SHARING_ADMIN_TEMPLATE_PATH', BETTER_SHARING_PATH . 'includes/AdminScreens/admin-templates/' );
 
 include_once 'vendor/autoload.php';
 
-use BetterSharingWP\Admin;
+// AddOns
+use BetterSharingWP\AddOns\AutomateWoo\AutomateWoo;
 
 class BetterSharingWP {
 
 	private $adminScreen;
+	private $errors;
 
 	public function __construct() {
 		$this->adminScreen = new Admin();
+	}
+
+	/**
+	 * @param BetterSharingAddOn $addOn
+	 */
+	public function initAddOn( $addOn ) {
+		do_action( 'bswp_before_initAddOn', $addOn );
+		$newAddOn = $addOn->init();
+		if ( is_wp_error( $newAddOn ) ) {
+			var_dump( $newAddOn->get_error_message() );
+		}
+		do_action( 'bswp_after_initAddOn', $addOn, $newAddOn );
 	}
 
 
@@ -36,3 +51,11 @@ class BetterSharingWP {
 global $BetterSharingWP;
 
 $BetterSharingWP = new BetterSharingWP();
+
+add_action( 'init', function() {
+	global $BetterSharingWP;
+
+	// Core AddONs
+	$BWPAddOns_AutomateWoo = new AutomateWoo();
+	$BetterSharingWP->initAddOn( $BWPAddOns_AutomateWoo );
+});

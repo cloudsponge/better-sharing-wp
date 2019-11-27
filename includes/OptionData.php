@@ -49,17 +49,17 @@ class OptionData {
 	public function init( $objectType = '', $prefix = '' ) {
 
 		if ( ! empty( $objectType ) && 'core' === $objectType ) {
-			$this->prefix = '';
+			$this->prefix = 'core';
 			$this->isCore = true;
 			return $this;
 		}
 
-		if ( empty( $objectType ) || empty( $prefix ) ) {
+		if ( empty( $objectType ) ) {
 			return false;
 		}
 
 		$this->objectType = $objectType;
-		$this->prefix = $prefix;
+		$this->prefix = '' !== $prefix ? $prefix : sanitize_title( $objectType );
 
 		return $this;
 	}
@@ -94,8 +94,9 @@ class OptionData {
 		}
 
 		$key = sanitize_text_field( $key );
+		$saveKey = $this->__getPrefix() . '_' . $key;
 
-		return update_site_option( $this->__getPrefix() . $key, $value );
+		return update_site_option( $saveKey, $value );
 	}
 
 	/**
@@ -111,8 +112,8 @@ class OptionData {
 		if ( is_wp_error( $permission ) ) {
 			return $permission;
 		}
-
-		return get_site_option( $this->__getPrefix() . $key, false );
+		$key = $this->__getPrefix() . '_' . $key;
+		return get_site_option( $key, false );
 	}
 
 	/**
