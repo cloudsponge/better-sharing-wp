@@ -9,3 +9,45 @@
     }
   }
 }
+
+
+.bswp-automatewoo-share-link {
+  margin-bottom: 20px;
+
+  .bswp-automatewoo-share-link-key {
+    input, span.button {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    input {
+      line-height: 42px;
+      padding: 0 20px;
+      width: 70%;
+    }
+
+    span.button {
+      height: 46px;
+      text-align: center;
+      width: 20%;
+
+      border: 0;
+      background: #43454b;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      text-shadow: none;
+      border-radius: 0;
+      font-size: 16px;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    .bswp-automatewoo-share-link-key-copy-confirm {
+      display: none;
+      text-align: center;
+    }
+  }
+}

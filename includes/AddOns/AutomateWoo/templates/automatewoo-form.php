@@ -2,9 +2,14 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+use AutomateWoo\Referrals\Advocate_Factory;
+
 $field_count = absint( apply_filters( 'automatewoo/referrals/share_form/email_field_count', 5 ) );
 
+
+include_once 'automatewoo-share-link.php';
 ?>
+
 
 <form class="aw-email-referral-form" action="" accept-charset="UTF-8" method="post">
 

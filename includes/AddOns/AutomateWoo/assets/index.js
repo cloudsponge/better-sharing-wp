@@ -9,7 +9,14 @@ export default class AutomateWoo {
 		});
 		
 		$('body').on( 'click', '.add-from-address-book-init', this.clickInit );
-		$('body').on('click', '.bswp-single-addon-status-toggle', this.toggleAddOn );
+		$('body').on( 'click', '.bswp-single-addon-status-toggle', this.toggleAddOn );
+		$('body').on( 'click', '.bswp-submit', function(e) {
+			e.preventDefault();
+			$('form.aw-email-referral-form').submit();
+		});
+
+
+		$('body').on( 'click', '.bswp-automatewoo-share-link-key-copy', this.copyLink );
 	}
 	
 	clickInit(e) {
@@ -41,6 +48,21 @@ export default class AutomateWoo {
 			}
 		});
 	};
+
+	copyLink = (e) => {
+		e.preventDefault();
+		console.log('copying');
+		const copyText = document.getElementById("bswp-automatewoo-share-link-key-to-copy");
+		copyText.select();
+		copyText.setSelectionRange(0, 99999);
+		document.execCommand("copy");
+
+		const $confirmation = jQuery('.bswp-automatewoo-share-link-key-copy-confirm');
+		$confirmation.show();
+		setTimeout(() => {
+			$confirmation.hide();
+		}, 1500 );
+	}
 
 }
 
