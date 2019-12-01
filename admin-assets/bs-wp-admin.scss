@@ -27,6 +27,12 @@
     margin: 10px 0;
     padding: 10px;
 
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
 
     // Api Key
     &.api-key {
@@ -36,6 +42,95 @@
 
       & > form {
         margin: 1em 0;
+      }
+    }
+
+    // addons
+    &.addons {
+      border: none;
+
+      .bswp-single-addon {
+        border: 1px solid transparent;
+        border-radius: 5px;
+        box-shadow: 0 0 2px rgba(0,0,0,0.5);
+        display: inline-block;
+        float: left;
+        margin: 0 2% 1% 0;
+        padding: 10px;
+        position: relative;
+        white-space: normal;
+        width: 23%;
+
+        h2 {
+          text-transform: capitalize;
+        }
+
+        .bswp-single-addon-status-wrapper {
+          display: block;
+          padding: 0 20px;
+          position: relative;
+          text-align: right;
+          width: auto;
+
+          .bswp-single-addon-status-title {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 40px;
+          }
+          .bswp-single-addon-status-toggle {
+            background: rgba(255,0,0,0.5);
+            border: 1px solid black;
+            border-radius: 20px;
+            cursor: pointer;
+            display: inline-block;
+            line-height: 20px;
+            min-height: 20px;
+            position: relative;
+            vertical-align: middle;
+            width: 40px;
+
+            .bswp-single-addon-status-btn {
+              background: white;
+              border: 1px solid rgba(0,0,0,0.5);
+              border-radius: 50%;
+              cursor: pointer;
+              display: block;
+              left: -1px;
+              height: 20px;
+              width: 20px;
+              position: absolute;
+              top:-1px;
+            }
+          }
+        }
+
+        &.status-active {
+          border: 1px solid rgba(0,0,0,0.1);
+          box-shadow: 0 0 5px rgba(0,255,0,0.5);
+
+          .bswp-single-addon-status-toggle {
+            background: rgba(0,255,0,0.5);
+
+            .bswp-single-addon-status-btn {
+              left: auto;
+              right: -1px;
+            }
+          }
+        }
+
+        &.status-inactive {
+
+          .bswp-single-addon-status-btn {
+            background: green;
+          }
+        }
+
+      }
+
+      &:after {
+        clear: both;
+        content: '';
+        display: block;
       }
     }
   }

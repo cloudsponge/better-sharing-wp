@@ -4,6 +4,7 @@ namespace BetterSharingWP;
 
 use BetterSharingWP\AdminScreens\GeneralSettings;
 use BetterSharingWP\AdminScreens\AddOns;
+use BetterSharingWP\AddOnsCore;
 
 
 class Admin {
@@ -17,6 +18,7 @@ class Admin {
 		$this->addOnsPage = new AddOns();
 
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
+		add_action( 'admin_init', [ $this, 'toggle_addons'], 1 );
 	}
 
 	public function better_sharing_menu_init() {
@@ -52,6 +54,25 @@ class Admin {
 			filemtime( BETTER_SHARING_PATH . 'dist/admin/admin.bundle.js' ),
 			false
 		);
+	}
+
+	public function toggle_addons() {
+
+		if ( ! isset($_GET, $_GET['toggleAddOn'], $_GET['addOn'] ) && 'true' !== $_GET['toggleAddOn'] ) {
+			return false;
+		}
+
+		$addOns = AddOnsCore::getAddOns();
+		$toToggle = sanitize_text_field( $_GET['addOn'] );
+
+		foreach( $addOns as $addOn ) {
+			if ( $toToggle === $addOn->slug ) {
+				$addOn->toggleAddOn();
+			}
+		}
+
+		wp_safe_redirect( admin_url( 'admin.php?page=better-sharing-addons' ) );
+
 	}
 
 }

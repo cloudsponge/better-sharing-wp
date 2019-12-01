@@ -88,4 +88,15 @@ abstract class BetterSharingAddOn {
 		return $this->status;
 	}
 
+	/**
+	 * Toggle Add On
+	 */
+	public function toggleAddOn() {
+		if ( ! $this->isActive() ) {
+			$this->activate();
+		} else {
+			$this->deactivate();
+		}
+	}
+
 }
