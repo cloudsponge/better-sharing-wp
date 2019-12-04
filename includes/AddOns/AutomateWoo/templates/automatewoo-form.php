@@ -2,12 +2,16 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-use AutomateWoo\Referrals\Advocate_Factory;
+use BetterSharingWP\OptionData;
+
+$optionData = new OptionData('automatewoo' );
+$shareLinkToggle = (bool) rest_sanitize_boolean( $optionData->get('shareLinkToggle') );
 
 $field_count = absint( apply_filters( 'automatewoo/referrals/share_form/email_field_count', 5 ) );
 
-
-include_once 'automatewoo-share-link.php';
+if ( $shareLinkToggle ) {
+	include_once 'automatewoo-share-link.php';
+}
 ?>
 
 

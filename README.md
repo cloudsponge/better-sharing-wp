@@ -3,6 +3,7 @@ This WordPress plugin is to be used with your CloudSponge account.
 
 ## Requirements
 * WordPress
+* Node / NPM
 * Composer
 
 ## Installation
