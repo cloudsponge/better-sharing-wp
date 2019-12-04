@@ -13,6 +13,8 @@ abstract class BetterSharingAddOn {
 	public $description;
 	public $status;
 	public $apiKey;
+	public $hasSettings;
+	public $settingsTemplatePath;
 
 	private $optionData;
 
@@ -25,6 +27,7 @@ abstract class BetterSharingAddOn {
 	 * @return int|\WP_Error
 	 */
 	public function initAddOn( $name, $description ) {
+		$this->hasSettings = false;
 		$this->name = sanitize_text_field( $name );
 		$this->slug = sanitize_title( $name );
 		$this->description = sanitize_text_field( $description );
@@ -96,6 +99,17 @@ abstract class BetterSharingAddOn {
 			$this->activate();
 		} else {
 			$this->deactivate();
+		}
+	}
+
+	/**
+	 * Display Settings Template
+	 *
+	 * @return void
+	 */
+	public function displaySettings() {
+		if ( $this->hasSettings ) {
+			include_once $this->settingsTemplatePath;
 		}
 	}
 

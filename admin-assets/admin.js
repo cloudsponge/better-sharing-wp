@@ -6,6 +6,7 @@ class BSWPAdminJS {
 
 	init = () => {
 		$('body').on( 'click', '.bswp-single-addon-status-toggle', this.toggleAddOn );
+		$('body').on( 'click', '.bswp-single-addon-settings-toggle', this.toggleSettings );
 	};
 
 	toggleAddOn = (e) => {
@@ -19,6 +20,13 @@ class BSWPAdminJS {
 		}
 
 		window.location.href = window.location.href + '&toggleAddOn=true&addOn=' + addOn;
+	};
+
+	toggleSettings = (e) => {
+		e.preventDefault();
+		const addOn = $(e.currentTarget).data('addon');
+
+		$('.' + addOn + '-settings').toggleClass('active');
 	}
 
 }

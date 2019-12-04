@@ -26,7 +26,18 @@ class AutomateWoo extends BetterSharingAddOn{
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		}
 
+		$this->settingsPageInit();
+
 		return is_wp_error( $initReturn ) ? $initReturn : $this->isActive();
+	}
+
+	/**
+	 * Set up settings page
+	 *
+	 */
+	private function settingsPageInit() {
+		$this->hasSettings = true;
+		$this->settingsTemplatePath = __DIR__ . '/templates/automatewoo-settings.php';
 	}
 
 	public function enqueue_scripts() {

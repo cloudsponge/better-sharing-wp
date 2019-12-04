@@ -65,9 +65,13 @@
           text-transform: capitalize;
         }
 
+        .bswp-single-addon-description {
+          padding: 10px;
+        }
+
         .bswp-single-addon-status-wrapper {
           display: block;
-          padding: 0 20px;
+          padding: 10px;
           position: relative;
           text-align: right;
           width: auto;
@@ -102,6 +106,63 @@
               top:-1px;
             }
           }
+        }
+
+        a.bswp-single-addon-settings-toggle {
+          display: block;
+          float: left;
+          margin-top: 5px;
+        }
+
+        .bswp-single-addon-settings-wrapper {
+          opacity: 0;
+          height: 0;
+          -webkit-transition: all 0.5s;
+          -moz-transition: all 0.5s;
+          -ms-transition: all 0.5s;
+          -o-transition: all 0.5s;
+          transition: all 0.5s;
+
+          &.active {
+            opacity: 1;
+            height: 200px;
+            overflow: auto;
+          }
+
+          .bswp-single-addon-settings-inner {
+
+            h4 {
+              margin: 0 0 5px 0;
+            }
+
+            label {
+              display: block;
+            }
+
+            div.bswp-form-group {
+              border-bottom: 1px solid rgba(0,0,0,0.25);
+              padding: 10px 10px 20px 10px;
+            }
+
+            p.description {
+              color: rgba(0,0,0,0.7);
+              font-size: 0.8em;
+              margin-top: 0;
+            }
+
+            div.bswp-checkbox {
+              label {
+                display: inline-block;
+                margin: 0 5px;
+
+                input {
+                  display: inline-block;
+                  margin: 0 5px;
+                }
+              }
+            }
+          }
+
         }
 
         &.status-active {
