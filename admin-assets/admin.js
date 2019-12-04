@@ -28,24 +28,32 @@ class BSWPAdminJS {
 		const addOn = $(e.currentTarget).data('addon');
 
 		$('.' + addOn + '-settings').toggleClass('active');
-	}
+	};
 
+	/**
+	 * Copy Text using class copyText and passing the id of the input via data attr "text"
+	 * ex: <a href="#" class="copyText btn button" data-text="bswp-proxy-url">Copy</a>
+	 *
+	 * @param e
+	 */
 	copyText = (e) => {
 		e.preventDefault();
 		console.log('copying');
 		const $btn = $(e.currentTarget);
+		const preText = $btn.html();
 		const textID = $btn.data('text');
 		const copyText = document.getElementById(textID);
 		const $copyTextElement = $('#' + textID);
-		console.log( $copyTextElement );
 
 		copyText.select();
 		copyText.setSelectionRange(0, 99999);
 		document.execCommand("copy");
 
+		$btn.html('Copied!');
 		$copyTextElement.css({'background': 'rgba(0,255,0,0.2)'});
 
 		setTimeout(() => {
+			$btn.html(preText);
 			$copyTextElement.css({'background': '#eee'});
 		}, 1000)
 	}
