@@ -15,8 +15,7 @@ abstract class BetterSharingAddOn {
 	public $apiKey;
 	public $hasSettings;
 	public $settingsTemplatePath;
-
-	private $optionData;
+	public $optionData;
 
 	/**
 	 * Initialize AddOn
@@ -111,6 +110,15 @@ abstract class BetterSharingAddOn {
 		if ( $this->hasSettings ) {
 			include_once $this->settingsTemplatePath;
 		}
+	}
+
+	/**
+	 * Check if save add on set and true
+	 *
+	 * @return bool
+	 */
+	public function checkIfAddOnSave() {
+		return ! isset( $_POST['save_addon'] ) || ( isset( $_POST['save_addon'] ) && 'true' !== $_POST['save_addon'] );
 	}
 
 }

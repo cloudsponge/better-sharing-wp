@@ -45,10 +45,14 @@ $addOns = AddOnsCore::getAddOns();
             <!-- Settings -->
 	        <?php if ( $addOn->hasSettings ) : ?>
                 <div class="bswp-single-addon-settings-wrapper <?php echo $addOn->slug . '-settings'; ?>">
-                    <hr/>
-                    <div class="bswp-single-addon-settings-inner">
-			            <?php $addOn->displaySettings(); ?>
-                    </div>
+                    <form method="post" action="<?php echo admin_url('admin.php?page=better-sharing-addons'); ?>">
+                        <input type="hidden" name="save_addon" value="yes"/>
+                        <hr/>
+                        <div class="bswp-single-addon-settings-inner">
+                            <?php $addOn->displaySettings(); ?>
+                        </div>
+                        <input class="btn button" type="submit" value="save" />
+                    </form>
                 </div>
 	        <?php endif; ?>
             <!-- /Settings -->

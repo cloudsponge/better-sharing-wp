@@ -38,6 +38,25 @@ class AutomateWoo extends BetterSharingAddOn{
 	private function settingsPageInit() {
 		$this->hasSettings = true;
 		$this->settingsTemplatePath = __DIR__ . '/templates/automatewoo-settings.php';
+		add_action( 'admin_init', [ $this, 'save_settings' ] );
+	}
+
+	/**
+	 * Save Settings
+	 */
+	public function save_settings() {
+		if ( ! $this->checkIfAddOnSave() ) {
+			return;
+		}
+
+		if ( ! isset( $_POST['share_link_toggle'] ) ) {
+			return;
+		}
+
+		$toggleVal = rest_sanitize_boolean( $_POST['share_link_toggle'] );
+
+		$this->optionData->save( 'shareLinkToggle', $toggleVal );
+
 	}
 
 	public function enqueue_scripts() {

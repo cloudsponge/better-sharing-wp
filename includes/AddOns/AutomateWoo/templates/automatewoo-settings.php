@@ -1,6 +1,5 @@
 <?php
-$toggleVal = $this->optionData->get('shareLinkToggle');
-
+	$toggleVal = $this->optionData->get('shareLinkToggle');
 ?>
 
 <div class="bswp-form-group">
@@ -16,7 +15,7 @@ $toggleVal = $this->optionData->get('shareLinkToggle');
 
 		<label for="share_link_toggle_false">
 			No
-			<input type="radio" id="share_link_toggle_false" name="share_link_toggle" value="true" <?php checked( ! $toggleVal ); ?>>
+			<input type="radio" id="share_link_toggle_false" name="share_link_toggle" value="false" <?php checked( ! $toggleVal ); ?>>
 		</label>
 	</div>
 </div>
