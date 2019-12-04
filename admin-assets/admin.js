@@ -7,6 +7,7 @@ class BSWPAdminJS {
 	init = () => {
 		$('body').on( 'click', '.bswp-single-addon-status-toggle', this.toggleAddOn );
 		$('body').on( 'click', '.bswp-single-addon-settings-toggle', this.toggleSettings );
+		$('body').on( 'click', '.copyText', this.copyText );
 	};
 
 	toggleAddOn = (e) => {
@@ -27,6 +28,26 @@ class BSWPAdminJS {
 		const addOn = $(e.currentTarget).data('addon');
 
 		$('.' + addOn + '-settings').toggleClass('active');
+	}
+
+	copyText = (e) => {
+		e.preventDefault();
+		console.log('copying');
+		const $btn = $(e.currentTarget);
+		const textID = $btn.data('text');
+		const copyText = document.getElementById(textID);
+		const $copyTextElement = $('#' + textID);
+		console.log( $copyTextElement );
+
+		copyText.select();
+		copyText.setSelectionRange(0, 99999);
+		document.execCommand("copy");
+
+		$copyTextElement.css({'background': 'rgba(0,255,0,0.2)'});
+
+		setTimeout(() => {
+			$copyTextElement.css({'background': '#eee'});
+		}, 1000)
 	}
 
 }
