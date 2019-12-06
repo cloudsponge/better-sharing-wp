@@ -21,6 +21,8 @@ class AutomateWoo extends BetterSharingAddOn{
 			'Better Sharing WP AddOn for AutomateWoo'
 		);
 
+		$this->supportUrl = 'https://cloudsponge.com';
+
 		if ( $this->isActive() ) {
 			add_filter( 'wc_get_template', [ $this, 'template_init' ], 10, 5 );
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
@@ -49,13 +51,15 @@ class AutomateWoo extends BetterSharingAddOn{
 			return;
 		}
 
-		if ( ! isset( $_POST['share_link_toggle'] ) ) {
+		if ( ! isset( $_POST['share_link_toggle'], $_POST['share_email_preview_toggle'] ) ) {
 			return;
 		}
 
-		$toggleVal = rest_sanitize_boolean( $_POST['share_link_toggle'] );
+		$shareLinkToggle = rest_sanitize_boolean( $_POST['share_link_toggle'] );
+		$this->optionData->save( 'shareLinkToggle', $shareLinkToggle );
 
-		$this->optionData->save( 'shareLinkToggle', $toggleVal );
+		$previewEmailToggle = rest_sanitize_boolean( $_POST['share_email_preview_toggle'] );
+		$this->optionData->save( 'previewEmailToggle', $previewEmailToggle );
 
 	}
 
@@ -106,6 +110,15 @@ class AutomateWoo extends BetterSharingAddOn{
 		}
 
 		return $template;
+	}
+
+	/**
+	 * Check if AutomateWoo Referrals is active
+	 *
+	 * @return bool
+	 */
+	public function isPluginActive() {
+		return class_exists( 'AW_Referrals_Loader' );
 	}
 
 }

@@ -15,8 +15,14 @@ class BSWPAdminJS {
 		const $btn = $(e.currentTarget);
 		const addOn = $btn.data('addon') ? $btn.data('addon') : $btn.attr('data-addon');
 		const currentStatus = $btn.data('status') ? $btn.data('status') : $btn.attr('data-status');
+		const pluginActive = $btn.data('plugin');
 
 		if ( ! addOn ) {
+			return false;
+		}
+
+		if ( 'inactive' === pluginActive ) {
+			alert('Plugin is not installed & activated. Go to the Plugins page to activate the appropriate plugin');
 			return false;
 		}
 

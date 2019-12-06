@@ -31,6 +31,7 @@ class BetterSharingWP {
 
 	public function __construct() {
 		$this->adminScreen = new Admin();
+		$this->errors = [];
 	}
 
 	/**
@@ -40,7 +41,7 @@ class BetterSharingWP {
 		do_action( 'bswp_before_initAddOn', $addOn );
 		$newAddOn = $addOn->init();
 		if ( is_wp_error( $newAddOn ) ) {
-			var_dump( $newAddOn->get_error_message() );
+			$this->errors[] = $newAddOn;
 		}
 		do_action( 'bswp_after_initAddOn', $addOn, $newAddOn );
 	}

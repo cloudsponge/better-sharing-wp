@@ -20,25 +20,51 @@ $addOns = AddOnsCore::getAddOns();
             <?php endif; ?>
             <!-- /Description -->
 
+            <!-- Doc / Support URL -->
+            <?php if ( $addOn->supportUrl ) : ?>
+                <div class="bswp-single-addon-link">
+                    <strong>AddOn Link:</strong>
+                    <a href="<?php echo $addOn->supportUrl; ?>" target="_blank">
+                        <?php echo $addOn->supportUrl; ?>
+                        <span class="dashicons dashicons-external"></span>
+                    </a>
+                </div>
+            <?php endif; ?>
+
             <!-- Toggle -->
             <div class="bswp-single-addon-status-wrapper">
 
-                <!-- Settings Toggle -->
-                <?php if ( $addOn->hasSettings ) : ?>
-                    <a class="btn button bswp-single-addon-settings-toggle" href="#" data-addon="<?php echo $addOn->slug; ?>">Settings</a>
-                <?php endif; ?>
-                <!-- / Settings Toggle -->
-
                 <span class="bswp-single-addon-status-title">
-	                <?php echo 'active' === $addOn->status ? 'active' : 'inactive'; ?>
+                    <?php
+                        if ( 'active' === $addOn->status && $addOn->isPluginActive() ) {
+                            echo 'active';
+                        } elseif ( 'active' !== $addOn->status && $addOn->isPluginActive() ) {
+                            echo 'inactive';
+                        } elseif ( ! $addOn->isPluginActive() ) {
+                            echo '<p style="text-align:center;font-size:0.8em;">Plugin is not installed & activated. Go to the Plugins page to activate the appropriate plugin</p>';
+                        }
+                    ?>
                 </span>
-                <div class="bswp-single-addon-status-toggle" data-addon="<?php echo $addOn->slug; ?>" data-status="<?php echo $addOn->status; ?>">
+                <?php if ( $addOn->isPluginActive() ) : ?>
+                    <div
+                            class="bswp-single-addon-status-toggle <?php echo $addOn->isPluginActive() ? 'plugin-active' : 'plugin-inactive'; ?>"
+                            data-addon="<?php echo $addOn->slug; ?>"
+                            data-status="<?php echo $addOn->status; ?>"
+                            data-plugin="<?php echo $addOn->isPluginActive() ? 'active' : 'inactive'; ?>"
+                    >
                     <span
-                        class="bswp-single-addon-status-btn"
-                        title="<?php echo 'active' === $addOn->status ? 'deactivate' : 'activate'; ?>"
+                            class="bswp-single-addon-status-btn"
+                            title="<?php echo 'active' === $addOn->status ? 'deactivate' : 'activate'; ?>"
                     >
                     </span>
-                </div>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Settings Toggle -->
+	            <?php if ( $addOn->hasSettings ) : ?>
+                    <a class="btn button bswp-single-addon-settings-toggle" href="#" data-addon="<?php echo $addOn->slug; ?>">Settings</a>
+	            <?php endif; ?>
+                <!-- / Settings Toggle -->
             </div>
             <!-- /Toggle -->
 
@@ -51,7 +77,7 @@ $addOns = AddOnsCore::getAddOns();
                         <div class="bswp-single-addon-settings-inner">
                             <?php $addOn->displaySettings(); ?>
                         </div>
-                        <input class="btn button" type="submit" value="save" />
+                        <input class="btn button" type="submit" value="Save Settings" />
                     </form>
                 </div>
 	        <?php endif; ?>

@@ -23,8 +23,8 @@ class Admin {
 
 	public function better_sharing_menu_init() {
 		add_menu_page(
-			'Better Sharing WP',
-			'Better Sharing WP',
+			'Better Sharing',
+			'Better Sharing',
 			'manage_options',
 			'better-sharing-wp',
 			[ $this, 'better_sharing_menu' ],
@@ -42,7 +42,7 @@ class Admin {
 	}
 
 	public function better_sharing_menu() {
-		echo '<h2>Better Sharing WP</h2>';
+		echo '<h2>Better Sharing</h2>';
 
 	}
 

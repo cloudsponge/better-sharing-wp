@@ -130,7 +130,7 @@ class OptionData {
 			return $permission;
 		}
 
-		return delete_site_option( $this->__getPrefix() . $key );
+		return delete_site_option( $key = $this->__getPrefix() . '_' . $key );
 	}
 
 	/**

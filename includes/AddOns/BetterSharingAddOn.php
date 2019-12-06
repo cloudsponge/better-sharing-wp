@@ -16,6 +16,7 @@ abstract class BetterSharingAddOn {
 	public $hasSettings;
 	public $settingsTemplatePath;
 	public $optionData;
+	public $supportUrl;
 
 	/**
 	 * Initialize AddOn
@@ -119,6 +120,15 @@ abstract class BetterSharingAddOn {
 	 */
 	public function checkIfAddOnSave() {
 		return ! isset( $_POST['save_addon'] ) || ( isset( $_POST['save_addon'] ) && 'true' !== $_POST['save_addon'] );
+	}
+
+	/**
+	 * Check if related plugin is active
+	 *
+	 * @return bool
+	 */
+	public function isPluginActive() {
+		return true;
 	}
 
 }

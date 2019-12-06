@@ -27,7 +27,7 @@ class AddOns {
 	 */
 	public function template() {
 		echo '<div id="bswp-wrapper">';
-		echo '<h2>Better Sharing WP - AddOns</h2>';
+		echo '<h2>Better Sharing - AddOns</h2>';
 		include_once( BETTER_SHARING_ADMIN_TEMPLATE_PATH . 'addons-page.php' );
 		echo '</div>';
 	}

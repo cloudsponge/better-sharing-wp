@@ -27,9 +27,8 @@ class GeneralSettings {
 	 */
 	public function template() {
 		echo '<div id="bswp-wrapper">';
-		echo '<h2>Better Sharing WP - General Settings</h2>';
-		include_once( BETTER_SHARING_ADMIN_TEMPLATE_PATH . 'general-settings/api-key.php' );
-		include_once( BETTER_SHARING_ADMIN_TEMPLATE_PATH . 'general-settings/general-info.php' );
+			echo '<h2>Better Sharing Settings</h2>';
+			include_once( BETTER_SHARING_ADMIN_TEMPLATE_PATH . 'general-settings/cloudsponge-settings.php' );
 		echo '</div>';
 	}
 
