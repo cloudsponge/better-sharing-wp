@@ -23,17 +23,18 @@ abstract class BetterSharingAddOn {
 	 *
 	 * @param $name
 	 * @param $description
+	 * @param bool $requiresApi
 	 *
 	 * @return int|\WP_Error
 	 */
-	public function initAddOn( $name, $description ) {
+	public function initAddOn( $name, $description, $requiresApi = false ) {
 		$this->hasSettings = false;
 		$this->name = sanitize_text_field( $name );
 		$this->slug = sanitize_title( $name );
 		$this->description = sanitize_text_field( $description );
 		$this->apiKey = get_site_option( '_bswp_option_core_apiKey', false );
 
-		if ( ! $this->apiKey ) {
+		if ( ! $this->apiKey && $requiresApi ) {
 			return new \WP_Error( '400', __( 'No API Key Set' ) );
 		}
 

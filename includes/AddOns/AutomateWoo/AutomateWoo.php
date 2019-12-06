@@ -18,7 +18,8 @@ class AutomateWoo extends BetterSharingAddOn{
 		}
 		$initReturn = parent::initAddOn(
 			'AutomateWoo',
-			'Better Sharing WP AddOn for AutomateWoo'
+			'Better Sharing WP AddOn for AutomateWoo',
+			false
 		);
 
 		$this->supportUrl = 'https://cloudsponge.com';

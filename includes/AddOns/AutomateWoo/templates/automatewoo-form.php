@@ -10,6 +10,7 @@ $optionData = new OptionData('automatewoo' );
 $shareLinkToggle = (bool) rest_sanitize_boolean( $optionData->get('shareLinkToggle') );
 $previewEmailToggle = (bool) rest_sanitize_boolean( $optionData->get('previewEmailToggle') );
 $field_count = absint( apply_filters( 'automatewoo/referrals/share_form/email_field_count', 5 ) );
+$apiKey = get_site_option( '_bswp_option_core_apiKey', false );
 
 
 $user = get_user_by( 'id', get_current_user_id() );
@@ -34,10 +35,12 @@ if ( $shareLinkToggle ) {
 
     <div class="bswp-share-buttons bswp-share-emails">
         <input type="text" name="bswp-share-email-input" id="bswp-share-email-input" placeholder="To: enter contact emails separated by comma (,)">
-        <a href="#" class="add-from-address-book-init btn button">
-            <span class="dashicons dashicons-book-alt"></span>
-            <?php esc_attr_e( 'Add From Address Book', 'better-sharing-wp' ); ?>
-        </a>
+        <?php if ( $apiKey ) : ?>
+            <a href="#" class="add-from-address-book-init btn button">
+                <span class="dashicons dashicons-book-alt"></span>
+                <?php esc_attr_e( 'Add From Address Book', 'better-sharing-wp' ); ?>
+            </a>
+        <?php endif; ?>
     </div>
 
     <hr/>
