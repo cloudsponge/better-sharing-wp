@@ -66,4 +66,38 @@ const configAdmin = {
 	}
 };
 
-module.exports = [configAdmin];
+const configAddOns = {
+	watch: true,
+	entry: {
+		automatewoo: './includes/AddOns/AutomateWoo/assets/index.js'
+	},
+	output: {
+		path: path.resolve(__dirname, 'dist'),
+		filename: 'addons/[name].js'
+	},
+	module: {
+		rules: [
+			{
+				test: /\.(js)$/,
+				use: 'babel-loader',
+				exclude: /node_modules/
+			},
+			{
+				test: /\.scss$/,
+				use: [
+					'style-loader',
+					'css-loader',
+					'sass-loader',
+				]
+			}
+		]
+	},
+	resolve: {
+		extensions: [
+			'.js',
+			'.jsx'
+		]
+	}
+};
+
+module.exports = [configAdmin, configAddOns];

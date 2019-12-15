@@ -3,11 +3,16 @@ This WordPress plugin is to be used with your CloudSponge account.
 
 ## Requirements
 * WordPress
+* Node / NPM
 * Composer
 
 ## Installation
-* Clone Repository into `wp-content/plugins`
-* Run `composer install` from `plugins/better-sharing-wp` (or whatever direcotry name you have chosen)
-  
-_Zip Instructions Coming Soon_
+* Install using one our pre-zipped releases  
+\- __OR__ -  
+* Clone repo into `wp-content/plugins`
+* Run `npm install && composer install && npm run build-dev`
+* Activate plugin via WordPress admin
 
+## AddOns
+
+Instructions in [Wiki](https://github.com/cloudsponge/better-sharing-wp/wiki/Creating-an-AddOn)

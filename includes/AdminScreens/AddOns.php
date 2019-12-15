@@ -4,7 +4,7 @@ namespace BetterSharingWP\AdminScreens;
 
 use BetterSharingWP\OptionData;
 
-class GeneralSettings {
+class AddOns {
 
 	private $optionData;
 	private $errorMsg;
@@ -12,10 +12,10 @@ class GeneralSettings {
 	public function init() {
 		add_submenu_page(
 			'better-sharing-wp',
-			'General Settings',
-			'General Settings',
+			'AddOns',
+			'AddOns',
 			'manage_options',
-			'better-sharing-general',
+			'better-sharing-addons',
 			[ $this, 'template' ]
 		);
 
@@ -27,8 +27,8 @@ class GeneralSettings {
 	 */
 	public function template() {
 		echo '<div id="bswp-wrapper">';
-			echo '<h2>Better Sharing Settings</h2>';
-			include_once( BETTER_SHARING_ADMIN_TEMPLATE_PATH . 'general-settings/cloudsponge-settings.php' );
+		echo '<h2>Better Sharing - AddOns</h2>';
+		include_once( BETTER_SHARING_ADMIN_TEMPLATE_PATH . 'addons-page.php' );
 		echo '</div>';
 	}
 
