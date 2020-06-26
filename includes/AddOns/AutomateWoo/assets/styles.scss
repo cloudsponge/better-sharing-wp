@@ -1,0 +1,113 @@
+.bswp-share-buttons {
+
+  &.bswp-share-emails {
+    margin: 0 0 20px 0;
+
+    a.add-from-address-book-init {
+      background: #43454b;
+      border-radius: 20px;
+      color: white;
+      display: inline-block;
+      line-height: 20px;
+      vertical-align: top;
+      width: 33%;
+      span {
+        display: inline-block;
+        margin-right: 5px;
+        vertical-align: middle;
+      }
+    }
+
+    input[type="text"] {
+      border-radius: 5px;
+      display: inline-block;
+      height: 41px;
+      margin: 0 2% 0 0;
+      vertical-align: top;
+      width: 64%;
+    }
+  }
+}
+
+.bswp-share-email-preview {
+  text-align: left;
+
+  input,textarea {
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  pre {
+    background: none;
+    font-style: inherit;
+    white-space: normal;
+    width: 100%;
+  }
+
+  .bswp-share-email-preview-subject,
+  .bswp-share-email-preview-message {
+
+    strong {
+      display: inline-block;
+      font-size: 1.2em;
+      vertical-align: middle;
+      width: 10%;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: inline-block;
+      font-size: 1.3em;
+      margin: 0 0 10px 10%;
+      padding: 10px;
+      vertical-align: middle;
+      width: 75%;
+    }
+
+  }
+}
+
+
+.bswp-automatewoo-share-link {
+  margin-bottom: 20px;
+
+  .bswp-automatewoo-share-link-key {
+    input, span.button {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    input {
+      line-height: 42px;
+      padding: 0 20px;
+      width: 70%;
+    }
+
+    span.button {
+      height: 46px;
+      text-align: center;
+      width: 20%;
+
+      border: 0;
+      background: #43454b;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      text-shadow: none;
+      border-radius: 0;
+      font-size: 16px;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    .bswp-automatewoo-share-link-key-copy-confirm {
+      display: none;
+      text-align: center;
+    }
+  }
+}

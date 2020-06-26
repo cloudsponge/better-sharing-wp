@@ -1,0 +1,13 @@
+{
+    "name": "cloudsponge/better-sharing-wp",
+    "description": "Better Sharing WordPress plugin for use with CloudSponge",
+    "type": "project",
+    "license": "GPL-3.0",
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "BetterSharingWP\\": "includes/"
+        }
+    }
+}

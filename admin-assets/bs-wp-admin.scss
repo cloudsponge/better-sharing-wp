@@ -1,0 +1,259 @@
+$bswp-color-border: #ccd0d4;
+$bswp-color-white: #fff;
+$bswp-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+$bswp-border-radius: 6px;
+$bswp-settings-max-width: 50rem;
+$bswp-status-indicator-bg: rgb(153, 153, 153);
+$bswp-status-indicator-disabled: $bswp-color-white;
+$bswp-status-indicator-enabled: #5ab750;
+$bswp-status-enabled-shadow: inset 0 0px 0px 2px $bswp-status-indicator-enabled;
+$bswp-status-indicator-size: 1.5rem;
+
+.bswp {
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  &__container {
+    @media (min-width: 600px) {
+      padding-right: 1rem;
+    }
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+  }
+
+  &__settings {
+    max-width: $bswp-settings-max-width;
+  }
+
+  &__form-group {
+    margin-bottom: 1rem;
+
+    @media (min-width: 600px) {
+      display: flex;
+      align-items: center;
+    }
+
+    &__label {
+      width: 8rem;
+      flex: 0 1 8rem;
+      margin-bottom: 0.5rem;
+      display: block;
+
+      @media (min-width: 600px) {
+        margin-bottom: 0;
+      }
+    }
+
+    input[type="text"] {
+      margin-bottom: 0.5rem;
+      width: 100%;
+
+      @media (min-width: 600px) {
+        flex: 1 1 auto;
+        width: auto;
+        margin-bottom: 0;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .button {
+      margin-bottom: 0;
+    }
+  }
+
+  &__input-group {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 600px) {
+      flex-direction: row;
+      align-items: center;
+      margin-left: 1rem;
+    }
+  }
+
+  &__copy-input {
+    position: relative;
+    flex: 1;
+
+    & > a {
+      position: absolute;
+      padding: 0 0.5rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      right: 0;
+      top: 0;
+      text-decoration: none;
+    }
+
+    & > input[type="text"] {
+      width: 100%;
+      margin: 0;
+      padding-right: 4.5rem;
+    }
+  }
+
+  &__spacer {
+    margin: 1rem 0;
+  }
+
+  &__addons {
+    position: relative;
+
+    @media (min-width: 600px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin: 0 -0.5rem;
+    }
+  }
+
+  &__addon {
+    min-width: 21rem;
+    padding: 2em;
+    margin-bottom: 1rem;
+
+    @media (min-width: 600px) {
+      flex: 0 1 calc(25% - 1rem);
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    &__title {
+      margin: 0;
+    }
+
+    &__description {
+      margin-bottom: 2rem;
+    }
+
+    &__link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 1px;
+
+      @media (min-width: 600px) {
+        flex-direction: row;
+      }
+
+      & > strong {
+        margin-bottom: 0.315rem;
+
+        @media (min-width: 600px) {
+          margin-right: 0.315rem;
+          margin-bottom: 0;
+        }
+      }
+
+      & > a {
+        display: flex;
+      }
+
+      & > a > span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-decoration: none;
+        font-size: 100%;
+      }
+    }
+
+    &__status {
+      display: flex;
+      align-items: center;
+    }
+
+    &__status-label {
+      margin-right: 0.75rem;
+    }
+
+    &__status-indicator {
+      position: relative;
+      cursor: pointer;
+      width: $bswp-status-indicator-size * 2;
+      height: $bswp-status-indicator-size;
+      border-radius: 3rem;
+      background: $bswp-status-indicator-bg;
+
+      &::before {
+        content: "";
+        width: calc(#{$bswp-status-indicator-size} - 4px);
+        height: calc(#{$bswp-status-indicator-size} - 4px);
+        background: $bswp-status-indicator-disabled;
+        border-radius: 50%;
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    &__settings {
+      display: none;
+
+      h4 {
+        margin-bottom: 0;
+        font-size: 1rem;
+      }
+
+      &.active {
+        display: block;
+      }
+    }
+
+    &__settings-group {
+      margin-bottom: 1.5rem;
+    }
+
+    &.status-active {
+      // border: 2px solid $bswp-status-indicator-enabled;
+      // box-shadow: $bswp-status-enabled-shadow;
+
+      .bswp__addon__status-indicator {
+        background: $bswp-status-indicator-enabled;
+
+        &::before {
+          left: auto;
+          right: 2px;
+          box-shadow: 0 3px 8px rgba(95, 204, 98, 0.8);
+        }
+      }
+    }
+  }
+
+  &__checkbox {
+    label {
+      margin-right: 1rem;
+    }
+  }
+
+  &__text {
+    input {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &__textarea {
+    textarea {
+      display: block;
+      width: 100%;
+    }
+  }
+}
