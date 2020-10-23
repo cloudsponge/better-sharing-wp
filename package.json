@@ -8,8 +8,8 @@
   "license": "ISC",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "build": "webpack -d --mode development",
-    "build:prod": "webpack -p --mode production"
+    "start": "webpack -d --mode development",
+    "build": "webpack -p --mode production"
   },
   "dependencies": {
     "react": "^16.13.1",

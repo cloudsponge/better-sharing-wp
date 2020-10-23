@@ -5,6 +5,7 @@ $ajax = $ajax ? $ajax : false;
 $apiKey = get_site_option( '_bswp_option_core_apiKey', false );
 $emailSubject = $emailSubject ? $emailSubject : 'Sharing';
 $emailContent = $emailContent ? $emailContent : 'Email Content';
+$field_count = isset($field_count) ? absint( apply_filters( 'automatewoo/referrals/share_form/email_field_count', 5 ) ) : 5;
 
 $addOn = $addOn ? sanitize_title_with_dashes( $addOn ) : false;
 $actionData = [

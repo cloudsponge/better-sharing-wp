@@ -50,13 +50,10 @@ class AddOns {
     if ( !isset ( $_POST['__bswp_api_key__save'] ) ) {
       return;
     }
-
     if ( isset( $_POST['__bswp_api_key'] ) ) {
       $apiKeySaved = $this->save_api_key( sanitize_text_field( $_POST['__bswp_api_key'] ) );
-
       if ( is_wp_error( $apiKeySaved ) ) {
         $this->errorMsg = $apiKeySaved->get_error_message();
-
         add_action( 'admin_notices', function() {
           $class = 'notice notice-error';
           $message = $this->errorMsg;
