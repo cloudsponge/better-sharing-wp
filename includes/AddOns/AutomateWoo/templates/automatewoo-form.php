@@ -1,26 +1,27 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (! defined('ABSPATH') ) { exit;
+}
 
 use BetterSharingWP\OptionData;
 use AutomateWoo\Referrals\Invite_Email;
 use AutomateWoo\Referrals\Advocate_Factory;
 
-$optionData = new OptionData('automatewoo' );
-$shareLinkToggle = (bool) rest_sanitize_boolean( $optionData->get('shareLinkToggle') );
-$previewEmailToggle = (bool) rest_sanitize_boolean( $optionData->get('previewEmailToggle') );
-$field_count = absint( apply_filters( 'automatewoo/referrals/share_form/email_field_count', 5 ) );
-$apiKey = get_site_option( '_bswp_option_core_apiKey', false );
+$optionData = new OptionData('automatewoo');
+$shareLinkToggle = (bool) rest_sanitize_boolean($optionData->get('shareLinkToggle'));
+$previewEmailToggle = (bool) rest_sanitize_boolean($optionData->get('previewEmailToggle'));
+$field_count = absint(apply_filters('automatewoo/referrals/share_form/email_field_count', 5));
+$apiKey = get_site_option('_bswp_option_core_apiKey', false);
 
 
-$user = get_user_by( 'id', get_current_user_id() );
-$email = new Invite_Email( $user->user_email, Advocate_Factory::get( $user->ID ) );
+$user = get_user_by('id', get_current_user_id());
+$email = new Invite_Email($user->user_email, Advocate_Factory::get($user->ID));
 $emailSubject = $email->get_subject();
 $emailContent = $email->get_content();
 
 
-if ( $shareLinkToggle ) {
-	include_once 'automatewoo-share-link.php';
+if ($shareLinkToggle ) {
+    include_once 'automatewoo-share-link.php';
 }
 ?>
 
@@ -35,17 +36,17 @@ if ( $shareLinkToggle ) {
 
     <div class="bswp-share-buttons bswp-share-emails">
         <input type="text" name="bswp-share-email-input" id="bswp-share-email-input" placeholder="To: enter contact emails separated by comma (,)">
-        <?php if ( $apiKey ) : ?>
+        <?php if ($apiKey ) : ?>
             <a href="#" class="add-from-address-book-init btn button">
                 <span class="dashicons dashicons-book-alt"></span>
-                <?php esc_attr_e( 'Add From Address Book', 'better-sharing-wp' ); ?>
+                <?php esc_attr_e('Add From Address Book', 'better-sharing-wp'); ?>
             </a>
         <?php endif; ?>
     </div>
 
     <hr/>
 
-    <?php if ( $previewEmailToggle ) : ?>
+    <?php if ($previewEmailToggle ) : ?>
     <div class="bswp-share-email-preview">
         <h4>Email Preview</h4>
         <p>
@@ -65,6 +66,6 @@ if ( $shareLinkToggle ) {
     <div id="referral-emails-wrapper" data-max="<?php echo $field_count; ?>"></div>
 
     <div class="aw-referrals-share-buttons bswp-share-buttons">
-        <a href="#" class="bswp-submit btn button"><?php esc_attr_e( 'Send', 'automatewoo-referrals' ) ?></a>
+        <a href="#" class="bswp-submit btn button"><?php esc_attr_e('Send', 'automatewoo-referrals') ?></a>
     </div>
 </form>
