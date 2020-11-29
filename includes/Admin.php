@@ -64,15 +64,15 @@ class Admin
     public function toggle_addons()
     {
 
-        //        $OptionData = new OptionData();
-        //        $delete = $OptionData->deleteAll(true );
+        //        $option_data = new OptionData();
+        //        $delete = $option_data->deleteAll(true );
         //
         //        var_dump( $delete );
         //        wp_die();
 
-        if (! isset($_GET, $_GET['toggleAddOn'], $_GET['addOn'])
+        if (! isset($_GET, $_GET['toggle_addon'], $_GET['addOn'])
         ) {
-            if (isset($_GET['toggleAddOn']) && 'true' !== $_GET['toggleAddOn'] ) {
+            if (isset($_GET['toggle_addon']) && 'true' !== $_GET['toggle_addon'] ) {
                 return false;
             }
             return false;
@@ -83,7 +83,7 @@ class Admin
 
         foreach( $addOns as $addOn ) {
             if ($toToggle === $addOn->slug ) {
-                $addOn->toggleAddOn();
+                $addOn->toggle_addon();
             }
         }
 

@@ -11,7 +11,7 @@ export default class CouponReferral {
 		
 		const $body = $('body');
 		$body.on( 'click', '.add-from-address-book-init', this.clickInit );
-		$body.on( 'click', '.bswp-single-addon-status-toggle', this.toggleAddOn );
+		$body.on( 'click', '.bswp-single-addon-status-toggle', this.toggle_addon );
 		$body.on( 'click', '.bswp-copy', this.copyLink );
 	}
 

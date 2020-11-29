@@ -7,11 +7,11 @@ use BetterSharingWP\OptionData;
 use AutomateWoo\Referrals\Invite_Email;
 use AutomateWoo\Referrals\Advocate_Factory;
 
-$optionData = new OptionData('automatewoo');
-$shareLinkToggle = (bool) rest_sanitize_boolean($optionData->get('shareLinkToggle'));
-$previewEmailToggle = (bool) rest_sanitize_boolean($optionData->get('previewEmailToggle'));
+$option_data = new OptionData('automatewoo');
+$shareLinkToggle = (bool) rest_sanitize_boolean($option_data->get('shareLinkToggle'));
+$preview_email_toggle = (bool) rest_sanitize_boolean($option_data->get('preview_email_toggle'));
 $field_count = absint(apply_filters('automatewoo/referrals/share_form/email_field_count', 5));
-$apiKey = get_site_option('_bswp_option_core_apiKey', false);
+$api_key = get_site_option('_bswp_option_core_apiKey', false);
 
 
 $user = get_user_by('id', get_current_user_id());
@@ -36,7 +36,7 @@ if ($shareLinkToggle ) {
 
     <div class="bswp-share-buttons bswp-share-emails">
         <input type="text" name="bswp-share-email-input" id="bswp-share-email-input" placeholder="To: enter contact emails separated by comma (,)">
-        <?php if ($apiKey ) : ?>
+        <?php if ($api_key ) : ?>
             <a href="#" class="add-from-address-book-init btn button">
                 <span class="dashicons dashicons-book-alt"></span>
                 <?php esc_attr_e('Add From Address Book', 'better-sharing-wp'); ?>
@@ -46,7 +46,7 @@ if ($shareLinkToggle ) {
 
     <hr/>
 
-    <?php if ($previewEmailToggle ) : ?>
+    <?php if ($preview_email_toggle ) : ?>
     <div class="bswp-share-email-preview">
         <h4>Email Preview</h4>
         <p>

@@ -37,9 +37,9 @@ class CouponReferralProgram extends BetterSharingAddOn
             false
         );
 
-        $this->supportUrl = 'https://cloudsponge.com';
+        $this->support_url = 'https://cloudsponge.com';
 
-        if ($this->isActive() ) {
+        if ($this->is_active() ) {
             // remove coupon widget.
             $this->remove_widget();
             add_action('init', [ $this, 'submit_mailer' ], 99);
@@ -51,7 +51,7 @@ class CouponReferralProgram extends BetterSharingAddOn
         // settings page in admin
         $this->settingsPageInit();
 
-        return is_wp_error($initReturn) ? $initReturn : $this->isActive();
+        return is_wp_error($initReturn) ? $initReturn : $this->is_active();
     }
 
     /**
@@ -59,7 +59,7 @@ class CouponReferralProgram extends BetterSharingAddOn
      *
      * @return bool
      */
-    public function isPluginActive()
+    public function is_plugin_active()
     {
         return class_exists('Coupon_Referral_Program');
     }
@@ -69,8 +69,8 @@ class CouponReferralProgram extends BetterSharingAddOn
      */
     private function settingsPageInit()
     {
-        $this->hasSettings = true;
-        $this->settingsTemplatePath = __DIR__ . '/templates/coupon-referral-settings.php';
+        $this->has_settings = true;
+        $this->settings_template_path = __DIR__ . '/templates/coupon-referral-settings.php';
         add_action('admin_init', [ $this, 'save_settings' ]);
     }
 
@@ -80,11 +80,11 @@ class CouponReferralProgram extends BetterSharingAddOn
     public function save_settings()
     {
         if (isset($_POST['coupon_referral_email_subject']) ) {
-            $this->optionData->save('emailSubject', sanitize_text_field($_POST['coupon_referral_email_subject']));
+            $this->option_data->save('emailSubject', sanitize_text_field($_POST['coupon_referral_email_subject']));
         }
 
         if (isset($_POST['coupon_referral_email_content']) ) {
-            $this->optionData->save('emailContent', sanitize_text_field($_POST['coupon_referral_email_content']));
+            $this->option_data->save('emailContent', sanitize_text_field($_POST['coupon_referral_email_content']));
         }
     }
 
@@ -121,7 +121,7 @@ class CouponReferralProgram extends BetterSharingAddOn
 
         wp_enqueue_script(
             'cloudsponge-js',
-            '//api.cloudsponge.com/widget/' . $this->apiKey . '.js',
+            '//api.cloudsponge.com/widget/' . $this->api_key . '.js',
             [ 'jquery' ],
             BETTER_SHARING_VERSION,
             false
@@ -162,15 +162,15 @@ class CouponReferralProgram extends BetterSharingAddOn
     public function bswp_form()
     {
         $addOn = 'Coupon Referral Program';
-        $previewEmailToggle = true;
+        $preview_email_toggle = true;
         $ajax = false;
 
         // subject
-        $emailSubject = $this->optionData->get('emailSubject');
+        $emailSubject = $this->option_data->get('emailSubject');
         $emailSubject = $emailSubject ? $emailSubject : 'Save today with this coupon code';
 
         // email content
-        $emailContent = $this->optionData->get('emailContent');
+        $emailContent = $this->option_data->get('emailContent');
         $emailContent = $emailContent ? $emailContent : 'Use the {{link}} to save!';
         // email content - replace {{link}} or add to bottom
         $emailContent = $this->replace_link($emailContent);

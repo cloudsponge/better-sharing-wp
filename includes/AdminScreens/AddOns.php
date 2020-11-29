@@ -7,7 +7,7 @@ use BetterSharingWP\OptionData;
 class AddOns
 {
 
-    private $optionData;
+    private $option_data;
     private $errorMsg;
 
     public function init()
@@ -43,10 +43,10 @@ class AddOns
     {
 
         // Load OptionData
-        $optionData = new OptionData('core');
+        $option_data = new OptionData('core');
 
-        if (! is_wp_error($optionData) ) {
-            $this->optionData = $optionData;
+        if (! is_wp_error($option_data) ) {
+            $this->option_data = $option_data;
         }
 
         // Save Data
@@ -55,9 +55,9 @@ class AddOns
             return;
         }
         if (isset($_POST['__bswp_api_key']) ) {
-            $apiKeySaved = $this->save_api_key(sanitize_text_field($_POST['__bswp_api_key']));
-            if (is_wp_error($apiKeySaved) ) {
-                $this->errorMsg = $apiKeySaved->get_error_message();
+            $api_keySaved = $this->save_api_key(sanitize_text_field($_POST['__bswp_api_key']));
+            if (is_wp_error($api_keySaved) ) {
+                $this->errorMsg = $api_keySaved->get_error_message();
                 add_action(
                     'admin_notices', function () {
                         $class = 'notice notice-error';
@@ -75,9 +75,9 @@ class AddOns
         $key = 'apiKey';
 
         if ('' === $keyValue ) {
-            return $this->optionData->delete($key);
+            return $this->option_data->delete($key);
         } else {
-            return $this->optionData->save($key, $keyValue);
+            return $this->option_data->save($key, $keyValue);
         }
     }
 }

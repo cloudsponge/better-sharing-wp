@@ -1,6 +1,6 @@
 <?php
-$subject = $this->optionData->get('emailSubject');
-$content = $this->optionData->get('emailContent');
+$subject = $this->option_data->get('emailSubject');
+$content = $this->option_data->get('emailContent');
 ?>
 
 <h4>Email Subject</h4>

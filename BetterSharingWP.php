@@ -1,5 +1,7 @@
 <?php
-/*
+/**
+ * Better Sharing WP
+ *
  * @wordpress-plugin
  * Plugin Name:       Better Sharing WP
  * Description:       Better Sharing WordPress plugin for use for CloudSponge
@@ -9,76 +11,103 @@
  * License:           GPL-3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Textdomain:        better-sharing-wp
+ *
+ * @package BetterSharingWP
  */
 
 namespace BetterSharingWP;
 
-define('BETTER_SHARING_PATH', plugin_dir_path(__FILE__));
-define('BETTER_SHARING_URI', plugin_dir_url(__FILE__));
-define('BETTER_SHARING_VERSION', '1.1.0');
+define( 'BETTER_SHARING_PATH', plugin_dir_path( __FILE__ ) );
+define( 'BETTER_SHARING_URI', plugin_dir_url( __FILE__ ) );
+define( 'BETTER_SHARING_VERSION', '1.1.0' );
 
-define('BETTER_SHARING_ADMIN_TEMPLATE_PATH', BETTER_SHARING_PATH . 'includes/AdminScreens/admin-templates/');
+define( 'BETTER_SHARING_ADMIN_TEMPLATE_PATH', BETTER_SHARING_PATH . 'includes/admin_screens/admin-templates/' );
 
 require_once 'vendor/autoload.php';
 
-// AddOns
+// AddOns.
+use BetterSharingWP\Admin;
 use BetterSharingWP\AddOns\BetterSharingAddOn;
 use BetterSharingWP\AddOns\AutomateWoo\AutomateWoo;
 use BetterSharingWP\Addons\CouponReferralProgram\CouponReferralProgram;
 use BetterSharingWP\AddOns\WooWishlists\WooWishlists;
 
-class BetterSharingWP
-{
+/**
+ * BetterSharingWP - Main Plugin Class
+ */
+class BetterSharingWP {
 
-    private $adminScreen;
-    private $errors;
+	/**
+	 * BWP Admin Screens
+	 *
+	 * @var Admin admin screens.
+	 */
+	private $admin_screen;
 
-    public function __construct()
-    {
-        $this->adminScreen = new Admin();
-        $this->errors = [];
+	/**
+	 * Errors
+	 *
+	 * @var array errors for plugins
+	 */
+	private $errors;
 
-        register_deactivation_hook(__FILE__, [ $this, 'deactivate' ]);
-    }
+	/**
+	 * Construct
+	 */
+	public function __construct() {
+		$this->admin_screen = new Admin();
+		$this->errors      = array();
 
-    /**
-     * @param $addOn
-     */
-    public function initAddOn( BetterSharingAddOn $addOn )
-    {
-        do_action('bswp_before_initAddOn', $addOn);
-        $newAddOn = $addOn->init();
-        if (is_wp_error($newAddOn) ) {
-            $this->errors[] = $newAddOn;
-        }
-        do_action('bswp_after_initAddOn', $addOn, $newAddOn);
-    }
+		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
+	}
 
-    public function deactivate()
-    {
-        $OptionData = new OptionData();
-        $delete = $OptionData->deleteAll(true);
-    }
+	/**
+	 * Initialize Addon
+	 *
+	 * @param BetterSharingAddOn $add_on initialize AddOn.
+	 * @return void
+	 */
+	public function init_add_on( BetterSharingAddOn $add_on ) {
+		do_action( 'bswp_before_init_addon', $add_on );
+		$new_add_on = $add_on->init();
+		if ( is_wp_error( $new_add_on ) ) {
+			$this->errors[] = $new_add_on;
+		}
+		do_action( 'bswp_after_init_addon', $add_on, $new_add_on );
+	}
+
+	/**
+	 * Deactivate Plugin
+	 *
+	 * @return void
+	 */
+	public function deactivate() {
+		$option_data = new OptionData();
+		$delete     = $option_data->deleteAll( true );
+	}
 
 
 }
 
-global $BetterSharingWP;
+global $better_sharing_wp;
 
-$BetterSharingWP = new BetterSharingWP();
+$better_sharing_wp = new BetterSharingWP();
 
+/**
+ * Initialize Core Add Ons
+ */
 add_action(
-    'init', function () {
-        global $BetterSharingWP;
+	'init',
+	function () {
+		global $better_sharing_wp;
 
-        // Core AddONs
-        $BWPAddOns_AutomateWoo = new AutomateWoo();
-        $BetterSharingWP->initAddOn($BWPAddOns_AutomateWoo);
+		$automate_woo_addon = new AutomateWoo();
+		$better_sharing_wp->init_add_on( $automate_woo_addon );
 
-        $BWPAddOns_CouponReferral = new CouponReferralProgram();
-        $BetterSharingWP->initAddOn($BWPAddOns_CouponReferral);
+		$coupon_referral_addon = new CouponReferralProgram();
+		$better_sharing_wp->init_add_on( $coupon_referral_addon );
 
-        $BWPAddons_WooWishLists = new WooWishlists();
-        $BetterSharingWP->initAddOn($BWPAddons_WooWishLists);
-    }
+		$woo_wishlist_addon = new WooWishlists();
+		$better_sharing_wp->init_add_on( $woo_wishlist_addon );
+	}
 );

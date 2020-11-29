@@ -1,152 +1,202 @@
 <?php
+/**
+ * Better Sharing AddOn Core Class
+ *
+ * @package BetterSharingAddOn
+ */
 
 namespace BetterSharingWP\AddOns;
 
 use BetterSharingWP\AddOnsCore;
 use BetterSharingWP\OptionData;
 
+/**
+ * BetterSharingAddon Core Class
+ */
+abstract class BetterSharingAddOn {
 
-abstract class BetterSharingAddOn
-{
+	/**
+	 * Name
+	 *
+	 * @var string
+	 */
+	public $name;
 
-    public $name;
-    public $slug;
-    public $description;
-    public $status;
-    public $apiKey;
-    public $hasSettings;
-    public $settingsTemplatePath;
-    public $optionData;
-    public $supportUrl;
+	/**
+	 * Slug
+	 *
+	 * @var string
+	 */
+	public $slug;
 
-    /**
-     * Initialize AddOn
-     *
-     * @param $name
-     * @param $description
-     * @param bool $requiresApi
-     *
-     * @return int|\WP_Error
-     */
-    public function initAddOn( $name, $description, $requiresApi = false )
-    {
-        $this->hasSettings = false;
-        $this->name = sanitize_text_field($name);
-        $this->slug = sanitize_title($name);
-        $this->description = sanitize_text_field($description);
-        $this->apiKey = get_site_option('_bswp_option_core_apiKey', false);
+	/**
+	 * Description
+	 *
+	 * @var string
+	 */
+	public $description;
 
-        if (! $this->apiKey && $requiresApi ) {
-            return new \WP_Error('400', __('No API Key Set'));
-        }
+	/**
+	 * Current Status
+	 *
+	 * @var mixed
+	 */
+	public $status;
 
-        $this->optionData = new OptionData($this->slug);
-        if (! $this->optionData ) {
-            return new \WP_Error('400', __('Error Creating OptionData Object'));
-        }
+	/**
+	 * Api Key
+	 *
+	 * @var string
+	 */
+	public $api_key;
 
-        // Set Active State if not set.
-        if (! $this->optionData->get('status') ) {
-            $this->optionData->save('status', 'inactive');
-        }
+	/**
+	 * Has Settings
+	 *
+	 * @var boolean
+	 */
+	public $has_settings;
 
-        $this->status = $this->optionData->get('status');
+	/**
+	 * Settings Template Path
+	 *
+	 * @var string
+	 */
+	public $settings_template_path;
 
-        // Add to list of addOns
-        return AddOnsCore::add($this);
-    }
+	/**
+	 * Option Data
+	 *
+	 * @var OptionData
+	 */
+	public $option_data;
 
-    /**
-     * Init actions
-     */
-    public function init()
-    {
-    }
+	/**
+	 * Support URL
+	 *
+	 * @var string
+	 */
+	public $support_url;
 
-    /**
-     * Is AddOn Active
-     *
-     * @return bool
-     */
-    public function isActive()
-    {
-        return 'active' === $this->status;
-    }
+	/**
+	 * Initialize AddOn
+	 *
+	 * @param string $name name of AddOn.
+	 * @param string $description description of AddON.
+	 * @param bool   $requires_api AddOn Requires API.
+	 *
+	 * @return int|\WP_Error
+	 */
+	public function init_addon( $name, $description, $requires_api = false ) {
+		$this->has_settings = false;
+		$this->name        = sanitize_text_field( $name );
+		$this->slug        = sanitize_title( $name );
+		$this->description = sanitize_text_field( $description );
+		$this->api_key      = get_site_option( '_bswp_option_core_apiKey', false );
 
-    /**
-     * Check if related plugin is active
-     *
-     * @return bool
-     */
-    public function isPluginActive()
-    {
-        return true;
-    }
+		if ( ! $this->api_key && $requires_api ) {
+			return new \WP_Error( '400', __( 'No API Key Set' ) );
+		}
 
-    /**
-     * Activate AddOn
-     *
-     * @return string
-     */
-    public function activate()
-    {
-        $this->optionData->save('status', 'active');
-        $this->status = $this->optionData->get('status');
-        return $this->status;
-    }
+		$this->option_data = new OptionData( $this->slug );
+		if ( ! $this->option_data ) {
+			return new \WP_Error( '400', __( 'Error Creating OptionData Object' ) );
+		}
 
-    /**
-     * Deactivate AddOn
-     *
-     * @return string
-     */
-    public function deactivate()
-    {
-        $this->optionData->save('status', 'inactive');
-        $this->status = $this->optionData->get('status');
-        return $this->status;
-    }
+		// Set Active State if not set.
+		if ( ! $this->option_data->get( 'status' ) ) {
+			$this->option_data->save( 'status', 'inactive' );
+		}
 
-    /**
-     * Toggle Add On
-     */
-    public function toggleAddOn()
-    {
-        if (! $this->isActive() ) {
-            $this->activate();
-        } else {
-            $this->deactivate();
-        }
-    }
+		$this->status = $this->option_data->get( 'status' );
 
-    /**
-     * Display Settings Template
-     *
-     * @return void
-     */
-    public function displaySettings()
-    {
-        if ($this->hasSettings ) {
-            include_once $this->settingsTemplatePath;
-        }
-    }
+		// Add to list of addOns.
+		return AddOnsCore::add( $this );
+	}
 
-    /**
-     * Check if save add on set and true
-     *
-     * @return bool
-     */
-    public function checkIfAddOnSave()
-    {
-        return ! isset($_POST['save_addon']) || ( isset($_POST['save_addon']) && 'true' !== $_POST['save_addon'] );
-    }
+	/**
+	 * Init actions
+	 */
+	public function init() {
+	}
 
-    /**
-     * inject form
-     */
-    public function bswp_form()
-    {
-        include_once BETTER_SHARING_PATH . 'includes/templates/bswp-form.php';
-    }
+	/**
+	 * Is AddOn Active
+	 *
+	 * @return bool
+	 */
+	public function is_active() {
+		return 'active' === $this->status;
+	}
+
+	/**
+	 * Check if related plugin is active
+	 *
+	 * @return bool
+	 */
+	public function is_plugin_active() {
+		return true;
+	}
+
+	/**
+	 * Activate AddOn
+	 *
+	 * @return string
+	 */
+	public function activate() {
+		$this->option_data->save( 'status', 'active' );
+		$this->status = $this->option_data->get( 'status' );
+		return $this->status;
+	}
+
+	/**
+	 * Deactivate AddOn
+	 *
+	 * @return string
+	 */
+	public function deactivate() {
+		$this->option_data->save( 'status', 'inactive' );
+		$this->status = $this->option_data->get( 'status' );
+		return $this->status;
+	}
+
+	/**
+	 * Toggle Add On
+	 */
+	public function toggle_addon() {
+		if ( ! $this->is_active() ) {
+			$this->activate();
+		} else {
+			$this->deactivate();
+		}
+	}
+
+	/**
+	 * Display Settings Template
+	 *
+	 * @return void
+	 */
+	public function display_settings() {
+		if ( $this->has_settings ) {
+			include_once $this->settings_template_path;
+		}
+	}
+
+	/**
+	 * Check if save add on set and true
+	 *
+	 * @return bool
+	 */
+	public function check_if_addon_save() {
+		// phpcs:ignore
+		return ! isset( $_POST['save_addon'] ) || ( isset( $_POST['save_addon'] ) && 'true' !== $_POST['save_addon'] );
+	}
+
+	/**
+	 * Inject form
+	 */
+	public function bswp_form() {
+		include_once BETTER_SHARING_PATH . 'includes/templates/bswp-form.php';
+	}
 
 }

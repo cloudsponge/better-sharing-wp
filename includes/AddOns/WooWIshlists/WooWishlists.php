@@ -20,15 +20,15 @@ class WooWishlists extends  BetterSharingAddOn
             false
         );
 
-        $this->supportUrl = 'https://cloudsponge.com';
+        $this->support_url = 'https://cloudsponge.com';
 
-        if ($this->isActive() ) {
+        if ($this->is_active() ) {
             add_action('wp_enqueue_scripts', [ $this, 'enqueue_scripts' ]);
             remove_action('wp_footer', 'woocommerce_wishlist_render_email_forms', 10);
             add_action('wp_footer', [ $this, 'wishlist_email_form' ], 10);
         }
 
-        return is_wp_error($initReturn) ? $initReturn : $this->isActive();
+        return is_wp_error($initReturn) ? $initReturn : $this->is_active();
     }
 
     /**
@@ -36,7 +36,7 @@ class WooWishlists extends  BetterSharingAddOn
      *
      * @return bool
      */
-    public function isPluginActive()
+    public function is_plugin_active()
     {
         return class_exists('WC_Wishlists_Plugin');
     }
@@ -66,7 +66,7 @@ class WooWishlists extends  BetterSharingAddOn
 
         wp_enqueue_script(
             'cloudsponge-js',
-            '//api.cloudsponge.com/widget/' . $this->apiKey . '.js',
+            '//api.cloudsponge.com/widget/' . $this->api_key . '.js',
             [ 'jquery' ],
             BETTER_SHARING_VERSION,
             false
@@ -87,7 +87,7 @@ class WooWishlists extends  BetterSharingAddOn
     public function wishlist_email_form()
     {
         global $email_forms;
-        $apiKey = get_site_option('_bswp_option_core_apiKey', false);
+        $api_key = get_site_option('_bswp_option_core_apiKey', false);
 
         if ($email_forms && !empty($email_forms) ) :
 
@@ -109,7 +109,7 @@ class WooWishlists extends  BetterSharingAddOn
                                 <label for="wishlist_email_to"><?php _e('To:', 'wc_wishlist'); ?></label>
                                 <textarea class="wl-em-to" name="wishlist_email_to" rows="2" placeholder="<?php _e('Type in e-mail addresses: jo@example.com, jan@example.com.', 'wc_wishlist'); ?>"></textarea>
 
-                <?php if ($apiKey ) : ?>
+                <?php if ($api_key ) : ?>
                                     <div class="text-right">
                                         <a href="#" class="add-from-address-book-init btn button">
                                             <span class="dashicons dashicons-book-alt"></span>

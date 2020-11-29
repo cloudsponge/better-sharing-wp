@@ -14,9 +14,9 @@ $addOns = AddOnsCore::getAddOns();
         // Is Addon Active
         $addonActive = 'active' === $addOn->status;
         // Plugin is installed and activated - class
-        $pluginAvailableClass = $addOn->isPluginActive() ? 'plugin-available' : 'plugin-unavailable';
+        $pluginAvailableClass = $addOn->is_plugin_active() ? 'plugin-available' : 'plugin-unavailable';
         // AddOn is active status - class
-        $activeClass =  $addonActive && $addOn->isPluginActive() ? 'active' : 'inactive';
+        $activeClass =  $addonActive && $addOn->is_plugin_active() ? 'active' : 'inactive';
         ?>
     <div class="card bswp__addon <?php echo $pluginAvailableClass; ?>">
 
@@ -35,7 +35,7 @@ $addOns = AddOnsCore::getAddOns();
       </div>
 
         <?php  
-        if (! $addOn->isPluginActive() ) {
+        if (! $addOn->is_plugin_active() ) {
             echo '<p>Plugin is not installed & activated. Go to the Plugins page to activate the appropriate plugin</p>';
         } 
         ?>
@@ -50,18 +50,18 @@ $addOns = AddOnsCore::getAddOns();
       <!-- /Description -->
 
       <!-- Doc / Support URL -->
-        <?php if ($addOn->supportUrl ) : ?>
+        <?php if ($addOn->support_url ) : ?>
       <div class="bswp__addon__link">
         <strong>AddOn Link:</strong>
-        <a href="<?php echo $addOn->supportUrl; ?>" target="_blank">
-            <?php echo $addOn->supportUrl; ?>
+        <a href="<?php echo $addOn->support_url; ?>" target="_blank">
+            <?php echo $addOn->support_url; ?>
           <span class="dashicons dashicons-external"></span>
         </a>
       </div>
         <?php endif; ?>
 
       <!-- Settings Toggle -->
-        <?php if ($addOn->hasSettings && $addonActive) : ?>
+        <?php if ($addOn->has_settings && $addonActive) : ?>
         <hr class="bswp__spacer">
         <a class="btn button bswp__addon__settings-toggle" href="#" data-addon="<?php echo $addOn->slug; ?>">Settings</a>
         <?php endif; ?>
@@ -70,12 +70,12 @@ $addOns = AddOnsCore::getAddOns();
 
 
       <!-- Settings -->
-        <?php if ($addOn->hasSettings ) : ?>
+        <?php if ($addOn->has_settings ) : ?>
       <div class="bswp__addon__settings <?php echo $addOn->slug . '-settings'; ?>">
         <form method="post" action="<?php echo admin_url('admin.php?page=better-sharing-addons'); ?>">
           <input type="hidden" name="save_addon" value="yes" />
           <div class="bswp__addon__settings-group">
-            <?php $addOn->displaySettings(); ?>
+            <?php $addOn->display_settings(); ?>
           </div>
           <input class="button button-primary" type="submit" value="Save Settings" />
         </form>
