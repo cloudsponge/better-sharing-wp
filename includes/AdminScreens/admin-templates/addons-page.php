@@ -10,7 +10,15 @@ $addOns = AddOnsCore::getAddOns();
 <div class="bswp__container">
   <div class="bswp__addons">
     <?php foreach( $addOns as $addOn ) : ?>
-    <div class="card bswp__addon status-<?php echo $addOn->status; ?>">
+      <?php 
+        // Is Addon Active
+        $addonActive = 'active' === $addOn->status;
+        // Plugin is installed and activated - class
+        $pluginAvailableClass = $addOn->isPluginActive() ? 'plugin-available' : 'plugin-unavailable';
+        // AddOn is active status - class
+        $activeClass =  $addonActive && $addOn->isPluginActive() ? 'active' : 'inactive';
+      ?>
+    <div class="card bswp__addon <?php echo $pluginAvailableClass; ?>">
 
       <div class="bswp__addon__header">
         <h2 class="title bswp__addon__title"><?php echo $addOn->name; ?></h2>
@@ -18,20 +26,10 @@ $addOns = AddOnsCore::getAddOns();
         <!-- Toggle -->
         <div class="bswp__addon__status">
           <span class="bswp__addon__status-label">
-            <?php
-              if ( 'active' === $addOn->status && $addOn->isPluginActive() ) {
-                echo 'Active';
-              } elseif ( 'active' !== $addOn->status && $addOn->isPluginActive() ) {
-                echo 'Inactive';
-              } elseif ( !$addOn->isPluginActive() ) {
-                echo '';
-              }
-            ?>
+            <?php echo $activeClass; ?>
           </span>
-          <?php if ( $addOn->isPluginActive() ) : ?>
-          <div class="bswp__addon__status-indicator" data-addon="<?php echo $addOn->slug; ?>" data-status="<?php echo $addOn->status; ?>" data-plugin="<?php echo $addOn->isPluginActive() ? 'active' : 'inactive'; ?>">
-          </div>
-          <?php endif; ?>
+          <!-- toggle slider -->
+          <div class="bswp__addon__status-indicator <?php echo $activeClass; ?>" data-addon="<?php echo $addOn->slug; ?>" data-status="<?php echo $addOn->status; ?>" data-plugin="<?php echo $pluginAvailableClass; ?>"></div>
         </div>
         <!-- /Toggle -->
       </div>
@@ -62,11 +60,10 @@ $addOns = AddOnsCore::getAddOns();
       </div>
       <?php endif; ?>
 
-      <hr class="bswp__spacer">
-
       <!-- Settings Toggle -->
-      <?php if ( $addOn->hasSettings ) : ?>
-      <a class="btn button bswp__addon__settings-toggle" href="#" data-addon="<?php echo $addOn->slug; ?>">Settings</a>
+      <?php if ( $addOn->hasSettings && $addonActive) : ?>
+        <hr class="bswp__spacer">
+        <a class="btn button bswp__addon__settings-toggle" href="#" data-addon="<?php echo $addOn->slug; ?>">Settings</a>
       <?php endif; ?>
       <!-- / Settings Toggle -->
 

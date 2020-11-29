@@ -67,7 +67,7 @@ class AutomateWoo extends BetterSharingAddOn{
 	public function enqueue_scripts() {
 		global $post;
 
-		if ( $post->ID !== $this->referralsPage ) {
+		if ( $post && $post->ID !== $this->referralsPage ) {
 			return false;
 		}
 

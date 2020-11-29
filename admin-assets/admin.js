@@ -24,7 +24,7 @@ class BSWPAdminJS {
       return false;
     }
 
-    if ("inactive" === pluginActive) {
+    if ("plugin-unavailable" === pluginActive) {
       alert(
         "Plugin is not installed & activated. Go to the Plugins page to activate the appropriate plugin"
       );

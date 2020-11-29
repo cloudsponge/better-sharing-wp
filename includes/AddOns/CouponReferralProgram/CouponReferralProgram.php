@@ -90,7 +90,7 @@ class CouponReferralProgram extends BetterSharingAddOn {
 	 */
 	public function remove_widget() {
 		global $wp_filter;
-		if ( is_array( $wp_filter[$this->hookName]->callbacks[10] ) ) {
+		if ( isset( $wp_filter[$this->hookName]->callbacks[10] ) && is_array( $wp_filter[$this->hookName]->callbacks[10] ) ) {
 			$key = key( $wp_filter[$this->hookName]->callbacks[10] );
 			if ( is_array( $wp_filter[$this->hookName]->callbacks[10][$key]['function'] ) ) {
 				if ( is_array( $wp_filter[$this->hookName]->callbacks[10][$key]['function'] ) ) {

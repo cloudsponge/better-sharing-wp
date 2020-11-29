@@ -184,8 +184,8 @@ $bswp-status-indicator-size: 1.5rem;
     }
 
     &__status-indicator {
-      position: relative;
       cursor: pointer;
+      position: relative;
       width: $bswp-status-indicator-size * 2;
       height: $bswp-status-indicator-size;
       border-radius: 3rem;
@@ -201,6 +201,23 @@ $bswp-status-indicator-size: 1.5rem;
         left: 2px;
         top: 2px;
         box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      &.active {
+        background: $bswp-status-indicator-enabled;
+        cursor: pointer;
+
+        &::before {
+          left: auto;
+          right: 2px;
+          box-shadow: 0 3px 8px rgba(95, 204, 98, 0.8);
+        }
+      }
+    }
+
+    &.plugin-unavailable {
+      .bswp__addon__status-indicator {
+        cursor: not-allowed;
       }
     }
 
@@ -221,20 +238,6 @@ $bswp-status-indicator-size: 1.5rem;
       margin-bottom: 1.5rem;
     }
 
-    &.status-active {
-      // border: 2px solid $bswp-status-indicator-enabled;
-      // box-shadow: $bswp-status-enabled-shadow;
-
-      .bswp__addon__status-indicator {
-        background: $bswp-status-indicator-enabled;
-
-        &::before {
-          left: auto;
-          right: 2px;
-          box-shadow: 0 3px 8px rgba(95, 204, 98, 0.8);
-        }
-      }
-    }
   }
 
   &__checkbox {
