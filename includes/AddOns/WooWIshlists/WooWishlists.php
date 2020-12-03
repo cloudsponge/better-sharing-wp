@@ -14,7 +14,7 @@ class WooWishlists extends  BetterSharingAddOn
     public function init()
     {
 
-        $initReturn = parent::initAddOn(
+        $initReturn = parent::init_addon(
             'WooCommerce WishLists',
             'Better Sharing WP AddOn for WooCommerce WishLists',
             false

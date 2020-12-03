@@ -49,3 +49,6 @@ cp ./BetterSharingWP.php "./$STR/BetterSharingWP.php";
 echo "Copying Readmes"
 cp ./README.md "./$STR/README.md";
 cp ./readme.txt "./$STR/readme.txt";
+
+echo "Compressing"
+zip -r "better-sharing-$versionNumber.zip" "./$STR"

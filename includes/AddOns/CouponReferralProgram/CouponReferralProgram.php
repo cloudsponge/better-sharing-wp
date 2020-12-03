@@ -31,7 +31,7 @@ class CouponReferralProgram extends BetterSharingAddOn
         $this->hookName = 'woocommerce_account_dashboard';
 
         // init
-        $initReturn = parent::initAddOn(
+        $initReturn = parent::init_addon(
             'Coupon Referral Program',
             'Better Sharing WP AddOn for Coupon Referral Program',
             false
