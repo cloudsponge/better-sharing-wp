@@ -31,7 +31,7 @@ class AutomateWoo extends BetterSharingAddOn {
 		if ( ! $this->referrals_page ) {
 			return new \WP_Error( '400', __( 'No Referrals Page Found' ) );
 		}
-		$init_return = parent::initAddOn(
+		$init_return = parent::init_addon(
 			'AutomateWoo',
 			'Better Sharing WP AddOn for AutomateWoo',
 			false

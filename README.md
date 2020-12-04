@@ -16,7 +16,11 @@ This WordPress plugin is to be used with your CloudSponge account.
 - Run `npm install && composer install && npm run build`
 - Activate plugin via WordPress admin
 
-## Develompent
+## Plugin Build
+
+Need to build the plugin to install on a WordPress site? run `npm build:plugin` and follow the prompts
+
+## Development
 
 Follow Installation instructions then run `npm run start`
 
