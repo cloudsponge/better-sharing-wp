@@ -1,6 +1,6 @@
 <?php
-	$shareLinkToggle = $this->optionData->get('shareLinkToggle');
-	$previewEmailToggle = $this->optionData->get('previewEmailToggle');
+    $shareLinkToggle = $this->option_data->get('shareLinkToggle');
+    $preview_email_toggle = $this->option_data->get('preview_email_toggle');
 ?>
 
 
@@ -11,12 +11,12 @@
   </p>
   <label for="share_link_toggle_true">
     Yes
-    <input type="radio" id="share_link_toggle_true" name="share_link_toggle" value="true" <?php checked( $shareLinkToggle ); ?>>
+    <input type="radio" id="share_link_toggle_true" name="share_link_toggle" value="true" <?php checked($shareLinkToggle); ?>>
   </label>
 
   <label for="share_link_toggle_false">
     No
-    <input type="radio" id="share_link_toggle_false" name="share_link_toggle" value="false" <?php checked( ! $shareLinkToggle ); ?>>
+    <input type="radio" id="share_link_toggle_false" name="share_link_toggle" value="false" <?php checked(! $shareLinkToggle); ?>>
   </label>
 </div>
 
@@ -28,11 +28,11 @@
   </p>
   <label for="share_email_preview_toggle_true">
     Yes
-    <input type="radio" id="share_email_preview_toggle_true" name="share_email_preview_toggle" value="true" <?php checked( $previewEmailToggle ); ?>>
+    <input type="radio" id="share_email_preview_toggle_true" name="share_email_preview_toggle" value="true" <?php checked($preview_email_toggle); ?>>
   </label>
 
   <label for="share_link_toggle_false">
     No
-    <input type="radio" id="share_link_toggle_false" name="share_email_preview_toggle" value="false" <?php checked( ! $previewEmailToggle ); ?>>
+    <input type="radio" id="share_link_toggle_false" name="share_email_preview_toggle" value="false" <?php checked(! $preview_email_toggle); ?>>
   </label>
 </div>

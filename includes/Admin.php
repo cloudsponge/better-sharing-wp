@@ -1,24 +1,31 @@
 <?php
-
+/**
+ * Admin Class
+ *
+ * @package Admin
+ */
 namespace BetterSharingWP;
 
 use BetterSharingWP\AdminScreens\GeneralSettings;
 use BetterSharingWP\AdminScreens\AddOns;
 use BetterSharingWP\AddOnsCore;
 
-
+/**
+ * Main Admin Class
+ */
 class Admin {
+
 
 	private $generalSettings;
 	private $addOnsPage;
 
 	public function __construct() {
-		add_action( 'admin_menu', [ $this, 'better_sharing_menu_init' ], 10 );
+		add_action( 'admin_menu', array( $this, 'better_sharing_menu_init' ), 10 );
 		$this->generalSettings = new GeneralSettings();
-		$this->addOnsPage = new AddOns();
+		$this->addOnsPage      = new AddOns();
 
-		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
-		add_action( 'admin_init', [ $this, 'toggle_addons'], 1 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		add_action( 'admin_init', array( $this, 'toggle_addons' ), 1 );
 	}
 
 	public function better_sharing_menu_init() {
@@ -27,7 +34,7 @@ class Admin {
 			'Better Sharing',
 			'manage_options',
 			'better-sharing-wp',
-			[ $this, 'better_sharing_menu' ],
+			array( $this, 'better_sharing_menu' ),
 			'dashicons-megaphone'
 		);
 
@@ -50,7 +57,7 @@ class Admin {
 		wp_enqueue_script(
 			'bswp-admin-assets',
 			BETTER_SHARING_URI . 'dist/admin/admin.bundle.js',
-			['jquery'],
+			array( 'jquery' ),
 			filemtime( BETTER_SHARING_PATH . 'dist/admin/admin.bundle.js' ),
 			false
 		);
@@ -58,11 +65,11 @@ class Admin {
 
 	public function toggle_addons() {
 
-//		$OptionData = new OptionData();
-//		$delete = $OptionData->deleteAll(true );
-//
-//		var_dump( $delete );
-//		wp_die();
+		// $option_data = new OptionData();
+		// $delete = $option_data->deleteAll(true );
+		//
+		// var_dump( $delete );
+		// wp_die();
 
 		if ( ! isset( $_GET, $_GET['toggleAddOn'], $_GET['addOn'] )
 		) {
@@ -72,12 +79,12 @@ class Admin {
 			return false;
 		}
 
-		$addOns = AddOnsCore::getAddOns();
+		$addOns   = AddOnsCore::getAddOns();
 		$toToggle = sanitize_text_field( $_GET['addOn'] );
 
-		foreach( $addOns as $addOn ) {
+		foreach ( $addOns as $addOn ) {
 			if ( $toToggle === $addOn->slug ) {
-				$addOn->toggleAddOn();
+				$addOn->toggle_addon();
 			}
 		}
 

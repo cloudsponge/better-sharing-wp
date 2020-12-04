@@ -8,15 +8,15 @@ namespace BetterSharingWP;
 <div class="bswp__container">
   <div class="card bswp__settings">
     <h2 class="title bswp__title">CloudSponge Configuration</h2>
-    <form action="<?php echo admin_url('admin.php?page=better-sharing-general' ); ?>" method="post">
+    <form action="<?php echo admin_url('admin.php?page=better-sharing-general'); ?>" method="post">
       <div class="bswp__form-group">
         <label for="__bswp_api_key" class="bswp__form-group__label">API Key:</label>
         <div class="bswp__input-group">
-          <input name="__bswp_api_key" type="text" id="__bswp_api_key" value="<?php echo $this->optionData->get('apiKey'); ?>" placeholder="123456789">
+          <input name="__bswp_api_key" type="text" id="__bswp_api_key" value="<?php echo $this->option_data->get('apiKey'); ?>" placeholder="123456789">
           <input type="submit" value="Save API Key" name="__bswp_api_key__save" class="button button-primary">
         </div>
       </div>
-      <?php if ( $this->optionData->get('apiKey') ) : ?>
+      <?php if ($this->option_data->get('apiKey') ) : ?>
       <div class="bswp__form-group">
         <label for="bswp-proxy-url" class="bswp__form-group__label">Your Proxy URL:</label>
         <div class="bswp__input-group">
