@@ -1,9 +1,15 @@
 import './styles.scss';
 
-export default class CouponReferral {
+export default class WooWishlist {
 
 	init($) {
 		this.$ = $;
+
+		// If no cloudsponge, return.
+		if ( ! cloudsponge ) {
+			console.log('cloudsponge not defined, check API key');
+			return false;
+		}
 
 		cloudsponge.init({
 			afterSubmitContacts: this.afterSelect
@@ -107,8 +113,8 @@ export default class CouponReferral {
 (function($){
 
 	$(document).ready(function(){
-		const couponref = new CouponReferral();
-		couponref.init($);
+		const wishlist = new WooWishlist();
+		wishlist.init($);
 	});
 
 }(jQuery));
