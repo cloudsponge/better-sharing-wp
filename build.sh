@@ -5,8 +5,11 @@ echo "======================================================" &&
 echo "" &&
 
 #Ask & Store Version
-echo "Version Number";
+echo "Version Number:  ";
 read -r versionNumber;
+
+#Remove Build Directory?
+read -r -p "Remove plugin build directory after compression? y/n " removeDir;
 
 
 # Create new branch
@@ -25,7 +28,7 @@ git tag -a v"$versionNumber" -m "new version: $versionNumber";
 #git push --tags origin;
 
 #Copy and move build files into new directory
-STR="build_$versionNumber" 
+STR="better-sharing-$versionNumber" 
 mkdir "$STR"
 
 echo "Copying Admin Assets"
@@ -51,4 +54,15 @@ cp ./README.md "./$STR/README.md";
 cp ./readme.txt "./$STR/readme.txt";
 
 echo "Compressing"
-zip -r "better-sharing-$versionNumber.zip" "./$STR"
+zip -r "$STR.zip" "./$STR"
+
+case $removeDir in
+[Yy]* )
+  echo "Cleanup..."
+  rm -rf "./$STR";
+  echo "Thank You"
+;;
+[Nn]* ) 
+  echo "Thank You"
+;;
+esac

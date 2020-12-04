@@ -5,6 +5,12 @@ export default class CouponReferral {
 	init($) {
 		this.$ = $;
 
+		// If no cloudsponge, return.
+		if ( ! cloudsponge ) {
+			console.log('cloudsponge not defined, check API key');
+			return false;
+		}
+
 		cloudsponge.init({
 			afterSubmitContacts: this.afterSelect
 		});
