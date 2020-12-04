@@ -1,71 +1,131 @@
 <?php
+/**
+ * Better Sharing AddOn Core Class
+ *
+ * @package BetterSharingAddOn
+ */
 
 namespace BetterSharingWP\AddOns;
 
 use BetterSharingWP\AddOnsCore;
 use BetterSharingWP\OptionData;
 
-
+/**
+ * BetterSharingAddon Core Class
+ */
 abstract class BetterSharingAddOn {
 
+	/**
+	 * Name
+	 *
+	 * @var string
+	 */
 	public $name;
+
+	/**
+	 * Slug
+	 *
+	 * @var string
+	 */
 	public $slug;
+
+	/**
+	 * Description
+	 *
+	 * @var string
+	 */
 	public $description;
+
+	/**
+	 * Current Status
+	 *
+	 * @var mixed
+	 */
 	public $status;
-	public $apiKey;
-	public $hasSettings;
-	public $settingsTemplatePath;
-	public $optionData;
-	public $supportUrl;
+
+	/**
+	 * Api Key
+	 *
+	 * @var string
+	 */
+	public $api_key;
+
+	/**
+	 * Has Settings
+	 *
+	 * @var boolean
+	 */
+	public $has_settings;
+
+	/**
+	 * Settings Template Path
+	 *
+	 * @var string
+	 */
+	public $settings_template_path;
+
+	/**
+	 * Option Data
+	 *
+	 * @var OptionData
+	 */
+	public $option_data;
+
+	/**
+	 * Support URL
+	 *
+	 * @var string
+	 */
+	public $support_url;
 
 	/**
 	 * Initialize AddOn
 	 *
-	 * @param $name
-	 * @param $description
-	 * @param bool $requiresApi
+	 * @param string $name name of AddOn.
+	 * @param string $description description of AddON.
+	 * @param bool   $requires_api AddOn Requires API.
 	 *
 	 * @return int|\WP_Error
 	 */
-	public function initAddOn( $name, $description, $requiresApi = false ) {
-		$this->hasSettings = false;
-		$this->name = sanitize_text_field( $name );
-		$this->slug = sanitize_title( $name );
+	public function init_addon( $name, $description, $requires_api = false ) {
+		$this->has_settings = false;
+		$this->name        = sanitize_text_field( $name );
+		$this->slug        = sanitize_title( $name );
 		$this->description = sanitize_text_field( $description );
-		$this->apiKey = get_site_option( '_bswp_option_core_apiKey', false );
+		$this->api_key      = get_site_option( '_bswp_option_core_apiKey', false );
 
-		if ( ! $this->apiKey && $requiresApi ) {
+		if ( ! $this->api_key && $requires_api ) {
 			return new \WP_Error( '400', __( 'No API Key Set' ) );
 		}
 
-		$this->optionData = new OptionData( $this->slug );
-		if ( ! $this->optionData ) {
+		$this->option_data = new OptionData( $this->slug );
+		if ( ! $this->option_data ) {
 			return new \WP_Error( '400', __( 'Error Creating OptionData Object' ) );
 		}
 
 		// Set Active State if not set.
-		if ( ! $this->optionData->get( 'status' ) ) {
-			$this->optionData->save( 'status', 'inactive' );
+		if ( ! $this->option_data->get( 'status' ) ) {
+			$this->option_data->save( 'status', 'inactive' );
 		}
 
-		$this->status = $this->optionData->get( 'status' );
+		$this->status = $this->option_data->get( 'status' );
 
-		// Add to list of addOns
+		// Add to list of addOns.
 		return AddOnsCore::add( $this );
 	}
 
 	/**
 	 * Init actions
-	 *
 	 */
-	public function init() {}
+	public function init() {
+	}
 
 	/**
 	 * Is AddOn Active
 	 *
 	 * @return bool
 	 */
-	public function isActive() {
+	public function is_active() {
 		return 'active' === $this->status;
 	}
 
@@ -74,7 +134,7 @@ abstract class BetterSharingAddOn {
 	 *
 	 * @return bool
 	 */
-	public function isPluginActive() {
+	public function is_plugin_active() {
 		return true;
 	}
 
@@ -84,8 +144,8 @@ abstract class BetterSharingAddOn {
 	 * @return string
 	 */
 	public function activate() {
-		$this->optionData->save( 'status', 'active' );
-		$this->status = $this->optionData->get( 'status' );
+		$this->option_data->save( 'status', 'active' );
+		$this->status = $this->option_data->get( 'status' );
 		return $this->status;
 	}
 
@@ -95,16 +155,16 @@ abstract class BetterSharingAddOn {
 	 * @return string
 	 */
 	public function deactivate() {
-		$this->optionData->save( 'status', 'inactive' );
-		$this->status = $this->optionData->get( 'status' );
+		$this->option_data->save( 'status', 'inactive' );
+		$this->status = $this->option_data->get( 'status' );
 		return $this->status;
 	}
 
 	/**
 	 * Toggle Add On
 	 */
-	public function toggleAddOn() {
-		if ( ! $this->isActive() ) {
+	public function toggle_addon() {
+		if ( ! $this->is_active() ) {
 			$this->activate();
 		} else {
 			$this->deactivate();
@@ -116,9 +176,9 @@ abstract class BetterSharingAddOn {
 	 *
 	 * @return void
 	 */
-	public function displaySettings() {
-		if ( $this->hasSettings ) {
-			include_once $this->settingsTemplatePath;
+	public function display_settings() {
+		if ( $this->has_settings ) {
+			include_once $this->settings_template_path;
 		}
 	}
 
@@ -127,12 +187,13 @@ abstract class BetterSharingAddOn {
 	 *
 	 * @return bool
 	 */
-	public function checkIfAddOnSave() {
+	public function check_if_addon_save() {
+		// phpcs:ignore
 		return ! isset( $_POST['save_addon'] ) || ( isset( $_POST['save_addon'] ) && 'true' !== $_POST['save_addon'] );
 	}
 
 	/**
-	 * inject form
+	 * Inject form
 	 */
 	public function bswp_form() {
 		include_once BETTER_SHARING_PATH . 'includes/templates/bswp-form.php';
