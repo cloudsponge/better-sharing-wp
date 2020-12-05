@@ -12,10 +12,26 @@ use BetterSharingWP\BSWP_Mail;
  */
 class CouponReferralProgram extends BetterSharingAddOn {
 
+	/**
+	 * Hook Name
+	 *
+	 * @var string
+	 */
+	private $hook_name;
 
-	private $hookName;
-	private $addOnPath;
-	private $mailSuccess;
+	/**
+	 * Add On Path
+	 *
+	 * @var string
+	 */
+	private $add_on_path;
+
+	/**
+	 * Mail Success
+	 *
+	 * @var [type]
+	 */
+	private $mail_success;
 
 	/**
 	 * Init
@@ -23,14 +39,14 @@ class CouponReferralProgram extends BetterSharingAddOn {
 	 * @return mixed
 	 */
 	public function init() {
-		// path
-		$this->addOnPath = BETTER_SHARING_PATH . 'includes/AddOns/CouponReferralProgram';
+		// path.
+		$this->add_on_path = BETTER_SHARING_PATH . 'includes/AddOns/CouponReferralProgram';
 
-		// used to remove default display and add form
-		$this->hookName = 'woocommerce_account_dashboard';
+		// used to remove default display and add form.
+		$this->hook_name = 'woocommerce_account_dashboard';
 
-		// init
-		$initReturn = parent::init_addon(
+		// init.
+		$init_return = parent::init_addon(
 			'Coupon Referral Program',
 			'Better Sharing WP AddOn for Coupon Referral Program',
 			false
@@ -38,19 +54,22 @@ class CouponReferralProgram extends BetterSharingAddOn {
 
 		$this->support_url = 'https://cloudsponge.com';
 
-		if ( $this->is_active() ) {
+		$social_enabled = get_option( 'mwb_cpr_social_enable', 'off' );
+		$social_enabled = 'yes' === $social_enabled;
+
+		if ( $this->is_active() && $social_enabled ) {
 			// remove coupon widget.
 			$this->remove_widget();
 			add_action( 'init', array( $this, 'submit_mailer' ), 99 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'bwp_form_before', array( $this, 'show_coupon_code' ), 10 );
-			add_action( $this->hookName, array( $this, 'bswp_form' ), 10 );
+			add_action( $this->hook_name, array( $this, 'bswp_form' ), 10 );
 		}
 
-		// settings page in admin
+		// settings page in admin.
 		$this->settingsPageInit();
 
-		return is_wp_error( $initReturn ) ? $initReturn : $this->is_active();
+		return is_wp_error( $init_return ) ? $init_return : $this->is_active();
 	}
 
 	/**
@@ -89,11 +108,11 @@ class CouponReferralProgram extends BetterSharingAddOn {
 	 */
 	public function remove_widget() {
 		global $wp_filter;
-		if ( isset( $wp_filter[ $this->hookName ]->callbacks[10] ) && is_array( $wp_filter[ $this->hookName ]->callbacks[10] ) ) {
-			$key = key( $wp_filter[ $this->hookName ]->callbacks[10] );
-			if ( is_array( $wp_filter[ $this->hookName ]->callbacks[10][ $key ]['function'] ) ) {
-				if ( is_array( $wp_filter[ $this->hookName ]->callbacks[10][ $key ]['function'] ) ) {
-					remove_action( $this->hookName, array( $wp_filter[ $this->hookName ]->callbacks[10][ $key ]['function'][0], $wp_filter[ $this->hookName ]->callbacks[10][ $key ]['function'][1] ) );
+		if ( isset( $wp_filter[ $this->hook_name ]->callbacks[10] ) && is_array( $wp_filter[ $this->hook_name ]->callbacks[10] ) ) {
+			$key = key( $wp_filter[ $this->hook_name ]->callbacks[10] );
+			if ( is_array( $wp_filter[ $this->hook_name ]->callbacks[10][ $key ]['function'] ) ) {
+				if ( is_array( $wp_filter[ $this->hook_name ]->callbacks[10][ $key ]['function'] ) ) {
+					remove_action( $this->hook_name, array( $wp_filter[ $this->hook_name ]->callbacks[10][ $key ]['function'][0], $wp_filter[ $this->hook_name ]->callbacks[10][ $key ]['function'][1] ) );
 				}
 			}
 		}
@@ -105,11 +124,13 @@ class CouponReferralProgram extends BetterSharingAddOn {
 	 * @return bool
 	 */
 	public function enqueue_scripts() {
-		global $post;
+		global $post, $wp;
 
-		$myAccountPageId = (int) get_site_option( 'woocommerce_myaccount_page_id', false );
+		$request = explode( '/', $wp->request );
 
-		if ( $myAccountPageId !== $post->ID ) {
+		$my_account_page_id = (int) get_site_option( 'woocommerce_myaccount_page_id', false );
+
+		if ( $my_account_page_id !== $post->ID || 'my-account' !== end( $request ) ) {
 			return false;
 		}
 
@@ -122,7 +143,7 @@ class CouponReferralProgram extends BetterSharingAddOn {
 		);
 
 		wp_enqueue_script(
-			'bswp-addons-automatewoo',
+			'bswp-addons-coupon-referral',
 			BETTER_SHARING_URI . 'dist/addons/couponref.js',
 			array( 'cloudsponge-js' ),
 			BETTER_SHARING_VERSION,
@@ -150,26 +171,26 @@ class CouponReferralProgram extends BetterSharingAddOn {
 	 */
 	public function show_coupon_code() {
 		$referral_link = $this->get_referral_link();
-		include_once $this->addOnPath . '/templates/coupon-code.php';
+		include_once $this->add_on_path . '/templates/coupon-code.php';
 	}
 
 	/**
 	 * Inject Form
 	 */
 	public function bswp_form() {
-		$addOn                = 'Coupon Referral Program';
+		$addon                = 'Coupon Referral Program';
 		$preview_email_toggle = true;
 		$ajax                 = false;
 
-		// subject
-		$emailSubject = $this->option_data->get( 'emailSubject' );
-		$emailSubject = $emailSubject ? $emailSubject : 'Save today with this coupon code';
+		// subject.
+		$email_submit = $this->option_data->get( 'emailSubject' );
+		$email_submit = $email_submit ? $email_submit : 'Save today with this coupon code';
 
-		// email content
-		$emailContent = $this->option_data->get( 'emailContent' );
-		$emailContent = $emailContent ? $emailContent : 'Use the {{link}} to save!';
-		// email content - replace {{link}} or add to bottom
-		$emailContent = $this->replace_link( $emailContent );
+		// email content.
+		$email_content = $this->option_data->get( 'emailContent' );
+		$email_content = $email_content ? $email_content : 'Use the {{link}} to save!';
+		// email content - replace {{link}} or add to bottom.
+		$email_content = $this->replace_link( $email_content );
 
 		include_once BETTER_SHARING_PATH . 'includes/templates/bswp-form.php';
 	}
@@ -202,12 +223,11 @@ class CouponReferralProgram extends BetterSharingAddOn {
 			return false;
 		}
 		$user            = wp_get_current_user();
-		$userData        = get_userdata( $user->ID );
-		$myAccountPageId = (int) get_site_option( 'woocommerce_myaccount_page_id', false );
+		$user_data        = get_userdata( $user->ID );
 
 		$emails = sanitize_text_field( $_POST['bswp-share-email-input'] );
 		if ( '' === $emails ) {
-			$this->mailSuccess = false;
+			$this->mail_success = false;
 			add_action( 'bwp_form_before', array( $this, 'show_email_send_message' ), 9 );
 			return false;
 		}
@@ -226,21 +246,21 @@ class CouponReferralProgram extends BetterSharingAddOn {
 		$mailer->setTo( $emails );
 		$mailer->setFrom(
 			array(
-				'email' => $userData->user_email,
-				'name'  => $userData->display_name,
+				'email' => $user_data->user_email,
+				'name'  => $user_data->display_name,
 			)
 		);
 
 		$sent = $mailer->send();
 
 		if ( is_wp_error( $sent ) ) {
-			$this->mailSuccess = false;
+			$this->mail_success = false;
 			add_action( 'bwp_form_before', array( $this, 'show_email_send_message' ), 9 );
 			return false;
 		}
 
 		if ( $sent ) {
-			$this->mailSuccess = true;
+			$this->mail_success = true;
 			add_action( 'bwp_form_before', array( $this, 'show_email_send_message' ), 9 );
 		}
 	}
@@ -250,11 +270,11 @@ class CouponReferralProgram extends BetterSharingAddOn {
 	 */
 	public function show_email_send_message() {
 
-		if ( ! isset( $this->mailSuccess ) ) {
+		if ( ! isset( $this->mail_success ) ) {
 			return;
 		}
 
-		$emailSent = $this->mailSuccess;
+		$emailSent = $this->mail_success;
 
 		if ( true === $emailSent ) {
 			echo '<div class="bswp-coupon-referral-emailSent success">Sent Successfully</div>';
@@ -262,7 +282,7 @@ class CouponReferralProgram extends BetterSharingAddOn {
 			echo '<div class="bswp-coupon-referral-emailSent fail">Errors sending message, please try again</div>';
 		}
 
-		unset( $this->mailSuccess );
+		unset( $this->mail_success );
 
 	}
 

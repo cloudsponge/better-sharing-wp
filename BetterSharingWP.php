@@ -19,7 +19,7 @@ namespace BetterSharingWP;
 
 define( 'BETTER_SHARING_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BETTER_SHARING_URI', plugin_dir_url( __FILE__ ) );
-define( 'BETTER_SHARING_VERSION', '1.1.0' );
+define( 'BETTER_SHARING_VERSION', '1.1.1' );
 
 define( 'BETTER_SHARING_ADMIN_TEMPLATE_PATH', BETTER_SHARING_PATH . 'includes/AdminScreens/admin-templates/' );
 

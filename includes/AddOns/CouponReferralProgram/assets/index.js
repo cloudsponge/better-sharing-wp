@@ -38,7 +38,7 @@ export default class CouponReferral {
 		jQuery('input[name="emails[]"]').each( ( key, value ) => {
 			if ( jQuery(value).val() ||  '' !== jQuery(value).val() ) {
 				valid++;
-			}
+			};
 		});
 		maxRef = maxRef - valid;
 
@@ -49,7 +49,7 @@ export default class CouponReferral {
 		});
 
 		cloudsponge.launch();
-	}
+	};
 
 	/**
 	 * After Contacts Selected
@@ -67,11 +67,11 @@ export default class CouponReferral {
 
 			if ( email && '' !== csv ) {
 				csv += ', ' + email;
-			}
+			};
 
 			if ( email && '' === csv ) {
 				csv += email;
-			}
+			};
 		});
 		$emailField.val(csv);
 	};
@@ -84,7 +84,7 @@ export default class CouponReferral {
 		jQuery('input[name="emails[]"]').each( ( key, value ) => {
 			if ( ! jQuery(value).val() ||  '' === jQuery(value).val() ) {
 				jQuery(value).parent('p.form-row').remove();
-			}
+			};
 		});
 	};
 
@@ -105,9 +105,9 @@ export default class CouponReferral {
 		setTimeout(() => {
 			$confirmation.hide();
 		}, 1500 );
-	}
+	};
 
-}
+};
 
 (function($){
 

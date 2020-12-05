@@ -18,7 +18,8 @@ export default class WooWishlist {
 		const $body = $('body');
 		$body.on( 'click', '.add-from-address-book-init', this.clickInit );
 		$body.on( 'click', '.bswp-single-addon-status-toggle', this.toggleAddOn );
-		$body.on( 'click', '.bswp-copy', this.copyLink );
+		// doesn't apply to wishlist, nothing to copy.
+		// $body.on( 'click', '.bswp-copy', this.copyLink );
 	}
 
 	/**
@@ -30,6 +31,8 @@ export default class WooWishlist {
 		e.preventDefault();
 
 		const $emailWrapper = jQuery('#referral-emails-wrapper');
+
+		console.log('here');
 
 		// how many referrals should be allowed
 		let maxRef = $emailWrapper.data('max') ? parseInt( $emailWrapper.data('max') ) : 5;
@@ -50,7 +53,7 @@ export default class WooWishlist {
 		});
 
 		cloudsponge.launch();
-	}
+	};
 
 	/**
 	 * After Contacts Selected
@@ -68,11 +71,11 @@ export default class WooWishlist {
 
 			if ( email && '' !== csv ) {
 				csv += ', ' + email;
-			}
+			};
 
 			if ( email && '' === csv ) {
 				csv += email;
-			}
+			};
 		});
 		$emailField.val(csv);
 	};
@@ -85,7 +88,7 @@ export default class WooWishlist {
 		jQuery('input[name="emails[]"]').each( ( key, value ) => {
 			if ( ! jQuery(value).val() ||  '' === jQuery(value).val() ) {
 				jQuery(value).parent('p.form-row').remove();
-			}
+			};
 		});
 	};
 
@@ -106,9 +109,9 @@ export default class WooWishlist {
 		setTimeout(() => {
 			$confirmation.hide();
 		}, 1500 );
-	}
+	};
 
-}
+};
 
 (function($){
 
