@@ -5,7 +5,7 @@
  * @wordpress-plugin
  * Plugin Name:       Better Sharing WP
  * Description:       Better Sharing WordPress plugin for use for CloudSponge
- * Version:           1.1.1
+ * Version:           1.2.0
  * Author:            CloudSponge
  * Author URI:        https://www.cloudsponge.com
  * License:           GPL-3.0
@@ -19,7 +19,7 @@ namespace BetterSharingWP;
 
 define( 'BETTER_SHARING_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BETTER_SHARING_URI', plugin_dir_url( __FILE__ ) );
-define( 'BETTER_SHARING_VERSION', '1.1.1' );
+define( 'BETTER_SHARING_VERSION', '1.2.0' );
 
 define( 'BETTER_SHARING_ADMIN_TEMPLATE_PATH', BETTER_SHARING_PATH . 'includes/AdminScreens/admin-templates/' );
 
