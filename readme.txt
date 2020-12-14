@@ -36,17 +36,21 @@ Also, if you're using any of the following plugins or add-ons for WooCommerce th
 
 == Frequently Asked Questions ==
 
-* How do I get support?
-> This plugin is provided by CloudSponge. The best way to get support is to [send an email to support@cloudsponge.com](mailto:support@cloudsponge) or find us in [our Slack workspace](https://slack.cloudsponge.com).
+= How do I get support? =
 
-* Where do I report bugs?
-> We develop this plugin [on Github](https://github.com/cloudsponge/better-sharing-wp). Please search [outstanding issues](https://github.com/cloudsponge/better-sharing-wp/issues) before posting a new one.
+This plugin is provided by CloudSponge. The best way to get support is to [send an email to support@cloudsponge.com](mailto:support@cloudsponge) or find us in [our Slack workspace](https://slack.cloudsponge.com).
 
-* Do I need a CloudSponge license to use this plugin?
-> No. We've made sure that the core functionality of the plugin itself and of each addon will help you build virality into your website even if you don't have a CloudSponge license. Of course, enabling our contact picker will make this even better, but it's not required.
+= Where do I report bugs? =
 
-* Do you have an AddOn for *XYZ* plugin?
-> If it's not mentioned in this documentation then we haven't built it yet, but we desperately want to hear from you about it. Please [get in touch with us](https://www.cloudsponge.com/contact/) and let us know what AddOn you want us to build next.
+We develop this plugin [on Github](https://github.com/cloudsponge/better-sharing-wp). Please search [outstanding issues](https://github.com/cloudsponge/better-sharing-wp/issues) before posting a new one.
+
+= Do I need a CloudSponge license to use this plugin? =
+
+No. We've made sure that the core functionality of the plugin itself and of each addon will help you build virality into your website even if you don't have a CloudSponge license. Of course, enabling our contact picker will make this even better, but it's not required.
+
+= Do you have an AddOn for *XYZ* plugin? =
+
+If it's not mentioned in this documentation then we haven't built it yet, but we desperately want to hear from you about it. Please [get in touch with us](https://www.cloudsponge.com/contact/) and let us know what AddOn you want us to build next.
 
 == Changelog ==
 
