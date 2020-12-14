@@ -16,7 +16,7 @@ With Better Sharing, your users can copy a hyperlink to their clipboards, share 
 
 Better Sharing includes everything your site needs to create user-friendly sharing functionality that is essential for viral growth in today's online market.
 
-* Allow your users to copy a hyperlink of your choice to their clipboard for quick and easy sharing anywhere that\'s convenient for them.
+* Allow your users to copy a hyperlink of your choice to their clipboard for quick and easy sharing anywhere that's convenient for them.
 * Provide a "Share via Email" form on any page that allows your users to input a comma-separated list of email recipients with whom they would like to share your hyperlink.
 * Optionally enable the CloudSponge Contact Picker to allow your users to select contacts directly from their address books rather than typing email addresses manually.
 * Display pre-filled social media sharing buttons to make it easy for your users to share your hyperlink on their favorite social platforms.
@@ -31,7 +31,7 @@ Also, if you're using any of the following plugins or add-ons for WooCommerce th
 
 == Installation ==
 
-* Upload the directory ‘/better-sharing-wp/’ to your WP plugins directory and activate from the Dashboard.
+* Upload the directory `/better-sharing-wp/` to your WP plugins directory and activate from the Dashboard.
 * Configure the plugin at Dashboard > Better Sharing, where you can enable AddOns and manage General Settings like your CloudSponge license key and OAuth Proxy URL.
 
 == Frequently Asked Questions ==
