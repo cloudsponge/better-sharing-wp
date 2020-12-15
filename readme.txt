@@ -29,16 +29,15 @@ Also, if you're using any of the following plugins or add-ons for WooCommerce th
 * [WooCommerce Wishlists](https://woocommerce.com/products/woocommerce-wishlists/) - Override the wishlist's "mailto" link with a beautiful modal dialog for sharing via email with a message preview and [contact picker](https://www.cloudsponge.com/contact-picker/).
 * [Coupon Referral Program](https://woocommerce.com/products/coupon-referral-program/) - Let your users easily copy their coupon link to their clipboard or share it via email with a message preview and [contact picker](https://www.cloudsponge.com/contact-picker/).
 
-== Installation ==
-
-* Upload the directory `/better-sharing-wp/` to your WP plugins directory and activate from the Dashboard.
-* Configure the plugin at Dashboard > Better Sharing, where you can enable AddOns and manage General Settings like your CloudSponge license key and OAuth Proxy URL.
-
 == Frequently Asked Questions ==
+
+= How do I install Better Sharing? =
+
+Upload the directory `/better-sharing-wp/` to your WP plugins directory and activate from the Dashboard. Configure the plugin at Dashboard > Better Sharing, where you can enable AddOns and manage General Settings like your CloudSponge license key and OAuth Proxy URL.
 
 = How do I get support? =
 
-This plugin is provided by CloudSponge. The best way to get support is to [send an email to support@cloudsponge.com](mailto:support@cloudsponge) or find us in [our Slack workspace](https://slack.cloudsponge.com).
+This plugin is provided by CloudSponge. The best way to get support is to [send an email to support@cloudsponge.com](mailto:support@cloudsponge.com) or find us in [our Slack workspace](https://slack.cloudsponge.com).
 
 = Where do I report bugs? =
 
@@ -48,7 +47,7 @@ We develop this plugin [on Github](https://github.com/cloudsponge/better-sharing
 
 No. We've made sure that the core functionality of the plugin itself and of each addon will help you build virality into your website even if you don't have a CloudSponge license. Of course, enabling our contact picker will make this even better, but it's not required.
 
-= Do you have an AddOn for *XYZ* plugin? =
+= Do you have an AddOn for XYZ plugin? =
 
 If it's not mentioned in this documentation then we haven't built it yet, but we desperately want to hear from you about it. Please [get in touch with us](https://www.cloudsponge.com/contact/) and let us know what AddOn you want us to build next.
 
