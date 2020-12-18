@@ -21,7 +21,7 @@ const SocialNetworksInspector = ({ attributes, className, onTextChange, onToggle
                 checked={visible}
                 onChange={() => onToggleChange(key)}
               />
-              {visible && (
+              {visible && 'Facebook' !== name && (
                 <TextControl
                   label='Message to share:'
                   className='custom-input'
