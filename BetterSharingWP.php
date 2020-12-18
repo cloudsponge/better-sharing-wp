@@ -101,24 +101,21 @@ global $better_sharing_wp;
 $better_sharing_wp = new BetterSharingWP();
 
 /**
- * Init Plugin
- *
- * @return void
- */
-function init_better_sharing_plugin() {
-	global $better_sharing_wp;
-
-	$automate_woo_addon = new AutomateWoo();
-	$better_sharing_wp->init_add_on( $automate_woo_addon );
-
-	$coupon_referral_addon = new CouponReferralProgram();
-	$better_sharing_wp->init_add_on( $coupon_referral_addon );
-
-	$woo_wishlist_addon = new WooWishlists();
-	$better_sharing_wp->init_add_on( $woo_wishlist_addon );
-}
-
-/**
  * Initialize Core Add Ons
  */
-add_action( 'init', 'init_better_sharing_plugin' );
+add_action(
+	'init',
+	function() {
+		global $better_sharing_wp;
+
+		$automate_woo_addon = new AutomateWoo();
+		$better_sharing_wp->init_add_on( $automate_woo_addon );
+
+		$coupon_referral_addon = new CouponReferralProgram();
+		$better_sharing_wp->init_add_on( $coupon_referral_addon );
+
+		$woo_wishlist_addon = new WooWishlists();
+		$better_sharing_wp->init_add_on( $woo_wishlist_addon );
+	}
+);
+
