@@ -25,10 +25,6 @@ const Edit = (props) => {
       <div className={className}>
         <SocialNetworks {...props} component={'preview'} />
         <HorizontalRule />
-        <ReferralLink {...props} component={'preview'} />
-        <HorizontalRule />
-        <EmailInput {...props} component={'preview'} />
-        <HorizontalRule />
         <EmailForm {...props} component={'preview'} />
       </div>
     </Fragment>

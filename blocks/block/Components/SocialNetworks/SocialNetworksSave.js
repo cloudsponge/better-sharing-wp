@@ -17,6 +17,7 @@ const SocialNetworksSave = ({ attributes }) => {
               icon={icon}
               href={intentUrl}
               target='_blank'
+              rel={'noopener noreferrer'} 
             >
               {name}
             </Button>

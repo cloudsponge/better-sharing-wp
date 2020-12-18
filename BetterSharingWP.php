@@ -25,6 +25,9 @@ define( 'BETTER_SHARING_ADMIN_TEMPLATE_PATH', BETTER_SHARING_PATH . 'includes/Ad
 
 require_once 'vendor/autoload.php';
 
+// Core Blocks.
+use BetterSharingWP\CoreBlocks;
+
 // AddOns.
 use BetterSharingWP\Admin;
 use BetterSharingWP\AddOns\BetterSharingAddOn;
@@ -58,7 +61,8 @@ class BetterSharingWP {
 		$this->admin_screen = new Admin();
 		$this->errors       = array();
 
-		add_action( 'enqueue_block_editor_assets', array( $this, 'block_scripts' ), 10 );
+		$core_blocks = new CoreBlocks();
+		add_action( 'init', array( $core_blocks, 'register_block' ) );
 
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 	}

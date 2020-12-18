@@ -16,9 +16,6 @@ const Save = (props) => {
       <HorizontalRule />
       <ReferralLink {...props} />
       <HorizontalRule />
-      <EmailInput {...props} />
-      <HorizontalRule />
-      <EmailForm {...props} />
     </div>
   );
 };
