@@ -6,17 +6,18 @@ import EmailInput from './EmailInput/EmailInputSave';
 import EmailForm from './EmailForm/EmailFormSave';
 
 const { HorizontalRule } = wp.components;
+const { Fragment } = wp.element;
 
 const Save = (props) => {
   const { className } = props;
 
   return (
-    <div className={className}>
+    <Fragment>
       <SocialNetworks {...props} />
       <HorizontalRule />
       <ReferralLink {...props} />
       <HorizontalRule />
-    </div>
+    </Fragment>
   );
 };
 

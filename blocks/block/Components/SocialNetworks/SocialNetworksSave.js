@@ -1,7 +1,6 @@
 import React from 'react';
 
 const { __ } = wp.i18n;
-const { Button } = wp.components;
 
 const SocialNetworksSave = ({ attributes }) => {
   return (
@@ -11,16 +10,21 @@ const SocialNetworksSave = ({ attributes }) => {
         let { visible, name, icon, intentUrl } = socialNetwork[1];
         return (
           visible && (
-            <Button
-              isPrimary
+            <a
               key={key}
-              icon={icon}
               href={intentUrl}
               target='_blank'
-              rel={'noopener noreferrer'} 
+              rel={'noopener noreferrer'}
             >
-              {name}
-            </Button>
+              <button
+                className={
+                  'components-button is-secondary is-small has-text has-icon'
+                }
+              >
+                <span className={`dashicons dashicons-${icon}`}></span>{' '}
+                {name}
+              </button>
+            </a>
           )
         );
       })}

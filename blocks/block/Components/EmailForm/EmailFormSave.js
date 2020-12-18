@@ -4,6 +4,7 @@ const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { Button } = wp.components;
 
+// editor preview only, frontend form output by bswp-form.php
 const Preview = ({ attributes }) => {
   return (
     <Fragment>

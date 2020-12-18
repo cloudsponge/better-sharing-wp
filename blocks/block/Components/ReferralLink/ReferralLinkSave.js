@@ -8,6 +8,7 @@ const ReferralLinkSave = ({ attributes }) => {
     <div className='referral-link'>
       <label htmlFor='referral-link'>Your referral link</label>
       <input
+        type='text'
         id='referral-link'
         value={attributes.referralLink}
         readOnly={attributes.referralLinkControl !== 'custom' ? true : false}

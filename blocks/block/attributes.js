@@ -3,10 +3,6 @@ const attributes = {
     type: 'string',
     default: 'default',
   },
-  emailsArray: {
-    type: 'array',
-    default: [],
-  },
   emailSubject: {
     type: 'string',
     default: '',

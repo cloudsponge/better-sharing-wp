@@ -8,8 +8,6 @@ import Save from './Components/Save';
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
-console.log('here');
-
 registerBlockType('cgb/block-ea-better-sharing', {
   title: __('Better Sharing Block'),
   icon: 'share',

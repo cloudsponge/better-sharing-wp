@@ -44,16 +44,100 @@
     }
   } // end .email-input
 
-  .email-form {
-    display: flex;
-    flex-direction: column;
+  // email form - bswp-form.php
+  .bswp-share-buttons {
 
-    & label:not(:first-child) {
-      font-size: 0.8rem;
+    &.bswp-share-emails {
+      margin: 0 0 20px 0;
+  
+      a.add-from-address-book-init {
+        background: #43454b;
+        border-radius: 20px;
+        color: white;
+        display: inline-block;
+        line-height: 20px;
+        vertical-align: top;
+        width: 43%;
+        span {
+          display: inline-block;
+          margin-right: 5px;
+          vertical-align: middle;
+        }
+      }
+  
+      input[type="text"] {
+        border-radius: 5px;
+        display: inline-block;
+        height: 41px;
+        margin: 0 2% 0 0;
+        vertical-align: top;
+        width: 54%;
+      }
     }
-
-    & button {
-      margin: 5px auto 0 0;
+  }
+  
+  .bswp-share-email-preview {
+    text-align: left;
+  
+    input,textarea {
+      border-radius: 5px;
+      display: block;
+      width: 100%;
+      margin: 10px 0;
     }
-  } // end .email-form
+  
+    pre {
+      background: none;
+      font-style: inherit;
+      white-space: normal;
+      width: 100%;
+    }
+  
+    .bswp-share-email-preview-subject,
+    .bswp-share-email-preview-message {
+  
+      strong {
+        display: inline-block;
+        font-size: 1.2em;
+        vertical-align: middle;
+        width: 15%;
+      }
+  
+      .box {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        display: inline-block;
+        font-size: 1.2em;
+        margin: 0 0 10px 5%;
+        padding: 10px;
+        vertical-align: middle;
+        width: 65%;
+      }
+  
+    }
+  }
+  
+  .bswp-coupon-referral-coupon-code {
+    padding: 20px 0;
+  }
+  
+  .bswp-coupon-referral-emailSent {
+    font-size: 1.2em;
+    padding: 5px 0;
+    text-align: center;
+  
+    &.success {
+      background: green;
+      color: white;
+    }
+  
+    &.fail {
+      background: red;
+      color: white;
+    }
+  }
+  
+  .bswp-copy-confirm {
+    display: none;
+  }
 }
