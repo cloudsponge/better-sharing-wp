@@ -5,7 +5,7 @@
  * @wordpress-plugin
  * Plugin Name:       Better Sharing WP
  * Description:       Better Sharing WordPress plugin for use for CloudSponge
- * Version:           1.2.0
+ * Version:           1.2.1
  * Author:            CloudSponge
  * Author URI:        https://www.cloudsponge.com
  * License:           GPL-3.0
@@ -19,7 +19,7 @@ namespace BetterSharingWP;
 
 define( 'BETTER_SHARING_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BETTER_SHARING_URI', plugin_dir_url( __FILE__ ) );
-define( 'BETTER_SHARING_VERSION', '1.2.0' );
+define( 'BETTER_SHARING_VERSION', '1.2.1' );
 
 define( 'BETTER_SHARING_ADMIN_TEMPLATE_PATH', BETTER_SHARING_PATH . 'includes/AdminScreens/admin-templates/' );
 
@@ -56,7 +56,9 @@ class BetterSharingWP {
 	 */
 	public function __construct() {
 		$this->admin_screen = new Admin();
-		$this->errors      = array();
+		$this->errors       = array();
+
+		add_action( 'enqueue_block_editor_assets', array( $this, 'block_scripts' ), 10 );
 
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 	}
@@ -83,7 +85,22 @@ class BetterSharingWP {
 	 */
 	public function deactivate() {
 		$option_data = new OptionData();
-		$delete     = $option_data->deleteAll( true );
+		$delete      = $option_data->deleteAll( true );
+	}
+
+	/**
+	 * Enqueue Block Scripts
+	 *
+	 * @return void
+	 */
+	public function block_scripts() {
+		wp_enqueue_script(
+			'better-sharing-blocks',
+			BETTER_SHARING_URI . 'dist/blocks/blocks.bundle.js',
+			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor' ),
+			BETTER_SHARING_VERSION,
+			false
+		);
 	}
 
 

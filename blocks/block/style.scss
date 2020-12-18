@@ -1,0 +1,59 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.wp-block-cgb-block-ea-better-sharing {
+  border: 0.2rem solid #000;
+  color: #000;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem;
+
+  & > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  & .social-links {
+    & > a:not(:last-child) {
+      // anchor tag is Button component
+      margin-right: 5px;
+    }
+  } // end .social-links
+
+  & .referral-link {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    & input {
+      width: 30%;
+      margin: 0 10px;
+    }
+  } // end .referral-link
+
+  .email-input {
+    & > * {
+      display: block;
+    }
+
+    & input {
+      width: 100%;
+    }
+  } // end .email-input
+
+  .email-form {
+    display: flex;
+    flex-direction: column;
+
+    & label:not(:first-child) {
+      font-size: 0.8rem;
+    }
+
+    & button {
+      margin: 5px auto 0 0;
+    }
+  } // end .email-form
+}

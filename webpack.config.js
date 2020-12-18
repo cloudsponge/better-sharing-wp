@@ -99,4 +99,4 @@ const configAddOns = {
 	}
 };
 
-module.exports = [configAdmin, configAddOns];
+module.exports = [configBlocks, configAdmin, configAddOns];
