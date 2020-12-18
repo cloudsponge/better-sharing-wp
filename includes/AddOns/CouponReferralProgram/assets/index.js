@@ -12,6 +12,7 @@ export default class CouponReferral {
 		}
 
 		cloudsponge.init({
+			referrer: 'better-sharing-wp:coupon-referral-program',
 			afterSubmitContacts: this.afterSelect
 		});
 		

@@ -12,6 +12,7 @@ export default class AutomateWoo {
 		}
 
 		cloudsponge.init({
+			referrer: 'better-sharing-wp:automate-woo',
 			afterSubmitContacts: this.afterSelect
 		});
 		

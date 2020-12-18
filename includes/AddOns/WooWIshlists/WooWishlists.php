@@ -27,7 +27,7 @@ class WooWishlists extends  BetterSharingAddOn {
 			false
 		);
 
-		$this->support_url = 'https://cloudsponge.com';
+		$this->support_url = 'https://cloudsponge.com/';
 
 		if ( $this->is_active() ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -75,7 +75,7 @@ class WooWishlists extends  BetterSharingAddOn {
 
 		wp_enqueue_script(
 			'cloudsponge-js',
-			'//api.cloudsponge.com/widget/' . $this->api_key . '.js',
+			'https://api.cloudsponge.com/widget/' . $this->api_key . '.js',
 			array( 'jquery' ),
 			BETTER_SHARING_VERSION,
 			false

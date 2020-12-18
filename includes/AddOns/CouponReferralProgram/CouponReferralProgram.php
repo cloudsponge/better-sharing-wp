@@ -136,7 +136,7 @@ class CouponReferralProgram extends BetterSharingAddOn {
 
 		wp_enqueue_script(
 			'cloudsponge-js',
-			'//api.cloudsponge.com/widget/' . $this->api_key . '.js',
+			'https://api.cloudsponge.com/widget/' . $this->api_key . '.js',
 			array( 'jquery' ),
 			BETTER_SHARING_VERSION,
 			false
