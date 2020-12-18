@@ -12,6 +12,7 @@ export default class WooWishlist {
 		}
 
 		cloudsponge.init({
+			referrer: 'better-sharing-wp:woo-wishlists',
 			afterSubmitContacts: this.afterSelect
 		});
 
