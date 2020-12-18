@@ -61,8 +61,10 @@ class BetterSharingWP {
 		$this->admin_screen = new Admin();
 		$this->errors       = array();
 
+		// Core Blocks.
 		$core_blocks = new CoreBlocks();
 		add_action( 'init', array( $core_blocks, 'register_block' ) );
+		add_action( 'wp_enqueue_scripts', array( $core_blocks, 'core_block_public_scripts' ) );
 
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 	}
@@ -92,22 +94,6 @@ class BetterSharingWP {
 		$delete      = $option_data->deleteAll( true );
 	}
 
-	/**
-	 * Enqueue Block Scripts
-	 *
-	 * @return void
-	 */
-	public function block_scripts() {
-		wp_enqueue_script(
-			'better-sharing-blocks',
-			BETTER_SHARING_URI . 'dist/blocks/blocks.bundle.js',
-			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor' ),
-			BETTER_SHARING_VERSION,
-			false
-		);
-	}
-
-
 }
 
 global $better_sharing_wp;
@@ -115,20 +101,24 @@ global $better_sharing_wp;
 $better_sharing_wp = new BetterSharingWP();
 
 /**
+ * Init Plugin
+ *
+ * @return void
+ */
+function init_better_sharing_plugin() {
+	global $better_sharing_wp;
+
+	$automate_woo_addon = new AutomateWoo();
+	$better_sharing_wp->init_add_on( $automate_woo_addon );
+
+	$coupon_referral_addon = new CouponReferralProgram();
+	$better_sharing_wp->init_add_on( $coupon_referral_addon );
+
+	$woo_wishlist_addon = new WooWishlists();
+	$better_sharing_wp->init_add_on( $woo_wishlist_addon );
+}
+
+/**
  * Initialize Core Add Ons
  */
-add_action(
-	'init',
-	function () {
-		global $better_sharing_wp;
-
-		$automate_woo_addon = new AutomateWoo();
-		$better_sharing_wp->init_add_on( $automate_woo_addon );
-
-		$coupon_referral_addon = new CouponReferralProgram();
-		$better_sharing_wp->init_add_on( $coupon_referral_addon );
-
-		$woo_wishlist_addon = new WooWishlists();
-		$better_sharing_wp->init_add_on( $woo_wishlist_addon );
-	}
-);
+add_action( 'init', 'init_better_sharing_plugin' );

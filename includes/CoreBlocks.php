@@ -13,6 +13,20 @@ namespace BetterSharingWP;
 class CoreBlocks {
 
 	/**
+	 * Constructor
+	 */
+	public function __construct() {}
+
+	/**
+	 * Public Scripts and Styles
+	 *
+	 * @return void
+	 */
+	public function core_block_public_scripts() {
+
+	}
+
+	/**
 	 * Register Block
 	 *
 	 * @return void
