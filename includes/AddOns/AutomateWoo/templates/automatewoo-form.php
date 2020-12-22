@@ -54,18 +54,18 @@ if ($shareLinkToggle ) {
         </p>
         <div class="bswp-share-email-preview-subject">
             <strong>Subject</strong>
-            <div class="box"><?php echo $emailSubject; ?></div>
+            <div class="box"><?php echo esc_html( $emailSubject ); ?></div>
         </div>
         <div class="bswp-share-email-preview-message">
             <strong>Message</strong>
-            <div class="box"><?php echo $emailContent; ?></div>
+            <div class="box"><?php echo esc_html( $emailContent ); ?></div>
         </div>
     </div>
     <?php endif; ?>
 
-    <div id="referral-emails-wrapper" data-max="<?php echo $field_count; ?>"></div>
+    <div id="referral-emails-wrapper" data-max="<?php echo esc_attr( $field_count ); ?>"></div>
 
     <div class="aw-referrals-share-buttons bswp-share-buttons">
-        <a href="#" class="bswp-submit btn button"><?php esc_attr_e('Send', 'automatewoo-referrals') ?></a>
+        <a href="#" class="bswp-submit btn button"><?php echo 'Send'; ?></a>
     </div>
 </form>

@@ -21,7 +21,7 @@ $shareParameter = AW_Referrals()->options()->share_link_parameter;
     </p>
 
     <div class="bswp-automatewoo-share-link-key">
-        <input readonly id="bswp-automatewoo-share-link-key-to-copy" value="<?php echo get_site_url() . '?' . $shareParameter . '=' . $advocateKey; ?>">
+        <input readonly id="bswp-automatewoo-share-link-key-to-copy" value="<?php echo esc_url( get_site_url() . '?' . $shareParameter . '=' . $advocateKey ); ?>">
         <span class="bswp-automatewoo-share-link-key-copy button btn">
             <span class="dashicons dashicons-admin-page"></span>
             Copy Link
