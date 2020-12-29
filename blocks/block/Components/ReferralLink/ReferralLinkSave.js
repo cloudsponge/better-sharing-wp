@@ -13,9 +13,10 @@ const ReferralLinkSave = ({ attributes }) => {
         value={attributes.referralLink}
         readOnly={attributes.referralLinkControl !== 'custom' ? true : false}
       />
-      <Button isSecondary isSmall icon='admin-page'>
+      <Button isSecondary isSmall icon='admin-page' id='referral-btn-copy'>
         Copy Link
       </Button>
+      <p id="copy-success">Copied!</p>
     </div>
   );
 };

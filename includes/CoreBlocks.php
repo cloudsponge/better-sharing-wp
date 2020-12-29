@@ -88,7 +88,8 @@ class CoreBlocks {
 			$content,
 			array(
 				'p'   => array(
-					'class' => array()
+					'class' => array(),
+					'id' => array()
 				),
 				'div' => array( 
 					'class' => array() 
@@ -98,7 +99,8 @@ class CoreBlocks {
 					'class' => array()
 				 ),
 				'button' => array(
-					'class' => array()
+					'class' => array(),
+					'id' => array()
 				),
 				'input' => array(
 					'id' =>  array(),

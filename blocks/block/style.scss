@@ -31,6 +31,15 @@
       width: 30%;
       margin: 0 10px;
     }
+
+    & #copy-success {
+      display: none;
+
+      font-size: 12px;
+      margin: 0;
+      padding: 0;
+      margin-left: 5px;
+    }
   } // end .referral-link
 
   .email-input {
