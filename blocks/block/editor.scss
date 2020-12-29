@@ -48,6 +48,10 @@
       &:not(:last-child) {
         margin-bottom: 5px;
       }
+
+      & #inspector-textarea-control-0__help {
+        margin-top: -10px;
+      }
     }
   } // end .row-radiocontrol
 }

@@ -70,9 +70,12 @@ class CoreBlocks {
 	public function render_block( $block_attributes, $content ) {
 		ob_start();
 		$ajax          		= false;
+		$referral_link		= $block_attributes['referralLink'];
 		$email_subject 		= $block_attributes['emailSubject'];
 		$email_content 		= $block_attributes['emailMessage'];
 		$emailFormControl = $block_attributes['emailFormControl'];
+
+		$email_content 		= str_replace('{{link}}', $referral_link, $email_content);
 
 		$preview_email_toggle;
 		if ($emailFormControl === 'default' || $emailFormControl === 'readonly') {

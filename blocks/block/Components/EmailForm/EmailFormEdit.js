@@ -5,7 +5,6 @@ import Preview from './EmailFormSave';
 
 const { __ } = wp.i18n;
 const { Fragment, useEffect } = wp.element;
-const { getPermalink } = wp.data.select('core/editor');
 
 const EmailFormEdit = (props) => {
   const { attributes, setAttributes, component } = props;
@@ -16,14 +15,14 @@ const EmailFormEdit = (props) => {
       case 'readonly':
         setAttributes({
           emailSubject: 'Sharing',
-          emailMessage: `What a great way to save! Click ${getPermalink()}`,
+          emailMessage: `What a great way to save! Click {{link}}`,
           emailFormControl: 'readonly',
         });
         break;
       case 'hidden':
         setAttributes({
           emailSubject: 'Sharing',
-          emailMessage: `What a great way to save! Click ${getPermalink()}`,
+          emailMessage: `What a great way to save! Click {{link}}`,
           emailFormControl: 'hidden',
         });
         break;

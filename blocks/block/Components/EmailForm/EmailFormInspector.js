@@ -54,6 +54,7 @@ const Inspector = ({
             className='custom-input'
             value={attributes.emailMessage}
             onChange={(val) => setAttributes({ emailMessage: val })}
+            help='Type {{link}} to output referral link'
           ></TextareaControl>
         </Fragment>
       </PanelRow>
