@@ -1,4 +1,4 @@
-export default class copyLinkToClipboard {
+export default class copyToClipboard {
   constructor() {
     this.button = document.getElementById('referral-btn-copy');
     this.input = document.getElementById('referral-link');

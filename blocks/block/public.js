@@ -1,9 +1,9 @@
-import EmailInput from './Components/EmailInput/public';
-import ReferralLink from './Components/ReferralLink/public';
+import EmailInput from './modules/emailInput';
+import CopyToClipboard from './modules/copyToClipboard';
 
 // observes for existence of block parent div and loads modules
 // avoids console errors on editor side
-export default class loadFrontend {
+export default class frontendScripts {
   constructor() {
     this.waitForParentDiv(this.params());
   }
@@ -32,6 +32,6 @@ export default class loadFrontend {
 
   loadModules() {
     const emailInput = new EmailInput();
-    const referralLink = new ReferralLink();
+    const copyToClipboard = new CopyToClipboard();
   }
 }

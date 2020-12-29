@@ -12,5 +12,5 @@
 import './block/block.js';
 
 // frontend functionality
-import Frontend from './block/public';
-const frontend = new Frontend;
+import FrontendScripts from './block/public';
+const frontendScripts = new FrontendScripts;
