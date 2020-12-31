@@ -10,7 +10,3 @@
  */
 
 import './block/block.js';
-
-// frontend functionality
-import FrontendScripts from './block/public';
-const frontendScripts = new FrontendScripts;

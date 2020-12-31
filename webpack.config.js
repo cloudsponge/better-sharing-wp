@@ -3,10 +3,13 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const configBlocks = {
-  entry: ['./blocks/index.js'],
+  entry: {
+		blocks: './blocks/index.js',
+		public: './blocks/public.js'
+	},
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'blocks/blocks.bundle.js'
+    filename: 'blocks/[name].bundle.js'
   },
   module: {
     rules: [
