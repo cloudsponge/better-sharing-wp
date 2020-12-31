@@ -1,6 +1,8 @@
 export default class emailForm {
   constructor() {
     this.emailInput = document.getElementById('bswp-share-email-input');
+    this.subject = document.getElementById('bswp-share-email-subject');
+    this.message = document.getElementById('bswp-share-email-content');
     this.submit = document.querySelector('.bswp-submit');
     this.events();
   }
@@ -15,10 +17,12 @@ export default class emailForm {
     e.preventDefault()
     const data = {
       emails: this.handleEmails(this.emailInput.value),
+      subject: this.subject.value,
+      message: this.message.value
     };
 
     const request = new XMLHttpRequest();
-    request.open('POST', `${window.location.origin}/wp-admin/admin-ajax.php?action=mail_before_submit`, true);
+    request.open('POST', `${window.location.origin}/wp-json/bswp/v1/bswp_email`, true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     request.send(JSON.stringify(data));
   }

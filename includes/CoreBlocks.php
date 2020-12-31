@@ -63,6 +63,36 @@ class CoreBlocks {
 				)
 			)
 		);
+
+		function bswp_email_before_send ( $request ) {
+			$body 		= json_decode($request->get_body());
+
+			$emails 	= isset( $body->emails ) ? (array) $body->emails : array();
+			$emails 	= array_map( 'sanitize_email', $emails );
+
+			$subject 	= isset( $body->subject ) ? (string) $body->subject : '';
+			$subject	=	sanitize_text_field( $subject );
+
+			$message	=	isset( $body->message ) ? (string) $body->message : '';
+			$message	=	sanitize_text_field( $message );
+
+			return wp_mail( $emails, $subject, $message );
+		}
+
+		add_action('rest_api_init', function() {
+			register_rest_route( 
+				'bswp/v1', 
+				'bswp_email', 
+				array(
+					'methods' => 'POST',
+					'callback' => __NAMESPACE__ . '\\bswp_email_before_send',
+					'args' => array(),
+					'permission_callback' => function () {
+						return true;
+					}
+				));
+			});
+		
 	}
 
 	/**

@@ -52,12 +52,12 @@ do_action( 'bwp_form_before', $action_data );
 			<div class="bswp-share-email-preview-subject">
 				<strong>Subject</strong>
 				<div class="box"><?php echo esc_html( $email_subject ); ?></div>
-				<input type="hidden" name="bswp-share-email-subject" value="<?php echo esc_html( $email_subject ); ?>" />
+				<input type="hidden" name="bswp-share-email-subject" id="bswp-share-email-subject" value="<?php echo esc_html( $email_subject ); ?>" />
 			</div>
 			<div class="bswp-share-email-preview-message">
 				<strong>Message</strong>
 				<div class="box"><?php echo esc_html( $email_content ); ?></div>
-				<input type="hidden" name="bswp-share-email-content" value="<?php echo esc_html( $email_content ); ?>" />
+				<input type="hidden" name="bswp-share-email-content" id="bswp-share-email-content" value="<?php echo esc_html( $email_content ); ?>" />
 			</div>
 		</div>
 	<?php endif; ?>
