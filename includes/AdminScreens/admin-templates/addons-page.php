@@ -4,24 +4,24 @@ namespace BetterSharingWP;
 
 use BetterSharingWP\AddOnsCore;
 
-$addOns = AddOnsCore::getAddOns();
+$add_ons = AddOnsCore::get_add_ons();
 
 ?>
 <div class="bswp__container">
 	<div class="bswp__addons">
-	<?php foreach ( $addOns as $addOn ) : ?>
+	<?php foreach ( $add_ons as $add_on ) : ?>
 		<?php
 		// Is Addon Active.
-		$addonActive = 'active' === $addOn->status;
+		$addonActive = 'active' === $add_on->status;
 		// Plugin is installed and activated - class.
-		$pluginAvailableClass = $addOn->is_plugin_active() ? 'plugin-available' : 'plugin-unavailable';
+		$pluginAvailableClass = $add_on->is_plugin_active() ? 'plugin-available' : 'plugin-unavailable';
 		// AddOn is active status - class.
-		$activeClass = $addonActive && $addOn->is_plugin_active() ? 'active' : 'inactive';
+		$activeClass = $addonActive && $add_on->is_plugin_active() ? 'active' : 'inactive';
 		?>
 	<div class="card bswp__addon <?php echo $pluginAvailableClass; ?>">
 
 		<div class="bswp__addon__header">
-		<h2 class="title bswp__addon__title"><?php echo $addOn->name; ?></h2>
+		<h2 class="title bswp__addon__title"><?php echo $add_on->name; ?></h2>
 
 		<!-- Toggle -->
 		<div class="bswp__addon__status">
@@ -29,32 +29,32 @@ $addOns = AddOnsCore::getAddOns();
 			<?php echo $activeClass; ?>
 			</span>
 			<!-- toggle slider -->
-			<div class="bswp__addon__status-indicator <?php echo $activeClass; ?>" data-addon="<?php echo $addOn->slug; ?>" data-status="<?php echo $addOn->status; ?>" data-plugin="<?php echo $pluginAvailableClass; ?>"></div>
+			<div class="bswp__addon__status-indicator <?php echo $activeClass; ?>" data-addon="<?php echo $add_on->slug; ?>" data-status="<?php echo $add_on->status; ?>" data-plugin="<?php echo $pluginAvailableClass; ?>"></div>
 		</div>
 		<!-- /Toggle -->
 		</div>
 
 		<?php
-		if ( ! $addOn->is_plugin_active() ) {
+		if ( ! $add_on->is_plugin_active() ) {
 			echo '<p>Plugin is not installed & activated. Go to the Plugins page to activate the appropriate plugin</p>';
 		}
 		?>
 
 
 		<!-- Description -->
-		<?php if ( $addOn->description ) : ?>
+		<?php if ( $add_on->description ) : ?>
 		<div class="bswp__addon__description">
-			<?php echo wpautop( $addOn->description ); ?>
+			<?php echo wpautop( $add_on->description ); ?>
 		</div>
 		<?php endif; ?>
 		<!-- /Description -->
 
 		<!-- Doc / Support URL -->
-		<?php if ( $addOn->support_url ) : ?>
+		<?php if ( $add_on->support_url ) : ?>
 		<div class="bswp__addon__link">
 		<strong>AddOn Link:</strong>
-		<a href="<?php echo $addOn->support_url; ?>" target="_blank">
-			<?php echo $addOn->support_url; ?>
+		<a href="<?php echo $add_on->support_url; ?>" target="_blank">
+			<?php echo $add_on->support_url; ?>
 			<span class="dashicons dashicons-external"></span>
 		</a>
 		</div>
@@ -62,21 +62,21 @@ $addOns = AddOnsCore::getAddOns();
 		<!-- / Doc / Support URL -->
 
 		<!-- Settings Toggle -->
-		<?php if ( $addOn->has_settings && $addonActive ) : ?>
+		<?php if ( $add_on->has_settings && $addonActive ) : ?>
 		<hr class="bswp__spacer">
-		<a class="btn button bswp__addon__settings-toggle" href="#" data-addon="<?php echo $addOn->slug; ?>">Settings</a>
+		<a class="btn button bswp__addon__settings-toggle" href="#" data-addon="<?php echo $add_on->slug; ?>">Settings</a>
 		<?php endif; ?>
 		<!-- / Settings Toggle -->
 
 
 
 		<!-- Settings -->
-		<?php if ( $addOn->has_settings ) : ?>
-		<div class="bswp__addon__settings <?php echo $addOn->slug . '-settings'; ?>">
+		<?php if ( $add_on->has_settings ) : ?>
+		<div class="bswp__addon__settings <?php echo $add_on->slug . '-settings'; ?>">
 		<form method="post" action="<?php echo admin_url( 'admin.php?page=better-sharing-addons' ); ?>">
 			<input type="hidden" name="save_addon" value="yes" />
 			<div class="bswp__addon__settings-group">
-			<?php $addOn->display_settings(); ?>
+			<?php $add_on->display_settings(); ?>
 			</div>
 			<input class="button button-primary" type="submit" value="Save Settings" />
 		</form>

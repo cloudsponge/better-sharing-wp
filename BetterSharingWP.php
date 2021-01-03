@@ -85,6 +85,15 @@ class BetterSharingWP {
 	}
 
 	/**
+	 * Get Errors
+	 *
+	 * @return array errors.
+	 */
+	public function get_errors() {
+		return $this->errors;
+	}
+
+	/**
 	 * Deactivate Plugin
 	 *
 	 * @return void
@@ -116,6 +125,21 @@ add_action(
 
 		$woo_wishlist_addon = new WooWishlists();
 		$better_sharing_wp->init_add_on( $woo_wishlist_addon );
+
+		$errors = $better_sharing_wp->get_errors();
+		if ( ( defined( 'WP_DEBUG' ) && WP_DEBUG ) && ! empty( $errors ) ) {
+			foreach ( $errors as $error ) {
+				error_log(
+					print_r(
+						array(
+							$error->get_error_message(),
+							$error->get_error_data(),
+						)
+					),
+					true
+				);
+			}
+		}
 	}
 );
 
