@@ -13,7 +13,10 @@ $email_subject = $email_subject ? $email_subject : 'Sharing';
 $email_content = $email_content ? $email_content : 'Email Content';
 $field_count  = isset( $field_count ) ? absint( apply_filters( 'automatewoo/referrals/share_form/email_field_count', 5 ) ) : 5;
 
-$addon      = $addon ? sanitize_title_with_dashes( $addon ) : false;
+$addon      = isset( $addon ) ? sanitize_title_with_dashes( $addon ) : false;
+if ( ! $addon ) {
+	return;
+}
 $action_data = array(
 	'addon' => $addon,
 );
