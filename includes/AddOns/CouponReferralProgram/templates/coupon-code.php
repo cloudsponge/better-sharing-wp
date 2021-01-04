@@ -16,7 +16,7 @@ if ( ! $referral_link ) {
 		<?php echo esc_html( __( 'Coupon Referral Program', 'better-sharing-wp' ) ); ?>
 	</h3>
 	<strong>Your referral link:</strong>
-	<input readonly type="text" value="<?Php echo esc_html( $referral_link ); ?>" id="bswp-coupon-referral-copy" />
+	<input readonly type="text" value="<?Php echo esc_attr( $referral_link ); ?>" id="bswp-coupon-referral-copy" />
 	<span class="bswp-copy button btn">
 		<span class="dashicons dashicons-admin-page"></span>
 		Copy Link

@@ -101,13 +101,13 @@ class WooWishlists extends  BetterSharingAddOn {
 			foreach ( $email_forms as $wishlist ) {
 				?>
 
-				<div class="wl-modal" id="share-via-email-<?php echo $wishlist->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;z-index:9999;">
+				<div class="wl-modal" id="share-via-email-<?php echo esc_attr( $wishlist->id ); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;z-index:9999;">
 					<div class="wl-modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						<h1 id="myModalLabel"><?php _e( 'Share this list via e-mail ', 'wc_wishlist' ); ?></h1>
 					</div>
 					<div class="wl-modal-body">
-						<form id="share-via-email-<?php echo $wishlist->id; ?>-form" action="" method="POST">
+						<form id="share-via-email-<?php echo esc_attr( $wishlist->id ); ?>-form" action="" method="POST">
 							<p class="form-row form-row-wide" class="wishlist_name">
 								<label for="wishlist_email_from"><?php _e( 'Your name:', 'wc_wishlist' ); ?></label>
 								<input type="text" class="input-text" name="wishlist_email_from" value="<?php echo esc_attr( get_post_meta( $wishlist->id, '_wishlist_first_name', true ) . ' ' . get_post_meta( $wishlist->id, '_wishlist_last_name', true ) ); ?>"/>
@@ -135,7 +135,7 @@ class WooWishlists extends  BetterSharingAddOn {
 						</form>
 					</div>
 					<div class="wl-modal-footer">
-						<button class="button alt share-via-email-button" data-form="share-via-email-<?php echo $wishlist->id; ?>-form" aria-hidden="true"><?php _e( 'Send email', 'wc_wishlist' ); ?></button>
+						<button class="button alt share-via-email-button" data-form="share-via-email-<?php echo esc_attr( $wishlist->id ); ?>-form" aria-hidden="true"><?php _e( 'Send email', 'wc_wishlist' ); ?></button>
 					</div>
 				</div>
 
