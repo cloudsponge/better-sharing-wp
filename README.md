@@ -18,7 +18,7 @@ This WordPress plugin is to be used with your CloudSponge account.
 
 ## Plugin Build
 
-Need to build the plugin to install on a WordPress site? run `npm build:plugin` and follow the prompts
+Need to build the plugin to install on a WordPress site? run `npm run build:plugin` and follow the prompts
 
 ## Development
 
