@@ -8,7 +8,7 @@ Stable tag: 1.2.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Add essential viral functionality to any WordPress site that is based on modern best practices and mobile-first web standards.
+Add essential viral sharing functionality to any WordPress site that is based on modern best practices and mobile-first web standards.
 
 With Better Sharing, your users can copy a hyperlink to their clipboards, share it via email, or post it on social media.
 
