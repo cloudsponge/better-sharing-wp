@@ -14,5 +14,4 @@ registerBlockType('cgb/block-ea-better-sharing', {
   category: 'common',
   attributes: attributes,
   edit: (props) => <Edit {...props} />,
-  save: (props) => <Save {...props} />,
 });
