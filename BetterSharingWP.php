@@ -25,6 +25,9 @@ define( 'BETTER_SHARING_ADMIN_TEMPLATE_PATH', BETTER_SHARING_PATH . 'includes/Ad
 
 require_once 'vendor/autoload.php';
 
+// API
+use BetterSharingWP\API\Email;
+
 // Core Blocks.
 use BetterSharingWP\CoreBlocks;
 
@@ -60,6 +63,10 @@ class BetterSharingWP {
 	public function __construct() {
 		$this->admin_screen = new Admin();
 		$this->errors       = array();
+
+		// Email API.
+		$api = new Email();
+		add_action( 'rest_api_init', array( $api, 'rest_init' ) );
 
 		// Core Blocks.
 		$core_blocks = new CoreBlocks();
