@@ -70,26 +70,27 @@ class Admin {
 		//
 		// var_dump( $delete );
 		// wp_die();
-
-		if ( ! isset( $_GET, $_GET['toggleAddOn'], $_GET['addOn'] )
-		) {
-			if ( isset( $_GET['toggleAddOn'] ) && 'true' !== $_GET['toggleAddOn'] ) {
+		if ( ! isset( $_GET['_bswp_addons_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_bswp_addons_nonce'] ) ), 'bswp_addons_nonce' ) ) {
+			return;
+		} else {
+			if ( ! isset( $_GET, $_GET['toggleAddOn'], $_GET['addOn'] )
+			) {
+				if ( isset( $_GET['toggleAddOn'] ) && 'true' !== $_GET['toggleAddOn'] ) {
+					return false;
+				}
 				return false;
 			}
-			return false;
-		}
-
-		$addOns   = AddOnsCore::getAddOns();
-		$toToggle = sanitize_text_field( $_GET['addOn'] );
-
-		foreach ( $addOns as $addOn ) {
-			if ( $toToggle === $addOn->slug ) {
-				$addOn->toggle_addon();
+	
+			$addOns   = AddOnsCore::getAddOns();
+			$toToggle = sanitize_text_field( wp_unslash( $_GET['addOn'] ) );
+	
+			foreach ( $addOns as $addOn ) {
+				if ( $toToggle === $addOn->slug ) {
+					$addOn->toggle_addon();
+				}
 			}
+
+			wp_safe_redirect( admin_url( 'admin.php?page=better-sharing-addons' ) );
 		}
-
-		wp_safe_redirect( admin_url( 'admin.php?page=better-sharing-addons' ) );
-
 	}
-
 }

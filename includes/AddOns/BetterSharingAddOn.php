@@ -188,8 +188,12 @@ abstract class BetterSharingAddOn {
 	 * @return bool
 	 */
 	public function check_if_addon_save() {
-		// phpcs:ignore
-		return ! isset( $_POST['save_addon'] ) || ( isset( $_POST['save_addon'] ) && 'true' !== $_POST['save_addon'] );
+		if ( ! isset( $_POST['_bswp_addons_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_bswp_addons_nonce'] ) ), 'bswp_addons_nonce' ) ) {
+			return;
+		} else {
+			// phpcs:ignore
+			return ! isset( $_POST['save_addon'] ) || ( isset( $_POST['save_addon'] ) && 'true' !== $_POST['save_addon'] );
+		}
 	}
 
 	/**

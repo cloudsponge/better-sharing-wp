@@ -23,6 +23,8 @@ do_action( 'bwp_form_before', $action_data );
 ?>
 <form <?php echo ! $ajax ? 'action="' . esc_url( get_permalink( $post->ID ) ) . '"' : ''; ?> accept-charset="UTF-8" method="post">
 
+	<?php wp_nonce_field( 'bswp_form_nonce', '_bswp_form_nonce' ); ?>
+
 	<?php do_action( 'bwp_form_inner_before', $action_data ); ?>
 	<input type="hidden" name="bswp_form_addon" value="<?php echo esc_attr( $addon ); ?>" />
 
