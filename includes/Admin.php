@@ -73,11 +73,7 @@ class Admin {
 		if ( ! isset( $_GET['_bswp_addons_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_bswp_addons_nonce'] ) ), 'bswp_addons_nonce' ) ) {
 			return;
 		} else {
-			if ( ! isset( $_GET, $_GET['toggleAddOn'], $_GET['addOn'] )
-			) {
-				if ( isset( $_GET['toggleAddOn'] ) && 'true' !== $_GET['toggleAddOn'] ) {
-					return false;
-				}
+			if ( ! isset( $_GET, $_GET['toggleAddOn'], $_GET['addOn'] ) || 'true' !== $_GET['toggleAddOn'] ) {
 				return false;
 			}
 	
