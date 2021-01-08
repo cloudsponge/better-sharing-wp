@@ -18,18 +18,18 @@ $add_ons = AddOnsCore::get_add_ons();
 		// AddOn is active status - class.
 		$activeClass = $addonActive && $add_on->is_plugin_active() ? 'active' : 'inactive';
 		?>
-	<div class="card bswp__addon <?php echo $pluginAvailableClass; ?>">
+	<div class="card bswp__addon <?php echo esc_attr( $pluginAvailableClass ); ?>">
 
 		<div class="bswp__addon__header">
-		<h2 class="title bswp__addon__title"><?php echo $add_on->name; ?></h2>
+		<h2 class="title bswp__addon__title"><?php echo esc_html( $addOn->name ); ?></h2>
 
 		<!-- Toggle -->
 		<div class="bswp__addon__status">
 			<span class="bswp__addon__status-label">
-			<?php echo $activeClass; ?>
+			<?php echo esc_html( $activeClass ); ?>
 			</span>
 			<!-- toggle slider -->
-			<div class="bswp__addon__status-indicator <?php echo $activeClass; ?>" data-addon="<?php echo $add_on->slug; ?>" data-status="<?php echo $add_on->status; ?>" data-plugin="<?php echo $pluginAvailableClass; ?>"></div>
+			<div class="bswp__addon__status-indicator <?php echo esc_attr( $activeClass ); ?>" data-addon="<?php echo esc_attr( $addOn->slug ); ?>" data-status="<?php echo esc_attr( $addOn->status ); ?>" data-plugin="<?php echo esc_attr( $pluginAvailableClass ); ?>"></div>
 		</div>
 		<!-- /Toggle -->
 		</div>
@@ -44,7 +44,7 @@ $add_ons = AddOnsCore::get_add_ons();
 		<!-- Description -->
 		<?php if ( $add_on->description ) : ?>
 		<div class="bswp__addon__description">
-			<?php echo wpautop( $add_on->description ); ?>
+			<?php echo esc_html( wpautop( $addOn->description ) ); ?>
 		</div>
 		<?php endif; ?>
 		<!-- /Description -->
@@ -53,8 +53,8 @@ $add_ons = AddOnsCore::get_add_ons();
 		<?php if ( $add_on->support_url ) : ?>
 		<div class="bswp__addon__link">
 		<strong>AddOn Link:</strong>
-		<a href="<?php echo $add_on->support_url; ?>" target="_blank">
-			<?php echo $add_on->support_url; ?>
+		<a href="<?php echo esc_url( $addOn->support_url ); ?>" target="_blank" rel="noopener noreferrer">
+			<?php echo esc_html( $addOn->support_url ); ?>
 			<span class="dashicons dashicons-external"></span>
 		</a>
 		</div>
@@ -64,15 +64,15 @@ $add_ons = AddOnsCore::get_add_ons();
 		<!-- Settings Toggle -->
 		<?php if ( $add_on->has_settings && $addonActive ) : ?>
 		<hr class="bswp__spacer">
-		<a class="btn button bswp__addon__settings-toggle" href="#" data-addon="<?php echo $add_on->slug; ?>">Settings</a>
+		<a class="btn button bswp__addon__settings-toggle" href="#" data-addon="<?php echo esc_attr( $addOn->slug ); ?>">Settings</a>
 		<?php endif; ?>
 		<!-- / Settings Toggle -->
 
 
 
 		<!-- Settings -->
-		<?php if ( $add_on->has_settings ) : ?>
-		<div class="bswp__addon__settings <?php echo $add_on->slug . '-settings'; ?>">
+		<?php if ( $addOn->has_settings ) : ?>
+		<div class="bswp__addon__settings <?php echo esc_attr( $addOn->slug ) . '-settings'; ?>">
 		<form method="post" action="<?php echo admin_url( 'admin.php?page=better-sharing-addons' ); ?>">
 			<input type="hidden" name="save_addon" value="yes" />
 			<div class="bswp__addon__settings-group">

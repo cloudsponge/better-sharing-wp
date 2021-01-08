@@ -4,11 +4,11 @@ Tags: cloudsponge, woocommerce, contact picker, sharing
 Requires at least: 5.0.0
 Tested up to: 5.5.3
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Add essential viral functionality to any WordPress site that is based on modern best practices and mobile-first web standards.
+Add essential viral sharing functionality to any WordPress site that is based on modern best practices and mobile-first web standards.
 
 With Better Sharing, your users can copy a hyperlink to their clipboards, share it via email, or post it on social media.
 
@@ -52,6 +52,9 @@ No. We've made sure that the core functionality of the plugin itself and of each
 If it's not mentioned in this documentation then we haven't built it yet, but we desperately want to hear from you about it. Please [get in touch with us](https://www.cloudsponge.com/contact/) and let us know what AddOn you want us to build next.
 
 == Changelog ==
+
+= 1.2.1 =
+* Security fixes, query string sanitizing.
 
 = 1.2.0 =
 * Initial release

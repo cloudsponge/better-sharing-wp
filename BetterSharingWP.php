@@ -1,8 +1,9 @@
 <?php
 /**
- * Better Sharing WP
+ * Better Sharing
  *
  * @wordpress-plugin
+
  * Plugin Name:       Better Sharing WP
  * Description:       Better Sharing WordPress plugin for use for CloudSponge
  * Version:           1.2.1
@@ -10,7 +11,7 @@
  * Author URI:        https://www.cloudsponge.com
  * License:           GPL-3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
- * Textdomain:        better-sharing-wp
+ * Text Domain:       better-sharing-wp
  *
  * @package BetterSharingWP
  */

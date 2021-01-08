@@ -12,7 +12,7 @@ namespace BetterSharingWP;
       <div class="bswp__form-group">
         <label for="__bswp_api_key" class="bswp__form-group__label">API Key:</label>
         <div class="bswp__input-group">
-          <input name="__bswp_api_key" type="text" id="__bswp_api_key" value="<?php echo $this->option_data->get('apiKey'); ?>" placeholder="123456789">
+          <input name="__bswp_api_key" type="text" id="__bswp_api_key" value="<?php echo esc_attr( $this->option_data->get('apiKey') ); ?>" placeholder="123456789">
           <input type="submit" value="Save API Key" name="__bswp_api_key__save" class="button button-primary">
         </div>
       </div>
@@ -21,7 +21,7 @@ namespace BetterSharingWP;
         <label for="bswp-proxy-url" class="bswp__form-group__label">Your Proxy URL:</label>
         <div class="bswp__input-group">
           <div class="bswp__copy-input">
-            <input type="text" id="bswp-proxy-url" readonly value="<?php echo BETTER_SHARING_URI .'public/proxy.html'; ?>" />
+            <input type="text" id="bswp-proxy-url" readonly value="<?php echo esc_url( BETTER_SHARING_URI .'public/proxy.html' ); ?>" />
             <a href="#" class="copyText" data-text="bswp-proxy-url">Copy</a>
           </div>
         </div>
@@ -29,7 +29,7 @@ namespace BetterSharingWP;
       <?php endif; ?>
 
       <p class="help">
-        You can find your key in the <a target="_blank" href="https://app.cloudsponge.com/app/keys">CloudSponge Dashboard</a>
+        You can find your key in the <a target="_blank" href="https://app.cloudsponge.com/app/keys" rel="noopener noreferrer">CloudSponge Dashboard</a>
       </p>
     </form>
   </div>
