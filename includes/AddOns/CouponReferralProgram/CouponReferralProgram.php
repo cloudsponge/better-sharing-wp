@@ -94,12 +94,16 @@ class CouponReferralProgram extends BetterSharingAddOn {
 	 * Save Admin Settings - admin init callback
 	 */
 	public function save_settings() {
-		if ( isset( $_POST['coupon_referral_email_subject'] ) ) {
-			$this->option_data->save( 'emailSubject', sanitize_text_field( $_POST['coupon_referral_email_subject'] ) );
-		}
-
-		if ( isset( $_POST['coupon_referral_email_content'] ) ) {
-			$this->option_data->save( 'emailContent', sanitize_text_field( $_POST['coupon_referral_email_content'] ) );
+		if ( ! isset( $_POST['_bswp_form_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_bswp_form_nonce'] ) ), 'bswp_addons_nonce' ) ) {
+			return;
+		} else {
+			if ( isset( $_POST['coupon_referral_email_subject'] ) ) {
+				$this->option_data->save( 'emailSubject', sanitize_text_field( wp_unslash( $_POST['coupon_referral_email_subject'] ) ) );
+			}
+	
+			if ( isset( $_POST['coupon_referral_email_content'] ) ) {
+				$this->option_data->save( 'emailContent', sanitize_text_field( wp_unslash( $_POST['coupon_referral_email_content'] ) ) );
+			}
 		}
 	}
 
@@ -218,50 +222,56 @@ class CouponReferralProgram extends BetterSharingAddOn {
 	 * Submit mailer on form submit - init callback
 	 */
 	public function submit_mailer() {
-		global $post;
-		if ( ! isset( $_POST['bswp_form_addon'] ) ) {
-			return false;
-		}
-		$user            = wp_get_current_user();
-		$user_data        = get_userdata( $user->ID );
+		if ( ! isset( $_POST['_bswp_form_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_bswp_form_nonce'] ) ), 'bswp_form_nonce' ) ) {
+			return;
+		} else {
+			if ( ! isset( $_POST['bswp_form_addon'] ) ) {
+				return false;
+			}
+			$user            = wp_get_current_user();
+			$user_data        = get_userdata( $user->ID );
 
-		$emails = sanitize_text_field( $_POST['bswp-share-email-input'] );
-		if ( '' === $emails ) {
-			$this->mail_success = false;
-			add_action( 'bwp_form_before', array( $this, 'show_email_send_message' ), 9 );
-			return false;
-		}
+			if ( ! isset( $_POST['bswp-share-email-input'] ) ) {
+				return false;
+			}
+			$emails = sanitize_text_field( wp_unslash( $_POST['bswp-share-email-input'] ) );
+			if ( '' === $emails ) {
+				$this->mail_success = false;
+				add_action( 'bwp_form_before', array( $this, 'show_email_send_message' ), 9 );
+				return false;
+			}
 
-		$emails = explode( ',', $emails );
-		$emails = array_map(
-			function ( $email ) {
-				return str_replace( ' ', '', $email );
-			},
-			$emails
-		);
+			$emails = explode( ',', $emails );
+			$emails = array_map(
+				function ( $email ) {
+					return str_replace( ' ', '', $email );
+				},
+				$emails
+			);
 
-		$mailer = new BSWP_Mail();
-		$mailer->setMessage( sanitize_text_field( $_POST['bswp-share-email-content'] ) );
-		$mailer->setSubject( sanitize_text_field( $_POST['bswp-share-email-subject'] ) );
-		$mailer->setTo( $emails );
-		$mailer->setFrom(
-			array(
-				'email' => $user_data->user_email,
-				'name'  => $user_data->display_name,
-			)
-		);
+			$mailer = new BSWP_Mail();
+			$mailer->setMessage( sanitize_text_field( wp_unslash( $_POST['bswp-share-email-content'] ) ) );
+			$mailer->setSubject( sanitize_text_field( wp_unslash( $_POST['bswp-share-email-subject'] ) ) );
+			$mailer->setTo( $emails );
+			$mailer->setFrom(
+				array(
+					'email' => $user_data->user_email,
+					'name'  => $user_data->display_name,
+				)
+			);
 
-		$sent = $mailer->send();
+			$sent = $mailer->send();
 
-		if ( is_wp_error( $sent ) ) {
-			$this->mail_success = false;
-			add_action( 'bwp_form_before', array( $this, 'show_email_send_message' ), 9 );
-			return false;
-		}
+			if ( is_wp_error( $sent ) ) {
+				$this->mail_success = false;
+				add_action( 'bwp_form_before', array( $this, 'show_email_send_message' ), 9 );
+				return false;
+			}
 
-		if ( $sent ) {
-			$this->mail_success = true;
-			add_action( 'bwp_form_before', array( $this, 'show_email_send_message' ), 9 );
+			if ( $sent ) {
+				$this->mail_success = true;
+				add_action( 'bwp_form_before', array( $this, 'show_email_send_message' ), 9 );
+			}
 		}
 	}
 

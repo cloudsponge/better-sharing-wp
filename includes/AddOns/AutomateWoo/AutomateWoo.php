@@ -62,19 +62,23 @@ class AutomateWoo extends BetterSharingAddOn {
 		if ( ! $this->check_if_addon_save() ) {
 			return;
 		}
-
-		//phpcs:ignore
-		if ( ! isset( $_POST['share_link_toggle'], $_POST['share_email_preview_toggle'] ) ) {
+		if ( ! isset( $_POST['_bswp_addons_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_bswp_addons_nonce'] ) ), 'bswp_addons_nonce' ) ) {
 			return;
+		} else {
+			//phpcs:ignore
+			if ( ! isset( $_POST['share_link_toggle'], $_POST['share_email_preview_toggle'] ) ) {
+				return;
+			}
+
+			//phpcs:ignore
+			$share_link_toggle = rest_sanitize_boolean( wp_unslash( $_POST['share_link_toggle'] ) );
+			$this->option_data->save( 'share_link_toggle', $share_link_toggle );
+
+			//phpcs:ignore
+			$preview_email_toggle = rest_sanitize_boolean( wp_unslash( $_POST['share_email_preview_toggle'] ) );
+			$this->option_data->save( 'preview_email_toggle', $preview_email_toggle );
 		}
-
-		//phpcs:ignore
-		$share_link_toggle = rest_sanitize_boolean( wp_unslash( $_POST['share_link_toggle'] ) );
-		$this->option_data->save( 'share_link_toggle', $share_link_toggle );
-
-		//phpcs:ignore
-		$preview_email_toggle = rest_sanitize_boolean( wp_unslash( $_POST['share_email_preview_toggle'] ) );
-		$this->option_data->save( 'preview_email_toggle', $preview_email_toggle );
+	
 
 	}
 

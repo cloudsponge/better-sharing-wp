@@ -73,7 +73,8 @@ $add_ons = AddOnsCore::get_add_ons();
 		<!-- Settings -->
 		<?php if ( $addOn->has_settings ) : ?>
 		<div class="bswp__addon__settings <?php echo esc_attr( $addOn->slug ) . '-settings'; ?>">
-		<form method="post" action="<?php echo admin_url( 'admin.php?page=better-sharing-addons' ); ?>">
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin.php?page=better-sharing-addons' ) ); ?>">
+			<?php wp_nonce_field( 'bswp_addons_nonce', '_bswp_addons_nonce' ); ?>
 			<input type="hidden" name="save_addon" value="yes" />
 			<div class="bswp__addon__settings-group">
 			<?php $add_on->display_settings(); ?>
