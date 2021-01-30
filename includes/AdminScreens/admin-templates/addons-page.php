@@ -41,7 +41,7 @@ $nonce = wp_create_nonce( 'bswp_addons_nonce' );
 				
 				<div class="bswp__addon__btns">
 					<!-- Settings Toggle -->
-					<?php if ( $add_on->has_settings ) : ?>
+					<?php if ( $add_on->has_settings && $add_on_active ) : ?>
 						<a class="button button-primary bswp__addon__settings-toggle" href="#" data-addon="<?php echo esc_attr( $add_on->slug ); ?>">Settings</a>
 					<?php endif; ?>
 					<!-- / Settings Toggle -->
