@@ -18,6 +18,9 @@ class BSWPAdminJS {
     const currentStatus = $btn.data("status")
       ? $btn.data("status")
       : $btn.attr("data-status");
+    const nonce = $btn.data("nonce")
+      ? $btn.data("nonce")
+      : $btn.attr("data-nonce");
     const pluginActive = $btn.data("plugin");
 
     if (!addOn) {
@@ -31,8 +34,7 @@ class BSWPAdminJS {
       return false;
     }
 
-    window.location.href =
-      window.location.href + "&toggleAddOn=true&addOn=" + addOn;
+    window.location.href = `${window.location.href}&toggleAddOn=true&addOn=${addOn}&n=${nonce}`;
   };
 
   toggleSettings = e => {

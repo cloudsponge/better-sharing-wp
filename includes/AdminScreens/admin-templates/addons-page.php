@@ -11,6 +11,7 @@ namespace BetterSharingWP;
 use BetterSharingWP\AddOnsCore;
 
 $add_ons = AddOnsCore::get_add_ons();
+$nonce = wp_create_nonce( 'bswp_addons_nonce' );
 
 ?>
 <div class="bswp__container">
@@ -66,7 +67,12 @@ $add_ons = AddOnsCore::get_add_ons();
 					<!-- Toggle -->
 					<div class="bswp__addon__status">
 						<!-- toggle slider -->
-						<div class="bswp__addon__status-indicator <?php echo esc_attr( $active_class ); ?>" data-addon="<?php echo esc_attr( $add_on->slug ); ?>" data-status="<?php echo esc_attr( $add_on->status ); ?>" data-plugin="<?php echo esc_attr( $plugin_available_class ); ?>"></div>
+						<div 
+							class="bswp__addon__status-indicator <?php echo esc_attr( $active_class ); ?>" 
+							data-addon="<?php echo esc_attr( $add_on->slug ); ?>" 
+							data-status="<?php echo esc_attr( $add_on->status ); ?>" 
+							data-plugin="<?php echo esc_attr( $plugin_available_class ); ?>"
+							data-nonce="<?php echo esc_html( $nonce ); ?>"></div>
 					</div>
 					<!-- /Toggle -->
 				</div>
