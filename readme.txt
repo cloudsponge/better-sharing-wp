@@ -53,6 +53,9 @@ If it's not mentioned in this documentation then we haven't built it yet, but we
 
 == Changelog ==
 
+= 1.3.3 =
+* Security, nonce, and variable name fixes.
+
 = 1.3.0 =
 * Added Gutenberg block and shortcode for core sharing functionality.
 

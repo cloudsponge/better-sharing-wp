@@ -8,7 +8,7 @@ use AutomateWoo\Referrals\Invite_Email;
 use AutomateWoo\Referrals\Advocate_Factory;
 
 $option_data = new OptionData('automatewoo');
-$shareLinkToggle = (bool) rest_sanitize_boolean($option_data->get('shareLinkToggle'));
+$shareLinkToggle = (bool) rest_sanitize_boolean($option_data->get('share_link_toggle'));
 $preview_email_toggle = (bool) rest_sanitize_boolean($option_data->get('preview_email_toggle'));
 $field_count = absint(apply_filters('automatewoo/referrals/share_form/email_field_count', 5));
 $api_key = get_site_option('_bswp_option_core_apiKey', false);

@@ -1,4 +1,4 @@
-bswp-automatewoo-share-link-key-to-copy<?php
+<?php
 
 if (! defined('ABSPATH') ) { exit;
 }

@@ -1,5 +1,5 @@
 <?php
-    $shareLinkToggle = $this->option_data->get('shareLinkToggle');
+    $shareLinkToggle = $this->option_data->get('share_link_toggle');
     $preview_email_toggle = $this->option_data->get('preview_email_toggle');
 ?>
 

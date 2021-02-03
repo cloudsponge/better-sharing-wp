@@ -6,7 +6,7 @@ export default class CouponReferral {
 		this.$ = $;
 
 		// If no cloudsponge, return.
-		if ( ! cloudsponge ) {
+		if ( typeof cloudsponge === 'undefined' || ! cloudsponge ) {
 			console.log('cloudsponge not defined, check API key');
 			return false;
 		}

@@ -5,7 +5,7 @@
  * @wordpress-plugin
  * Plugin Name:       Better Sharing
  * Description:       Add essential viral sharing functionality to any WordPress site.
- * Version:           1.3.2
+ * Version:           1.3.3
  * Author:            CloudSponge
  * Author URI:        https://www.cloudsponge.com
  * License:           GPL-3.0
