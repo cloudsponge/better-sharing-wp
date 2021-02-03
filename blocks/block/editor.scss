@@ -1,0 +1,73 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+// inspector controls
+.wp-block-cgb-block-ea-better-sharing-panel-body {
+  // social network toggles
+  & .row-togglecontrol {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    & div { // .[key]-inspector-controls
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      & .components-toggle-control {
+        margin-bottom: 3px;
+      }
+
+      & .custom-input {
+        & div {
+          label {
+            margin-bottom: 1px;
+          }
+        }
+      }
+    }
+  } // end .row-togglecontrol
+
+  // referral link and email form
+  & .row-radiocontrol {
+    display: flex;
+    flex-direction: column;
+  
+    & .components-radio-control {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+    
+    & .custom-input {
+      width: 100%;
+
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+
+      & #inspector-textarea-control-0__help {
+        margin-top: -10px;
+      }
+    }
+  } // end .row-radiocontrol
+}
+
+.wp-block-cgb-block-ea-better-sharing {
+  // email form preview
+  .email-form {
+    display: flex;
+    flex-direction: column;
+
+    & label:not(:first-child) {
+      font-size: 0.8rem;
+    }
+
+    & button {
+      margin: 5px auto 0 0;
+    }
+  } // end .email-form
+}

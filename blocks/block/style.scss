@@ -1,0 +1,151 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.wp-block-cgb-block-ea-better-sharing {
+  color: #000;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem;
+
+  & > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  & .social-links {
+    & > a:not(:last-child) {
+      // anchor tag is Button component
+      margin-right: 5px;
+    }
+  } // end .social-links
+
+  & .referral-link {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    & input {
+      width: 30%;
+      margin: 0 10px;
+    }
+
+    & #copy-success {
+      display: none;
+
+      font-size: 12px;
+      margin: 0;
+      padding: 0;
+      margin-left: 5px;
+    }
+  } // end .referral-link
+
+  .email-input {
+    & > * {
+      display: block;
+    }
+
+    & input {
+      width: 100%;
+    }
+  } // end .email-input
+
+  // email form - bswp-form.php
+  .bswp-share-buttons {
+
+    &.bswp-share-emails {
+      margin: 0 0 20px 0;
+  
+      a.add-from-address-book-init {
+        background: #43454b;
+        border-radius: 20px;
+        color: white;
+        display: inline-block;
+        line-height: 20px;
+        vertical-align: top;
+        width: 43%;
+        span {
+          display: inline-block;
+          margin-right: 5px;
+          vertical-align: middle;
+        }
+      }
+  
+      input[type="text"] {
+        border-radius: 5px;
+        display: inline-block;
+        height: 41px;
+        margin: 0 2% 0 0;
+        vertical-align: top;
+        width: 54%;
+      }
+    }
+  }
+  
+  .bswp-share-email-preview {
+    text-align: left;
+  
+    input,textarea {
+      border-radius: 5px;
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+    }
+  
+    pre {
+      background: none;
+      font-style: inherit;
+      white-space: normal;
+      width: 100%;
+    }
+  
+    .bswp-share-email-preview-subject,
+    .bswp-share-email-preview-message {
+  
+      strong {
+        display: inline-block;
+        font-size: 1.2em;
+        vertical-align: middle;
+        width: 15%;
+      }
+  
+      .box {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        display: inline-block;
+        font-size: 1.2em;
+        margin: 0 0 10px 5%;
+        padding: 10px;
+        vertical-align: middle;
+        width: 65%;
+      }
+  
+    }
+  }
+  
+  .bswp-coupon-referral-coupon-code {
+    padding: 20px 0;
+  }
+  
+  .bswp-coupon-referral-emailSent {
+    font-size: 1.2em;
+    padding: 5px 0;
+    text-align: center;
+  
+    &.success {
+      background: green;
+      color: white;
+    }
+  
+    &.fail {
+      background: red;
+      color: white;
+    }
+  }
+  
+  .bswp-copy-confirm {
+    display: none;
+  }
+}

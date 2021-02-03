@@ -27,26 +27,23 @@ class AutomateWoo extends BetterSharingAddOn {
 	 * @return int|\WP_Error
 	 */
 	public function init() {
-		$this->referrals_page = (int) get_site_option( 'aw_referrals_referrals_page', false );
-		if ( ! $this->referrals_page ) {
-			return new \WP_Error( '400', __( 'No Referrals Page Found' ) );
-		}
-		$init_return = parent::init_addon(
-			'AutomateWoo',
-			'Better Sharing WP AddOn for AutomateWoo',
-			false
-		);
+			$init_return = parent::init_addon(
+				'AutomateWoo',
+				'Better Sharing WP AddOn for AutomateWoo',
+				false
+			);
 
-		$this->support_url = 'https://cloudsponge.com';
+			$this->support_url = 'https://cloudsponge.com';
 
 		if ( $this->is_active() ) {
+			$this->referrals_page = (int) get_site_option( 'aw_referrals_referrals_page', false );
 			add_filter( 'wc_get_template', array( $this, 'template_init' ), 10, 5 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+			$this->settingsPageInit();
+
+			return is_wp_error( $init_return ) ? $init_return : $this->is_active();
 		}
-
-		$this->settingsPageInit();
-
-		return is_wp_error( $init_return ) ? $init_return : $this->is_active();
+		return true;
 	}
 
 	/**

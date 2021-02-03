@@ -13,7 +13,10 @@ $email_subject = $email_subject ? $email_subject : 'Sharing';
 $email_content = $email_content ? $email_content : 'Email Content';
 $field_count  = isset( $field_count ) ? absint( apply_filters( 'automatewoo/referrals/share_form/email_field_count', 5 ) ) : 5;
 
-$addon      = $addon ? sanitize_title_with_dashes( $addon ) : false;
+$addon      = isset( $addon ) ? sanitize_title_with_dashes( $addon ) : false;
+if ( ! $addon ) {
+	return;
+}
 $action_data = array(
 	'addon' => $addon,
 );
@@ -54,12 +57,12 @@ do_action( 'bwp_form_before', $action_data );
 			<div class="bswp-share-email-preview-subject">
 				<strong>Subject</strong>
 				<div class="box"><?php echo esc_html( $email_subject ); ?></div>
-				<input type="hidden" name="bswp-share-email-subject" value="<?php echo esc_attr( $email_subject ); ?>" />
+				<input type="hidden" name="bswp-share-email-subject" id="bswp-share-email-subject" value="<?php echo esc_attr( $email_subject ); ?>" />
 			</div>
 			<div class="bswp-share-email-preview-message">
 				<strong>Message</strong>
 				<div class="box"><?php echo esc_html( $email_content ); ?></div>
-				<input type="hidden" name="bswp-share-email-content" value="<?php echo esc_attr( $email_content ); ?>" />
+				<input type="hidden" name="bswp-share-email-content" id="bswp-share-email-content" value="<?php echo esc_attr( $email_content ); ?>" />
 			</div>
 		</div>
 	<?php endif; ?>
