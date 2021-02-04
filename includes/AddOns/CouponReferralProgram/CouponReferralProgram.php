@@ -94,7 +94,7 @@ class CouponReferralProgram extends BetterSharingAddOn {
 	 * Save Admin Settings - admin init callback
 	 */
 	public function save_settings() {
-		if ( ! isset( $_POST['_bswp_form_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_bswp_form_nonce'] ) ), 'bswp_addons_nonce' ) ) {
+		if ( ! isset( $_POST['_bswp_addons_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_bswp_addons_nonce'] ) ), 'bswp_addons_nonce' ) ) {
 			return;
 		} else {
 			if ( isset( $_POST['coupon_referral_email_subject'] ) ) {
