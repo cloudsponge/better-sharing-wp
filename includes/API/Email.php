@@ -17,11 +17,11 @@ class Email {
 	public function rest_init() {
 		register_rest_route(
 			'bswp/v1',
-			'bswp_email',
+			'/bswp_email',
 			array(
-				'methods' => array( 'POST', 'GET' ),
-				'callback' => array( $this, 'bswp_email_before_send' ),
-				'permission_callback' => __return_true(),
+				'methods'             => array( 'POST', 'GET' ),
+				'callback'            => array( $this, 'bswp_email_before_send' ),
+				'permission_callback' => '__return_true',
 			)
 		);
 	}
