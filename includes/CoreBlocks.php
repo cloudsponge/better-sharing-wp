@@ -23,13 +23,15 @@ class CoreBlocks {
 	 * @return void
 	 */
 	public function core_block_public_scripts() {
-		wp_enqueue_script(
-			'better-sharing-blocks-public',
-			BETTER_SHARING_URI . 'dist/blocks/public.bundle.js',
-			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor' ),
-			BETTER_SHARING_VERSION,
-			false
-		);
+		if ( has_block( 'cgb/block-ea-better-sharing' ) ) {
+			wp_enqueue_script(
+				'better-sharing-blocks-public',
+				BETTER_SHARING_URI . 'dist/blocks/public.bundle.js',
+				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor' ),
+				BETTER_SHARING_VERSION,
+				false
+			);
+		}
 	}
 
 	/**
