@@ -3,25 +3,25 @@ import './styles.scss';
 export default class AutomateWoo {
 
 	init($) {
-		this.$ = $;
+    this.$ = $;
 
-		// If no cloudsponge, return.
-		if ( typeof cloudsponge === 'undefined' || ! cloudsponge ) {
-			console.log('cloudsponge not defined, check API key');
-			return false;
-		}
+    // If no cloudsponge, return.
+    if (typeof cloudsponge === 'undefined' || !cloudsponge) {
+      console.log('cloudsponge not defined, check API key');
+      return false;
+    }
 
-		cloudsponge.init({
-			referrer: 'better-sharing-wp:automate-woo',
-			afterSubmitContacts: this.afterSelect
-		});
-		
-		const $body = $('body');
-		$body.on( 'click', '.add-from-address-book-init', this.clickInit );
-		$body.on( 'click', '.bswp-single-addon-status-toggle', this.toggleAddOn );
-		$body.on( 'click', '.bswp-submit', this.formSubmit );
-		$body.on( 'click', '.bswp-automatewoo-share-link-key-copy', this.copyLink );
-	}
+    cloudsponge.init({
+      referrer: 'better-sharing-wp:automate-woo',
+      afterSubmitContacts: this.afterSelect,
+    });
+
+    const $body = $('body');
+    $body.on('click', '.add-from-address-book-init', this.clickInit);
+    // $body.on( 'click', '.bswp-single-addon-status-toggle', this.toggleAddOn );
+    $body.on('click', '.bswp-submit', this.formSubmit);
+    $body.on('click', '.bswp-automatewoo-share-link-key-copy', this.copyLink);
+  }
 
 	/**
 	 * Init Address Book
