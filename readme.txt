@@ -53,6 +53,9 @@ If it's not mentioned in this documentation then we haven't built it yet, but we
 
 == Changelog ==
 
+= 1.3.4 =
+* Fixes to AddOn classes, update variable checking.
+
 = 1.3.3 =
 * Security, nonce, and variable name fixes.
 
