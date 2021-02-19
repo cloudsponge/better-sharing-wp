@@ -22,12 +22,12 @@ class WooWishlists extends  BetterSharingAddOn {
 	public function init() {
 
 		$init_return = parent::init_addon(
-			'WooCommerce WishLists',
-			'Better Sharing WP AddOn for WooCommerce WishLists',
+			'WooCommerce Wishlists',
+			'Override the wishlist’s “mailto” link with a beautiful modal dialog for sharing via email with a message preview and contact picker.',
 			false
 		);
 
-		$this->support_url = 'https://cloudsponge.com/';
+		$this->support_url = 'https://www.cloudsponge.com/better-sharing/';
 
 		if ( $this->is_active() ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );

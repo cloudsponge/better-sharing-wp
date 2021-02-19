@@ -28,12 +28,12 @@ class AutomateWoo extends BetterSharingAddOn {
 	 */
 	public function init() {
 			$init_return = parent::init_addon(
-				'AutomateWoo',
-				'Better Sharing WP AddOn for AutomateWoo',
+				'AutomateWoo’s Refer A Friend add-on',
+				'Rather than forcing users to manually type up to 5 email addresses into separate text fields, Better Sharing modifies this interface to allow a comma-separated list of email addresses with a preview of the subject and body, as well as an optional contact picker so that users never have to type anything manually.',
 				false
 			);
 
-			$this->support_url = 'https://cloudsponge.com';
+			$this->support_url = 'https://www.cloudsponge.com/better-sharing/';
 
 		if ( $this->is_active() ) {
 			$this->referrals_page = (int) get_site_option( 'aw_referrals_referrals_page', false );
