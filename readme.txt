@@ -1,5 +1,5 @@
 === Better Sharing ===
-Contributors: cloudsponge
+Contributors: cloudsponge, easilyamused
 Tags: cloudsponge, woocommerce, contact picker, sharing
 Requires at least: 5.0.0
 Tested up to: 5.5.3
