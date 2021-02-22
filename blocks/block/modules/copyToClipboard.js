@@ -7,18 +7,19 @@ export default class copyToClipboard {
   }
 
   events() {
-    this.button.addEventListener('click', async (e) => {
-      if (!navigator.clipboard) {
-        // Clipboard API not available
-        return;
-      }
-      const text = this.input.value;
-      try {
-        await navigator.clipboard.writeText(text);
-        this.displaySuccessMsg();
-      } catch (err) {
-        console.error('Failed to copy!', err);
-      }
+    this.button.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const text = this.input;
+      text.select();
+      text.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+
+      this.msg.style.display = 'block';
+
+      setTimeout(() => {
+        this.msg.style.display = 'none';
+      }, 1500);
     });
   }
 
