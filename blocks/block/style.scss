@@ -82,6 +82,12 @@
         width: 54%;
       }
     }
+
+    & .coreblock-error-msg {
+      display: none;
+      margin-top: 5px;
+      color: red;
+    }
   }
   
   .bswp-share-email-preview {

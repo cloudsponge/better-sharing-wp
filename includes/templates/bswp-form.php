@@ -78,6 +78,7 @@ do_action( 'bwp_form_before', $action_data );
 	<?php else : ?>
 		<div class="bswp-share-buttons">
 			<input type="submit" class="bswp-submit btn button" value="<?php echo 'Send'; ?>" />
+			<p class='coreblock-error-msg'></p>
 		</div>
 	<?php endif; ?>
 
