@@ -59,15 +59,6 @@ class CoreBlocks {
 	}
 
 	/**
-	 * Register shortcode.
-	 *
-	 * @return void
-	 */
-	public function add_better_sharing_shortcode() {
-		add_shortcode( 'better-sharing', array( $this, 'render_better_sharing_output' ) );
-	}
-
-	/**
 	 * Public Scripts and Styles
 	 *
 	 * @return void
@@ -103,7 +94,7 @@ class CoreBlocks {
 			'cgb/block-ea-better-sharing',
 			array(
 				'editor_script'   => 'better-sharing-blocks',
-				'render_callback' => array( $this, 'render_better_sharing_output' ),
+				'render_callback' => array( $this, 'better_sharing_output' ),
 				// default attributes if not contained within $block_attributes.
 				'attributes'      => array(
 					'emailFormControl'    => array(
@@ -120,6 +111,15 @@ class CoreBlocks {
 	}
 
 	/**
+	 * Register shortcode.
+	 *
+	 * @return void
+	 */
+	public function add_better_sharing_shortcode() {
+		add_shortcode( 'better-sharing', array( $this, 'better_sharing_output' ) );
+	}
+
+	/**
 	 * Create intent url for shortcode.
 	 *
 	 * @param string $intent_url Social sharing intent URL w/o permalink.
@@ -131,32 +131,39 @@ class CoreBlocks {
 	}
 
 	/**
-	 * Render Block
+	 * Render output.
 	 *
-	 * @param array  $block_attributes block attributes.
+	 * @param array  $atts block attributes.
 	 * @param string $content post content.
+	 * @param string $tag shortcode tag.
 	 *
 	 * @return string
 	 */
-	public function render_better_sharing_output( $block_attributes, $content ) {
-		// use default attributes for shortcode.
-		if ( '' === $block_attributes ) {
-			$block_attributes = $this->block_attributes;
+	public function better_sharing_output( $atts, $content = null, $tag = null ) {
+		// normalize attributes between gute block and shortcode.
+		$block_attributes = array_change_key_case( $atts, CASE_LOWER );
+
+		// add user attributes / default attributes if shortcode is used.
+		if ( 'better-sharing' === $tag ) {
+			$block_attributes = shortcode_atts(
+				array_change_key_case( $this->block_attributes, CASE_LOWER ),
+				$block_attributes
+			);
 		}
 
-		$social_networks = $block_attributes['socialNetworks'];
-		$referral_link   = array_key_exists( 'referralLink', $block_attributes ) ? esc_url( $block_attributes['referralLink'] ) : false;
-		$email_control   = sanitize_text_field( $block_attributes['emailFormControl'] );
+		$social_networks = $block_attributes['socialnetworks'];
+		$referral_link   = array_key_exists( 'referrallink', $block_attributes ) ? esc_url( $block_attributes['referrallink'] ) : get_permalink();
+		$email_control   = sanitize_text_field( $block_attributes['emailformcontrol'] );
 
 		// replace '{{link}}' with actual link.
-		$email_content = sanitize_text_field( $block_attributes['emailMessage'] );
+		$email_content = sanitize_text_field( $block_attributes['emailmessage'] );
 		$email_content = str_replace( '{{link}}', $referral_link, $email_content );
 
 		// used in bswp-form.
 		$addon                = 'core';
 		$ajax                 = false;
-		$link_control         = sanitize_text_field( $block_attributes['referralLinkControl'] );
-		$email_subject        = sanitize_text_field( $block_attributes['emailSubject'] );
+		$link_control         = sanitize_text_field( $block_attributes['referrallinkcontrol'] );
+		$email_subject        = sanitize_text_field( $block_attributes['emailsubject'] );
 		$preview_email_toggle = false;
 
 		// whether or not email form is rendered.
