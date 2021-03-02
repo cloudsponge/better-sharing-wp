@@ -58,6 +58,7 @@ export default class emailForm {
         this.submit.value = 'Send';
         this.submit.disabled = false;
         this.submit.style = 'inherit';
+        this.emailInput.value = '';
       }, 3000);
     } else {
       this.errorMsg.innerText = this.errorText;
