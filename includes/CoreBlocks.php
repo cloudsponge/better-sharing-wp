@@ -32,9 +32,11 @@ class CoreBlocks {
 	public function __construct() {
 		$this->message = 'Check out this link!';
 
-		$this->block_attributes = array(
+		$this->shortcode_attributes = array(
 			'emailSubject'        => 'Sharing',
 			'emailMessage'        => 'What a great way to save! Click {{link}}',
+			'twitter'             => 'true',
+			'facebook'            => 'true',
 			'socialNetworks'      => array(
 				'twitter'  => array(
 					'visible'   => true,
@@ -146,9 +148,18 @@ class CoreBlocks {
 		// add user attributes / default attributes if shortcode is used.
 		if ( 'better-sharing' === $tag ) {
 			$block_attributes = shortcode_atts(
-				array_change_key_case( $this->block_attributes, CASE_LOWER ),
+				array_change_key_case( $this->shortcode_attributes, CASE_LOWER ),
 				$block_attributes
 			);
+
+			// shortcode options to remove social network sharing.
+			if ( 'false' === $block_attributes['twitter'] ) {
+				unset( $block_attributes['socialnetworks']['twitter'] );
+			}
+
+			if ( 'false' === $block_attributes['facebook'] ) {
+				unset( $block_attributes['socialnetworks']['facebook'] );
+			}
 		}
 
 		$social_networks = $block_attributes['socialnetworks'];
