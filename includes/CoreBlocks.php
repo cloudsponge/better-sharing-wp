@@ -143,7 +143,11 @@ class CoreBlocks {
 	 */
 	public function better_sharing_output( $atts, $content = null, $tag = null ) {
 		// normalize attributes between gute block and shortcode.
-		$block_attributes = array_change_key_case( $atts, CASE_LOWER );
+		if ( true === is_array( $atts ) ) {
+			$block_attributes = array_change_key_case( $atts, CASE_LOWER );
+		} else {
+			$block_attributes = $atts;
+		}
 
 		// add user attributes / default attributes if shortcode is used.
 		if ( 'better-sharing' === $tag ) {
