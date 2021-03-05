@@ -48,11 +48,11 @@ class CouponReferralProgram extends BetterSharingAddOn {
 		// init.
 		$init_return = parent::init_addon(
 			'Coupon Referral Program',
-			'Better Sharing WP AddOn for Coupon Referral Program',
+			'Let your users easily copy their coupon link to their clipboard or share it via email with a message preview and contact picker.',
 			false
 		);
 
-		$this->support_url = 'https://cloudsponge.com';
+		$this->support_url = 'https://www.cloudsponge.com/better-sharing/';
 
 		$social_enabled = get_option( 'mwb_cpr_social_enable', 'off' );
 		$social_enabled = 'yes' === $social_enabled;
