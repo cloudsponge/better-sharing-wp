@@ -9,8 +9,8 @@ global $post;
 
 $ajax         = $ajax ? $ajax : false;
 $api_key      = get_site_option( '_bswp_option_core_apiKey', false );
-$email_subject = $email_subject ? $email_subject : 'Sharing';
-$email_content = $email_content ? $email_content : 'Email Content';
+$email_subject = isset( $email_subject ) ? $email_subject : 'Sharing';
+$email_content = isset( $email_content ) ? $email_content : 'Email Content';
 $field_count  = isset( $field_count ) ? absint( apply_filters( 'automatewoo/referrals/share_form/email_field_count', 5 ) ) : 5;
 
 $addon      = isset( $addon ) ? sanitize_title_with_dashes( $addon ) : false;
@@ -78,6 +78,7 @@ do_action( 'bwp_form_before', $action_data );
 	<?php else : ?>
 		<div class="bswp-share-buttons">
 			<input type="submit" class="bswp-submit btn button" value="<?php echo 'Send'; ?>" />
+			<p class='coreblock-error-msg'></p>
 		</div>
 	<?php endif; ?>
 

@@ -16,6 +16,7 @@ export default class WooWishlist {
       afterSubmitContacts: this.afterSelect,
     });
 
+		const $body = $('body');
 		$body.on('click', '.add-from-address-book-init', this.clickInit);
     // $body.on( 'click', '.bswp-single-addon-status-toggle', this.toggleAddOn );
     // doesn't apply to wishlist, nothing to copy.
