@@ -24,8 +24,8 @@ echo "Creating Tag";
 git tag -a v"$versionNumber" -m "new version: $versionNumber";
 
 #Push to GitHub
-#echo "Pushing to GitHub";
-#git push --tags origin;
+echo "Pushing to GitHub";
+git push --tags origin;
 
 #Copy and move build files into new directory
 STR="better-sharing-$versionNumber" 
