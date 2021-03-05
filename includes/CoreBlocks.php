@@ -147,12 +147,11 @@ class CoreBlocks {
 
 		// add user attributes / default attributes if shortcode is used.
 		if ( 'better-sharing' === $tag ) {
-			if ( true === is_array( $block_attributes ) ) {
-				$block_attributes = shortcode_atts(
-					array_change_key_case( $this->shortcode_attributes, CASE_LOWER ),
-					$block_attributes
-				);
-			}
+			$block_attributes = shortcode_atts(
+				array_change_key_case( $this->shortcode_attributes, CASE_LOWER ),
+				$block_attributes
+			);
+
 			// shortcode options to remove social network sharing.
 			if ( 'false' === $block_attributes['twitter'] ) {
 				unset( $block_attributes['socialnetworks']['twitter'] );
