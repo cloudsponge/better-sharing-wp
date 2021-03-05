@@ -56,6 +56,9 @@ If it's not mentioned in this documentation then we haven't built it yet, but we
 = 1.3.6 =
 * Marketing assets.
 * New admin icon.
+* Menu redesign
+* Shortcode
+* Other UI/UX updates
 
 = 1.3.5 =
 * Fixes dependency issues.
