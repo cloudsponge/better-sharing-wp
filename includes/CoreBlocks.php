@@ -36,6 +36,7 @@ class CoreBlocks {
 			'emailSubject'        => 'Sharing',
 			'emailMessage'        => 'What a great way to save! Click {{link}}',
 			'twitter'             => 'true',
+			'twittermsg'          => false,
 			'facebook'            => 'true',
 			'socialNetworks'      => array(
 				'twitter'  => array(
@@ -155,6 +156,13 @@ class CoreBlocks {
 				array_change_key_case( $this->shortcode_attributes, CASE_LOWER ),
 				$block_attributes
 			);
+
+			// shortcode option to change default Twitter message.
+			if ( isset( $block_attributes['twittermsg'] ) ) {
+				$twittermsg = $block_attributes['twittermsg'];
+				$block_attributes['socialnetworks']['twitter']['message']   = $twittermsg;
+				$block_attributes['socialnetworks']['twitter']['intentUrl'] = 'https://www.twitter.com/intent/tweet?url={{permalink}}&text=' . $twittermsg;
+			}
 
 			// shortcode options to remove social network sharing.
 			if ( 'false' === $block_attributes['twitter'] ) {
