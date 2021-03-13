@@ -8,6 +8,8 @@ This WordPress plugin is to be used with your CloudSponge account.
 - Node / NPM
 - Composer
 
+Tested with PHP 7.0
+
 ## Installation
 
 - Install using one our pre-zipped releases  
