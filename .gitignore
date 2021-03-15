@@ -2,3 +2,6 @@
 /vendor/
 dist/
 node_modules/
+build
+better-sharing-*/
+better-sharing-*.zip
