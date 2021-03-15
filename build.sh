@@ -5,11 +5,11 @@ echo "======================================================" &&
 echo "" &&
 
 #Ask & Store Version
-echo "Version Number:  ";
-read -r versionNumber;
+read -r -p "Version Number: " versionNumber
 
 #Remove Build Directory?
-read -r -p "Remove plugin build directory after compression? y/n " removeDir;
+read -r -p "Remove plugin build directory after compression? (y/N) " removeDir
+
 # push tags to gh?
 read -r -p "Push build tag to Github? (y/N) " prodBuild
 
@@ -83,10 +83,11 @@ zip -r "$STR.zip" "./$STR" >> $buildLog 2>&1
 case $removeDir in
 [Yy]* )
   echo "Cleanup..."
-  rm -rf "./$STR";
-  echo "Thank You"
-;;
-[Nn]* ) 
-  echo "Thank You"
+  rm -rf "./$STR" >> $buildLog 2>&1
 ;;
 esac
+
+echo "Thank You"
+
+# we're good!
+exit 0
