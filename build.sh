@@ -10,6 +10,8 @@ read -r versionNumber;
 
 #Remove Build Directory?
 read -r -p "Remove plugin build directory after compression? y/n " removeDir;
+# push tags to gh?
+read -r -p "Push build tag to Github? (y/N) " prodBuild
 
 buildDir='build'
 mkdir -p "$buildDir"
@@ -33,13 +35,21 @@ rm composer.lock >> $buildLog 2>&1
 echo "Building version $versionNumber";
 npm run build >> $buildLog 2>&1;
 
-#Create tag
-echo "Creating Tag";
-git tag -a v"$versionNumber" -m "new version: $versionNumber";
 
-#Push to GitHub
-echo "Pushing to GitHub";
-git push --tags origin;
+# Tag, if this is a prod build
+case $prodBuild in
+[Yy]*)
+  #Create tag
+  echo "Creating Tag"
+  git tag -a v"$versionNumber" -m "new version: $versionNumber" >> $buildLog 2>&1
+
+  echo "Pushing to GitHub"
+  git push --tags origin >> $buildLog 2>&1
+  ;;
+*) 
+  echo "Not tagging this release, you indicated that it was not a production build."
+  ;;
+esac
 
 #Copy and move build files into new directory
 STR="better-sharing-$versionNumber"
