@@ -25,6 +25,12 @@ buildLog="$buildDir/build-$versionNumber.txt"
 
 echo "output will go to $buildLog"
 
+log "Building $versionNumber..."
+
+# Capture old branch
+currentBranch=$(git branch --show-current)
+log "Branching off $currentBranch"
+
 # Create new branch
 log "Creating a branch for the build"
 git checkout -b build-"$versionNumber" >> $buildLog 2>&1
@@ -90,6 +96,10 @@ case $removeDir in
   rm -rf "./$STR" >> $buildLog 2>&1
 ;;
 esac
+
+# return to the previous branch
+log "Returning to the previous branch"
+git checkout $currentBranch >> $buildLog 2>&1
 
 log "Thank You"
 
