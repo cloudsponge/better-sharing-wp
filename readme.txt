@@ -2,9 +2,9 @@
 Contributors: cloudsponge, easilyamused
 Tags: cloudsponge, woocommerce, contact picker, sharing
 Requires at least: 5.0.0
-Tested up to: 5.5.3
-Requires PHP: 7.4
-Stable tag: 1.3.6
+Tested up to: 5.7
+Requires PHP: 7.0
+Stable tag: 1.4.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -52,6 +52,12 @@ No. We've made sure that the core functionality of the plugin itself and of each
 If it's not mentioned in this documentation then we haven't built it yet, but we desperately want to hear from you about it. Please [get in touch with us](https://www.cloudsponge.com/contact/) and let us know what AddOn you want us to build next.
 
 == Changelog ==
+
+= 1.4.0 =
+* Beautification of addon dashboard area
+* Added user feedback when email sends
+* Tested for PHP 7.0 compatibility and updated readme accordingly
+* Tested for WP 5.7 compatibility
 
 = 1.3.6 =
 * Marketing assets.
