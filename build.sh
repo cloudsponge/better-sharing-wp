@@ -22,6 +22,13 @@ echo "output will go to $buildLog"
 echo "Checking out build"
 git checkout -b build-"$versionNumber" >> $buildLog 2>&1
 
+# Run composer
+# we use it as a way to do PSR-4 namespacing
+# remove the composer lock file, we don't require it because we don't have any external packages at this time.
+echo "Running composer"
+composer install >> $buildLog 2>&1
+rm composer.lock >> $buildLog 2>&1
+
 # Run Build
 echo "Building version $versionNumber";
 npm run build >> $buildLog 2>&1;
