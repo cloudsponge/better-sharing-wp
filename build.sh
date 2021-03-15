@@ -11,13 +11,20 @@ read -r versionNumber;
 #Remove Build Directory?
 read -r -p "Remove plugin build directory after compression? y/n " removeDir;
 
+buildDir='build'
+mkdir -p "$buildDir"
+buildLog="$buildDir/build-$versionNumber.txt"
+
+echo "Building $versionNumber..."
+echo "output will go to $buildLog"
 
 # Create new branch
-git checkout -b build-"$versionNumber";
+echo "Checking out build"
+git checkout -b build-"$versionNumber" >> $buildLog 2>&1
 
 # Run Build
 echo "Building version $versionNumber";
-npm run build;
+npm run build >> $buildLog 2>&1;
 
 #Create tag
 echo "Creating Tag";
@@ -28,33 +35,33 @@ echo "Pushing to GitHub";
 git push --tags origin;
 
 #Copy and move build files into new directory
-STR="better-sharing-$versionNumber" 
-mkdir "$STR"
+STR="better-sharing-$versionNumber"
+mkdir "$STR" >> $buildLog 2>&1
 
 echo "Copying Admin Assets"
-cp -r ./admin-assets "./$STR/admin-assets";
+cp -r ./admin-assets "./$STR/admin-assets" >> $buildLog 2>&1
 
 echo "Copying dist"
-cp -r ./dist "./$STR/dist";
+cp -r ./dist "./$STR/dist" >> $buildLog 2>&1
 
 echo "Copying vendor dir"
-cp -r ./vendor "./$STR/vendor";
+cp -r ./vendor "./$STR/vendor" >> $buildLog 2>&1
 
 echo "Copying includes"
-cp -r ./includes "./$STR/includes";
+cp -r ./includes "./$STR/includes" >> $buildLog 2>&1
 
 echo "Copying public"
-cp -r ./public "./$STR/public";
+cp -r ./public "./$STR/public" >> $buildLog 2>&1
 
 echo "Copying core files"
-cp ./BetterSharingWP.php "./$STR/BetterSharingWP.php";
+cp ./BetterSharingWP.php "./$STR/BetterSharingWP.php" >> $buildLog 2>&1
 
 echo "Copying Readmes"
-cp ./README.md "./$STR/README.md";
-cp ./readme.txt "./$STR/readme.txt";
+cp ./README.md "./$STR/README.md" >> $buildLog 2>&1
+cp ./readme.txt "./$STR/readme.txt" >> $buildLog 2>&1
 
 echo "Compressing"
-zip -r "$STR.zip" "./$STR"
+zip -r "$STR.zip" "./$STR" >> $buildLog 2>&1
 
 case $removeDir in
 [Yy]* )
